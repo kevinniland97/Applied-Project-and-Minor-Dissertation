@@ -1,0 +1,1 @@
+from backend.algorithms.dijkstra2 import Graph
