@@ -1,5 +1,6 @@
 from flask import Flask, json, jsonify, render_template, request
-from backend import Graph
+
+from dijkstra2 import *
 
 app = Flask(__name__)
 
@@ -12,6 +13,7 @@ def homePage():
     ("e", "f", 9)])
 
     print(graph)
+    print(graph.dijkstra("a", "d"))
 
     return render_template('index.html')
 
