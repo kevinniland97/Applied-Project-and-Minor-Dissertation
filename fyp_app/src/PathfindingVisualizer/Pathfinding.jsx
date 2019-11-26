@@ -60,4 +60,14 @@ export default class Pathfinding extends Component {
             mousePressed: false
         });
     }
+
+    // The 'main' method of react
+    render() {
+        <h3>
+            {/* Button that will visualize an algorithm */}
+            <button /* onClick = {() =>} */>
+                Visualize
+            </button>
+        </h3>
+    }
 }
