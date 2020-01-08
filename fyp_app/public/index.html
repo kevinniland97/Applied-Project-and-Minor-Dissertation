@@ -15,19 +15,52 @@
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a id="refreshPageButton" class="navbar-brand" href="#">Algorithms Visualizer</a>
+          <a id="refreshPageButton" class="navbar-brand" href="algorithms_visualizer">Algorithms Visualizer</a>
         </div>
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Pathfinding Algorithms
+            <a class="dropdown-toggle" data-toggle="dropdown" href="algorithms_visualizer">Pathfinding Algorithms
               <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li id='startButtonDijkstra'><a href="#">Dijkstra's Algorithm</a></li>
+              <li id='startButtonDijkstra'><a href="algorithms_visualizer">Dijkstra's Algorithm</a></li>
             </ul>
           </li>
+          <button class="nav capture-screen" onclick="screenshot()">
+            Upload to database
+          </button>
         </ul>
       </div>
     </nav>
   </div>
 </body>
+
+<!-- <script src="/__/firebase/7.6.1/firebase-app.js"></script>
+
+     https://firebase.google.com/docs/web/setup#available-libraries
+<script src="/__/firebase/7.6.1/firebase-analytics.js"></script>
+
+Initialize Firebase 
+<script src="/__/firebase/init.js"></script> -->
+
+<!-- <script src="../static/javascript/screenshot.js"></script> -->
+
+<script>
+  function screenshot() {
+    console.log("Screenshot captured")
+
+    html2canvas(document.body, {
+      onrendered: function (canvas) {
+        canvas.toBlob(function (blob) {
+          saveAs(blob, "screenshot.png");
+        });
+      }
+    });
+  }
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </html>
