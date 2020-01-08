@@ -1,6 +1,8 @@
 {
   "name": "fyp_app",
   "version": "0.1.0",
+  "proxy": "http://localhost:8080",
+  "server": "nodemon index.js",
   "private": true,
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -10,6 +12,10 @@
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "0.9.5"
+  },
+  "devDependencies": {
+    "concurrently": "^5.0.2",
+    "nodemon": "^2.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
