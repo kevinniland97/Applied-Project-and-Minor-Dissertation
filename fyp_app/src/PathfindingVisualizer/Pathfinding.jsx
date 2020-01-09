@@ -124,6 +124,18 @@ export default class PathfindingVisualizer extends Component {
     this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
   }
 
+  // screenshot() {
+  //   console.log("Screenshot captured")
+
+  //   html2canvas(document.body, {
+  //     onrendered: function (canvas) {
+  //       canvas.toBlob(function (blob) {
+  //         saveAs(blob, "screenshot.png");
+  //       });
+  //     }
+  //   });
+  // }
+
   render() {
     const {grid, mouseIsPressed} = this.state;
 
@@ -133,11 +145,13 @@ export default class PathfindingVisualizer extends Component {
           Visualize Dijkstra's Algorithm
         </button>
         <input type="file" onChange={this.handleChange} />
-            <input className="file-path validate" type="text" />
         <button
           onClick={this.handleUpload}
           className="waves-effect waves-light btn">
           Upload
+        </button>
+        <button onClick="screenshot()">
+          Screenshot
         </button>
         <div className="grid">
           {grid.map((row, rowIdx) => {
@@ -169,6 +183,7 @@ export default class PathfindingVisualizer extends Component {
     );
   }
 }
+
 const getInitialGrid = () => {
   const grid = [];
 
@@ -184,6 +199,7 @@ const getInitialGrid = () => {
 
   return grid;
 };
+
 const createNode = (col, row) => {
   return {
     col,
@@ -209,3 +225,4 @@ const getNewGridWithWallToggled = (grid, row, col) => {
   
   return newGrid;
 };
+  

@@ -1,21 +1,26 @@
 import firebase from 'firebase/app';
 import 'firebase/storage';
 
+const fs = require('fs')
+
+var configData;
+
+fs.readFile('C:/firebaseConfig.txt', 'utf-8', (err, data) => {
+    if (err) throw err;
+
+    configData = data;
+
+    // console.log(test);
+})
+
 var firebaseConfig = {
-  apiKey: "AIzaSyDg1wKW2uDW8_vn08Uy8uUihQNXShSwnRY",
-  authDomain: "algorithms-visualizer.firebaseapp.com",
-  databaseURL: "https://algorithms-visualizer.firebaseio.com",
-  projectId: "algorithms-visualizer",
-  storageBucket: "algorithms-visualizer.appspot.com",
-  messagingSenderId: "260696357829",
-  appId: "1:260696357829:web:780ed4997493b54bb2a9ac",
-  measurementId: "G-71R8944ZCM"
+  configData
 };
 
 firebase.initializeApp(firebaseConfig);
 
 const storage = firebase.storage();
 
-export { 
-  firebase, storage as default 
+export {
+  firebase, storage as default
 };
