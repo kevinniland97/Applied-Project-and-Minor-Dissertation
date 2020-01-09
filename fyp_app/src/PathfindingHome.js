@@ -7,8 +7,8 @@ import ImageUpload from './firebase/upload';
 function PathfindingHome() {
   return (
     <div className="PathfindingHome">
-      {/* <Pathfinding></Pathfinding> */}
-      <ImageUpload></ImageUpload>
+      <Pathfinding></Pathfinding>
+      {/* <ImageUpload></ImageUpload> */}
     </div>
   );
 }

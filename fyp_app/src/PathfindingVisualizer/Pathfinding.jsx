@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Node from './Node/Node';
-import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';
+import { dijkstra, getNodesInShortestPathOrder } from '../algorithms/dijkstra';
+import storage from "../firebase/config";
 
 import './Pathfinding.css';
 
@@ -16,6 +17,9 @@ export default class PathfindingVisualizer extends Component {
     this.state = {
       grid: [],
       mouseIsPressed: false,
+      image: null,
+      url: "",
+      progress: 0
     };
   }
 
@@ -42,6 +46,44 @@ export default class PathfindingVisualizer extends Component {
   handleMouseUp() {
     this.setState({mouseIsPressed: false});
   }
+
+  handleChange = event => {
+    if (event.target.files[0]) {
+      const image = event.target.files[0];
+
+      this.setState(() => ({
+        image
+      }));
+    }
+  };
+
+  handleUpload = () => {
+    const { image } = this.state;
+    const uploadTask = storage.ref(`pathfinding/${image.name}`).put(image);
+
+    uploadTask.on(
+      "state_changed",
+
+      snapshot => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+
+        this.setState({ progress });
+      }, error => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref("pathfinding")
+          .child(image.name)
+          .getDownloadURL()
+          .then(url => {
+            this.setState({ url });
+          });
+      }
+    );
+  };
 
   animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder) {
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
@@ -89,6 +131,13 @@ export default class PathfindingVisualizer extends Component {
       <p>
         <button onClick={() => this.visualizeDijkstra()}>
           Visualize Dijkstra's Algorithm
+        </button>
+        <input type="file" onChange={this.handleChange} />
+            <input className="file-path validate" type="text" />
+        <button
+          onClick={this.handleUpload}
+          className="waves-effect waves-light btn">
+          Upload
         </button>
         <div className="grid">
           {grid.map((row, rowIdx) => {
