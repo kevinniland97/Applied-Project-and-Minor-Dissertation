@@ -5,11 +5,15 @@
   "server": "nodemon index.js",
   "private": true,
   "dependencies": {
+    "@firebase/app": "^0.5.0",
+    "@firebase/storage": "^0.3.22",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "firebase": "^7.6.1",
     "mongoose": "^5.8.5",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-firebase-file-uploader": "^2.4.3",
     "react-router-dom": "^5.1.2",
     "react-scripts": "0.9.5",
     "url-to-screenshot": "^3.0.0"
