@@ -8,6 +8,6 @@ app.get("/algorithms_visualizer", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 })
 
-app.listen(1337, () => {
+app.listen(2551, () => {
   console.log("Server running");
 });
