@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Node from './Node/Node';
 import { dijkstra, getNodesInShortestPathOrder } from '../algorithms/dijkstra';
+import { } from '../algorithms/astar';
 import storage from "../firebase/config";
 
 import './Pathfinding.css';
