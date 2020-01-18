@@ -19,7 +19,13 @@ This application is a React app that allows users to visualize various different
 <hr>
 
 ### Related Projects
-
-<hr>
+* #### React/JavaScript projects
+  * Anisur R Khan's [GridAlgoPathfinder](https://github.com/AnisurK24/GridAlgoPathfinder)
+  * Aarron Lee's [Maze Life](https://github.com/aarron-lee/Maze-Life)
+  * balucas's [A* Search Visualizer](https://github.com/balucas/pathfinding-viz)
+  * Clément Mihailescu's [Pathfinding Visualizer Tutorial](https://github.com/clementmihailescu/Pathfinding-Visualizer-Tutorial)
+  * Nikita Shalimov's [Pathfinder.js](https://github.com/ndshal/pathfinder.js)
+  
+  <hr>
 
 ### Project Flow
