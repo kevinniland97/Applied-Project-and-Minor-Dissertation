@@ -45,4 +45,46 @@ function Home(props) {
   )
 };
 
+function MenuDropdown(props) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  function handleClick(event) {
+      setAnchorEl(event.currentTarget);
+  }
+
+  function handleClose(event) {
+      setAnchorEl(null);
+  }
+
+  props.onMenuClick(handleClick);
+
+  return (
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}>
+
+        <MenuItem onClick={(e) => {handleClose(e); props.history.push('bubble-sort')}}>Bubble Sort</MenuItem>
+        <MenuItem onClick={(e) => {handleClose(e); props.history.push('insertion-sort')}}>Insertion Sort</MenuItem>
+        <MenuItem onClick={(e) => {handleClose(e); props.history.push('selection-sort')}}>Selection Sort</MenuItem>
+        <MenuItem onClick={(e) => {handleClose(e); props.history.push('merge-sort')}}>Merge Sort</MenuItem>
+        <MenuItem onClick={(e) => {handleClose(e); props.history.push('quick-sort')}}>Quick Sort</MenuItem>
+      </Menu>
+  );
+}
+
+function HomeButtons(props) {
+  return (
+      <div>
+        <Button color="inherit" onClick={() => props.history.push('bubble-sort')}>Bubble Sort</Button>
+        <Button color="inherit" onClick={() => props.history.push('insertion-sort')}>Insertion Sort (Not implemented)</Button>
+        <Button color="inherit" onClick={() => props.history.push('selection-sort')}>Selection Sort (Not implemented)</Button>
+        <Button color="inherit" onClick={() => props.history.push('merge-sort')}>Merge Sort (Not implemented)</Button>
+        <Button color="inherit" onClick={() => props.history.push('quick-sort')}>Quick Sort (Not implemented)</Button>
+      </div>
+  );
+}
+
 export default Home;

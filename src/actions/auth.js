@@ -1,5 +1,4 @@
 import { myFirebase } from "../firebase/firebase";
-// import { actionCodeSettings } from "../actions/actionCodeSettings";
 
 export const SIGNUP_REQUEST = "SIGNUP_REQUEST";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
@@ -16,7 +15,12 @@ export const LOGOUT_FAILURE = "LOGOUT_FAILURE";
 export const VERIFY_REQUEST = "VERIFY_REQUEST";
 export const VERIFY_SUCCESS = "VERIFY_SUCCESS";
 
-// Sign up
+/**
+ * Sign up logic - three types of operations/outcomes from signing up:
+ * requestSignUp() - User attempts to sign up
+ * receiveSignUp() - User has signed up
+ * signUpError() - User sign up has failed
+ */ 
 const requestSignUp = () => {
   return {
     type: SIGNUP_REQUEST
@@ -36,7 +40,12 @@ const signUpError = () => {
   };
 };
 
-// Login
+/**
+ * Login logic - three types of operations/outcomes from logging in:
+ * requestLogin() - User attempts to login
+ * receiveLogin() - User has logged in
+ * loginError() - User login has failed
+ */
 const requestLogin = () => {
   return {
     type: LOGIN_REQUEST
@@ -56,7 +65,12 @@ const loginError = () => {
   };
 };
 
-// Log out
+/**
+ * Log out logic - three types of operations/outcomes from logging out:
+ * requestLogout() - User attempts to logout
+ * receiveLogout() - User has logged out
+ * logoutError() - User logout has failed
+ */
 const requestLogout = () => {
   return {
     type: LOGOUT_REQUEST
@@ -75,7 +89,11 @@ const logoutError = () => {
   };
 };
 
-// Verify
+/**
+ * Verify logic - two types of operations/outcomes from verification:
+ * verifyRequest() - The request to be verified 
+ * verifySuccess() - The request has been verified successfully
+ */
 const verifyRequest = () => {
   return {
     type: VERIFY_REQUEST
@@ -88,6 +106,12 @@ const verifySuccess = () => {
   };
 };
 
+/**
+ * Attempts to log in a user with the provided email and password. Authentication is handled by Firebase
+ * 
+ * @param {*} email - User's email
+ * @param {*} password - User's password
+ */
 export const loginUser = (email, password) => dispatch => {
   dispatch(requestLogin());
   myFirebase
@@ -97,11 +121,19 @@ export const loginUser = (email, password) => dispatch => {
       dispatch(receiveLogin(user));
     })
     .catch(error => {
-      //Do something with the error if you want!
       dispatch(loginError());
     });
 };
 
+/**
+ * Attempts to sign up a user with a username, first name, last name, email, and password
+ * 
+ * @param {*} username - User's username
+ * @param {*} firstName - User's first name
+ * @param {*} lastName - User's last name
+ * @param {*} email - User's email
+ * @param {*} password - User's password
+ */
 export const signUpUser = (username, firstName, lastName, email, password) => dispatch => {
   dispatch(requestSignUp());
 
@@ -112,11 +144,13 @@ export const signUpUser = (username, firstName, lastName, email, password) => di
       dispatch(receiveSignUp(user));
     })
     .catch(error => {
-      // Do something with the error if you want!
       dispatch(signUpError());
     });
 };
 
+/**
+ * Attempts to log out a user. 
+ */
 export const logoutUser = () => dispatch => {
   dispatch(requestLogout());
   myFirebase
@@ -126,17 +160,22 @@ export const logoutUser = () => dispatch => {
       dispatch(receiveLogout());
     })
     .catch(error => {
-      //Do something with the error if you want!
       dispatch(logoutError());
     });
 };
 
+/**
+ * Authentication verification
+ */
 export const verifyAuth = () => dispatch => {
   dispatch(verifyRequest());
   myFirebase.auth().onAuthStateChanged(user => {
+
+    // if the user object isn't null...
     if (user !== null) {
       dispatch(receiveLogin(user));
     }
+
     dispatch(verifySuccess());
   });
 };
