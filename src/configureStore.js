@@ -10,6 +10,8 @@ export default function configureStore(persistedState) {
     persistedState,
     applyMiddleware(thunkMiddleware)
   );
+  
   store.dispatch(verifyAuth());
+
   return store;
 }

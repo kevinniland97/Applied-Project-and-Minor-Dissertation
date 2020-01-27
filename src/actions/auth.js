@@ -1,4 +1,4 @@
-import { myFirebase } from "../firebase/firebase";
+import { firebaseConfig } from "../firebase/firebase";
 
 export const SIGNUP_REQUEST = "SIGNUP_REQUEST";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
@@ -114,7 +114,8 @@ const verifySuccess = () => {
  */
 export const loginUser = (email, password) => dispatch => {
   dispatch(requestLogin());
-  myFirebase
+
+  firebaseConfig
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then(user => {
@@ -137,7 +138,7 @@ export const loginUser = (email, password) => dispatch => {
 export const signUpUser = (username, firstName, lastName, email, password) => dispatch => {
   dispatch(requestSignUp());
 
-  myFirebase
+  firebaseConfig
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then(user => {
@@ -153,7 +154,8 @@ export const signUpUser = (username, firstName, lastName, email, password) => di
  */
 export const logoutUser = () => dispatch => {
   dispatch(requestLogout());
-  myFirebase
+
+  firebaseConfig
     .auth()
     .signOut()
     .then(() => {
@@ -169,7 +171,7 @@ export const logoutUser = () => dispatch => {
  */
 export const verifyAuth = () => dispatch => {
   dispatch(verifyRequest());
-  myFirebase.auth().onAuthStateChanged(user => {
+  firebaseConfig.auth().onAuthStateChanged(user => {
 
     // if the user object isn't null...
     if (user !== null) {

@@ -2,7 +2,8 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
-const firebaseConfig = {
+// Firebase config - Adds firebase to the project
+const config = {
     apiKey: "AIzaSyDXnUPtX78R67FPAY7IumH5h9-7zDGmidc",
     authDomain: "algorithms-visualiser-react.firebaseapp.com",
     databaseURL: "https://algorithms-visualiser-react.firebaseio.com",
@@ -13,6 +14,11 @@ const firebaseConfig = {
     measurementId: "G-VQGKR2XPMS"
 };
 
-export const myFirebase = firebase.initializeApp(firebaseConfig);
-const baseDb = myFirebase.firestore();
-export const db = baseDb;
+//
+export const firebaseConfig = firebase.initializeApp(config);
+
+//
+const baseDb = firebaseConfig.firestore();
+
+//
+export const database = baseDb;

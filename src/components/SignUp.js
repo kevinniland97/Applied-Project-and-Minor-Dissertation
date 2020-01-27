@@ -40,29 +40,50 @@ const styles = () => ({
   }
 });
 
+/**
+ * 
+ */
 class SignUp extends Component {
   state = { username: "", firstName: "", lastName: "", email: "", password: "" };
 
+  /**
+   * 
+   */
   handleUsernameChange = ({ target }) => {
     this.setState({ username: target.value });
   };
 
+  /**
+   * 
+   */
   handleFirstNameChange = ({ target }) => {
     this.setState({ firstName: target.value });
   };
 
+  /**
+   * 
+   */
   handleLastNameChange = ({ target }) => {
     this.setState({ lastName: target.value });
   };
 
+  /**
+   * 
+   */
   handleEmailChange = ({ target }) => {
     this.setState({ email: target.value });
   };
 
+  /**
+   * 
+   */
   handlePasswordChange = ({ target }) => {
     this.setState({ password: target.value });
   };
 
+  /**
+   * 
+   */
   handleSubmit = () => {
     const { dispatch } = this.props;
     const { username, firstName, lastName, email, password } = this.state;
@@ -70,6 +91,9 @@ class SignUp extends Component {
     dispatch(signUpUser(username, firstName, lastName, email, password));
   };
 
+  /**
+   * 
+   */
   render() {
     const { classes, signUpError, isAuthenticated } = this.props;
     if (isAuthenticated) {
@@ -152,6 +176,10 @@ class SignUp extends Component {
   }
 }
 
+/**
+ * 
+ * @param {*} state 
+ */
 function mapStateToProps(state) {
   return {
     isSigningUp: state.auth.isLoggingIn,
@@ -160,4 +188,7 @@ function mapStateToProps(state) {
   };
 }
 
+/**
+ * 
+ */
 export default withStyles(styles)(connect(mapStateToProps)(SignUp));

@@ -40,17 +40,29 @@ const styles = () => ({
   }
 });
 
+/**
+ * 
+ */
 class Login extends Component {
   state = { email: "", password: "" };
 
+  /**
+   * 
+   */
   handleEmailChange = ({ target }) => {
     this.setState({ email: target.value });
   };
 
+  /**
+   * 
+   */
   handlePasswordChange = ({ target }) => {
     this.setState({ password: target.value });
   };
 
+  /**
+   * 
+   */
   handleSubmit = () => {
     const { dispatch } = this.props;
     const { email, password } = this.state;
@@ -58,6 +70,9 @@ class Login extends Component {
     dispatch(loginUser(email, password));
   };
 
+  /**
+   * 
+   */
   render() {
     const { classes, loginError, isAuthenticated } = this.props;
     if (isAuthenticated) {
@@ -114,6 +129,10 @@ class Login extends Component {
   }
 }
 
+/**
+ * 
+ * @param {*} state 
+ */
 function mapStateToProps(state) {
   return {
     isLoggingIn: state.auth.isLoggingIn,
@@ -122,4 +141,7 @@ function mapStateToProps(state) {
   };
 }
 
+/**
+ * 
+ */
 export default withStyles(styles)(connect(mapStateToProps)(Login));

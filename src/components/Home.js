@@ -19,6 +19,10 @@ const styles = {
   }
 }
 
+/**
+ * 
+ * @param {*} props 
+ */
 function Home(props) {
   var menu;
 
@@ -45,19 +49,34 @@ function Home(props) {
   )
 };
 
+/**
+ * 
+ * @param {*} props 
+ */
 function MenuDropdown(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
+  /**
+   * 
+   * @param {*} event 
+   */
   function handleClick(event) {
       setAnchorEl(event.currentTarget);
   }
 
+  /**
+   * 
+   * @param {*} event 
+   */
   function handleClose(event) {
       setAnchorEl(null);
   }
 
   props.onMenuClick(handleClick);
 
+  /**
+   * 
+   */
   return (
       <Menu
         id="simple-menu"
@@ -75,6 +94,10 @@ function MenuDropdown(props) {
   );
 }
 
+/**
+ * 
+ * @param {*} props 
+ */
 function HomeButtons(props) {
   return (
       <div>

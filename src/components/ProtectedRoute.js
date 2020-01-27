@@ -1,6 +1,10 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
+/**
+ * 
+ * @param {*} param0 
+ */
 const ProtectedRoute = ({
   component: Component,
   isAuthenticated,
