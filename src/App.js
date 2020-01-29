@@ -31,18 +31,23 @@ import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
 import ProtectedRoute from "./components/ProtectedRoute";
-import Home from "./components/Home";
+import Main from "./components/Main";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 
+/**
+ * 
+ * @param {*} props 
+ */
 function App(props) {
   const { isAuthenticated, isVerifying } = props;
+
   return (
     <Switch>
       <ProtectedRoute
         exact
         path="/"
-        component={Home}
+        component={Main}
         isAuthenticated={isAuthenticated}
         isVerifying={isVerifying}
       />
@@ -52,6 +57,10 @@ function App(props) {
   );
 }
 
+/**
+ * 
+ * @param {*} state 
+ */
 function mapStateToProps(state) {
   return {
     isAuthenticated: state.auth.isAuthenticated,

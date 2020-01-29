@@ -19,11 +19,94 @@ const styles = {
   }
 }
 
+const defaultSize = 40;
+const defaultSpeed = 150;
+const maxSize = 100;
+const maxSpeed = 100;
+const highlightColors = ['red', 'blue', 'green', 'gray'];
+
+/**
+ * 
+ */
+class Main extends Component {
+  /**
+   * props represents an arbitary number of inputs
+   * 
+   * @param {*} props 
+   */
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      array: [],
+      isHighlighted: [],
+      stillSorting: false,
+      sortName: 'Bubble Sort'
+    };
+
+    this.sortHistory = [];
+    this.highlightHistory = [];
+    this.sortHistoryIndex = 0;
+    this.interval = null;
+    this.sortSize = defaultSize;
+    this.sortSpeed = defaultSpeed;
+
+    this.props.history.listen((location, action) => {
+      this.generateArray();
+
+      let path = location.pathname;
+
+      switch (path) {
+        case '/bubble-sort':
+          this.setState({ sortName: 'Bubble Sort' });
+          break;
+        default:
+          this.setState({sortName: 'Bubble Sort'});
+      }
+    });
+  }
+  /**
+   * https://reactjs.org/docs/react-component.html#componentdidmount
+   * 
+   * componentDidMount() is invoked immediately after a component is mounted (inserted into the tree)
+   */
+  componentDidMount() {
+    this.generateArray();
+  }
+
+  /**
+   * 
+   */
+  generateArray() {
+    if (this.interval) {
+      clearInterval(this.interval);
+
+      this.interval = null;
+      this.setState({ stillSorting: false });
+    }
+    
+    this.sortHistoryIndex = 0;
+    this.sortHistory = [];
+    this.highlightHistory = [];
+
+    let array = [];
+    
+    /**
+     * 
+     */
+    for (let i = 0; i < this.sortSize; i++) {
+      array.push(Math.floor(Math.random() * 50) + 1);
+    }
+
+    this.setState({ array: array, isHighlighted: -1 })
+  }
+}
+
 /**
  * 
  * @param {*} props 
  */
-function Home(props) {
+function Main(props) {
   var menu;
 
   return (
@@ -34,7 +117,7 @@ function Home(props) {
           <div style={styles.line}></div>
           <MediaQuery minWidth={1000}>
             <Typography style={{ flexGrow: 1 }} variant="h6">
-              <HomeButtons history={ props.history }/>
+              <MainButtons history={ props.history }/>
             </Typography>
           </MediaQuery>
           <MediaQuery maxWidth={1000}>        
@@ -98,7 +181,7 @@ function MenuDropdown(props) {
  * 
  * @param {*} props 
  */
-function HomeButtons(props) {
+function MainButtons(props) {
   return (
       <div>
         <Button color="inherit" onClick={() => props.history.push('bubble-sort')}>Bubble Sort</Button>
@@ -110,4 +193,4 @@ function HomeButtons(props) {
   );
 }
 
-export default Home;
+export default Main;
