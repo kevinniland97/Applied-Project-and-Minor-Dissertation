@@ -100,6 +100,40 @@ class Main extends Component {
 
     this.setState({ array: array, isHighlighted: -1 })
   }
+
+  /**
+   * 
+   * @param {*} array 
+   * @param {*} sortHistory 
+   * @param {*} highlightHistory 
+   */
+  sortAsHighlighted(array, sortHistory, highlightHistory) {
+
+  }
+
+  /**
+   * 
+   */
+  handleSort() {
+
+  }
+
+  /**
+   * 
+   */
+  stopSort() {
+
+  }
+
+  determineBarColor(highlighted, index) {
+    for (let i = 0; i < highlighted.length; i++) {
+      if (highlighted[i] === index) {
+        return highlightColors[i];
+      }
+    }
+
+    return 'determined';
+  }
 }
 
 /**
