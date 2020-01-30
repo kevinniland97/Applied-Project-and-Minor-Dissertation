@@ -115,16 +115,36 @@ class Main extends Component {
    * 
    */
   handleSort() {
+    if (this.interval) {
+      return;
+    }
 
+    if (this.sortHistory.length !== 0 && this.sortHistoryIndex === this.sortHistory.length) {
+      return;
+    }
+
+    if (this.sortHistoryIndex === 0) {
+      this.sortAsHighlighted(this.state.array.slice(), this.sortHistory, this.highlightHistory);
+      this.sortHistoryIndex = 0;
+
+      if (this.sortHistory.length === 1) {
+        return;
+      }
+    }
   }
 
   /**
    * 
    */
   stopSort() {
+    if (this.interval) {
+      clearInterval(this.interval);
 
+      this.interval = null;
+      this.setState({ stillSorting: false });
+    }
   }
-
+  
   determineBarColor(highlighted, index) {
     for (let i = 0; i < highlighted.length; i++) {
       if (highlighted[i] === index) {
