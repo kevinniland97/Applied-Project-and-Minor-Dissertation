@@ -93,7 +93,15 @@ class App extends Component {
   }
 
   sortAsHighlighted(array, sortHistory, highlightHistory) {
-    
+    let path = this.props.location.pathname;
+
+    switch (path) {
+      case '/bubble-sort':
+        BubbleSort.bubbleSort(array.slice(), sortHistory, highlightHistory);
+        break;
+        default:
+          BubbleSort.bubbleSort(array.slice(), sortHistory, highlightHistory);
+    }
   }
 
   /**
@@ -109,8 +117,8 @@ class App extends Component {
     }
 
     if (this.sortHistoryIndex === 0) {
-      this.sortAsChosen(this.state.array.slice(), this.sortHistory, this.highlightHistory);
-      this.sortHistoryTraverseIndex = 0;
+      this.sortAsHighlighted(this.state.array.slice(), this.sortHistory, this.highlightHistory);
+      this.sortHistoryIndex = 0;
 
       if (this.sortHistory.length === 1) {
         return;
@@ -151,11 +159,8 @@ class App extends Component {
           {this.state.array.map((item, index) => <Bar key={index} size={item} color={this.determineBarColor(this.state.isHighlighted, index)}/>)}
         </div>
         <div className="buttons-wrapper">
-          <Button className={classes.button} style={{ 
-            backgroundColor: this.state.stillSorting ? 'red' : classes.button.backgroundColor
-            }} onClick={ this.state.stillSorting ? this.stopSort.bind(this) : this.handleSort.bind(this)} > {
-              this.state.stillSorting ? 'STOP' : 'SORT'
-              }</Button>
+          <Button className={classes.button} onClick={ () => this.generateArray()}>Generate random array</Button>
+          <Button className={classes.button} style={{backgroundColor: this.state.stillSorting ? 'red' : classes.button.backgroundColor}} onClick={ this.state.stillSorting ? this.stopSort.bind(this) : this.handleSort.bind(this)} > {this.state.stillSorting ? 'STOP' : 'SORT'}</Button>
         </div>
       </div>
     );
@@ -178,3 +183,4 @@ function Bar(props) {
 }
 
 export default withStyles(styles)(App);
+// export default (App);
