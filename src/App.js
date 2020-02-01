@@ -1,71 +1,180 @@
-// import React from 'react';
-// import logo from './logo.svg';
-// import './App.css';
+import React, { Component } from 'react';
+import { Button, Slider } from '@material-ui/core';
+import './App.css';
+import { withStyles } from '@material-ui/styles';
+import PropTypes from 'prop-types';
+import Styles from './components/Styles';
+import BubbleSort from './algorithms/BubbleSort.js';
+import MainToolbar from './components/MainToolbar';
 
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
+const defaultSize = 40;
+const defaultSpeed = 150;
+const maxSize = 200;
+const maxSpeed = 200;
+const highlightColors = ['red', 'purple', 'yellow', 'gray'];
+const styles = Styles;
 
-// export default App;
+/**
+ * 
+ */
+class App extends Component {
+  /**
+   * 
+   * @param {*} props 
+   */
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      array: [],
+      isHighlighted: [],
+      stillSorting: false,
+      sortName: 'Bubble Sort'
+    };
 
-import React from "react";
+    /**
+     * 
+     */
+    this.sortHistory = [];
+    this.highlightHistory = [];
+    this.sortHistoryIndex = 0;
+    this.interval = null;
+    this.sortSize = defaultSize;
+    this.sortSpeed = defaultSpeed;
 
-import { Route, Switch } from "react-router-dom";
-import { connect } from "react-redux";
+    this.props.history.listen((location, action) => {
+      this.generateArray();
 
-import ProtectedRoute from "./components/ProtectedRoute";
-import Main from "./components/Main";
-import Login from "./components/Login";
-import SignUp from "./components/SignUp";
+      let path = location.pathname;
+      switch (path) {
+        case '/bubble-sort':
+            this.setState({ sortName: 'Bubble Sort' });
+            break;             
+        default:
+            this.setState({sortName: 'Bubble Sort'});
+      }
+    });
+  }
+
+  /**
+   * https://reactjs.org/docs/react-component.html#componentdidmount
+   * 
+   * componentDidMount() is invoked immediately after a component is mounted (inserted into the tree)
+   */
+  componentDidMount() {
+    this.generateArray();
+  }
+
+  /**
+   * 
+   */
+  generateArray() {
+    if (this.interval) {
+      clearInterval(this.interval);
+
+      this.interval = null;
+      this.setState({ stillSorting: false });
+    }
+
+    this.sortHistoryIndex = 0;
+    this.sortHistory = [];
+    this.highlightHistory = [];
+
+    let array = [];
+
+    /**
+     * 
+     */
+    for (let i = 0; i < this.sortSize; i++) {
+      array.push(Math.floor( Math.random() * 50) + 1);
+    }
+
+    this.setState({array: array, isHighlighted: -1});
+  }
+
+  sortAsHighlighted(array, sortHistory, highlightHistory) {
+    
+  }
+
+  /**
+   * 
+   */
+  handleSort() {
+    if (this.interval) { 
+      return;
+    }
+
+    if (this.sortHistory.length !== 0 && this.sortHistoryIndex === this.sortHistory.length) {
+      return;
+    }
+
+    if (this.sortHistoryIndex === 0) {
+      this.sortAsChosen(this.state.array.slice(), this.sortHistory, this.highlightHistory);
+      this.sortHistoryTraverseIndex = 0;
+
+      if (this.sortHistory.length === 1) {
+        return;
+      }
+    }
+  }
+
+  stopSort() {
+    if (this.interval) {
+      clearInterval(this.interval);
+
+      this.interval = null;
+      this.setState({stillSorting: false});
+    }
+  }
+
+  determineBarColor(isHighlighted, index) {
+    for (let i = 0; i < isHighlighted.length; i++)  {
+      if (isHighlighted[i] === index) {
+        return highlightColors[i];
+      }
+    }
+
+    return 'determined';
+  }
+
+  /**
+   * 
+   */
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <div className="App">
+        <MainToolbar history={ this.props.history } />
+        <span className="sort-name"> { this.state.sortName }</span>
+        <div className="bar-wrapper">
+          {this.state.array.map((item, index) => <Bar key={index} size={item} color={this.determineBarColor(this.state.isHighlighted, index)}/>)}
+        </div>
+        <div className="buttons-wrapper">
+          <Button className={classes.button} style={{ 
+            backgroundColor: this.state.stillSorting ? 'red' : classes.button.backgroundColor
+            }} onClick={ this.state.stillSorting ? this.stopSort.bind(this) : this.handleSort.bind(this)} > {
+              this.state.stillSorting ? 'STOP' : 'SORT'
+              }</Button>
+        </div>
+      </div>
+    );
+  }
+}
+
+App.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 /**
  * 
  * @param {*} props 
  */
-function App(props) {
-  const { isAuthenticated, isVerifying } = props;
-
+function Bar(props) {
   return (
-    <Switch>
-      <ProtectedRoute
-        exact
-        path="/"
-        component={Main}
-        isAuthenticated={isAuthenticated}
-        isVerifying={isVerifying}
-      />
-      <Route path="/login" component={Login} />
-      <Route path="/signUp" component={SignUp} />
-    </Switch>
+    <div className='bar' style={{ height: props.size * 10, backgroundColor: props.color }}>
+    </div>
   );
 }
 
-/**
- * 
- * @param {*} state 
- */
-function mapStateToProps(state) {
-  return {
-    isAuthenticated: state.auth.isAuthenticated,
-    isVerifying: state.auth.isVerifying
-  };
-}
-
-export default connect(mapStateToProps)(App);
+export default withStyles(styles)(App);
