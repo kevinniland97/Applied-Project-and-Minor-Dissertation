@@ -1,0 +1,60 @@
+\documentclass{book}
+
+\usepackage{graphicx}
+\usepackage[numbers]{natbib} 
+\usepackage{amsmath} 
+\usepackage{makecell}
+\usepackage{eurosym}
+\usepackage{tabularx}
+\usepackage{pbox}
+\setlength\parindent{0pt} 
+
+\newcommand*{\customTitle}{\begingroup 
+\centering 
+\vspace*{\baselineskip} 
+
+\rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt} 
+\rule{\textwidth}{0.4pt}\\[\baselineskip]
+
+{\Large Algorithms Visualizer in ReactJS}\\[0.2\baselineskip] 
+
+\rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt} 
+\rule{\textwidth}{1.6pt}\\[\baselineskip] 
+\scshape 
+\Large \textbf{Final Year Project}\\
+\textbf{B.Sc.(Hons) in Software Development}\par
+\normalsize
+\vspace*{2\baselineskip} 
+
+{by \\ Kevin Niland \par} 
+
+\vspace*{2\baselineskip}
+\vfill 
+{\scshape \today} \\[0.3\baselineskip]
+
+{\textbf{Advised by Martin Kenirons}}\par 
+{Department of Computer Science and Applied Physics Galway-Mayo Institute of Technology (GMIT)}\par
+
+\endgroup}
+\begin{document} 
+\pagenumbering{gobble}
+\begin{figure}
+\begin{center}
+\includegraphics[width=8cm,height=3.3cm,keepaspectratio]{images/gmit-logo} 
+\end{center}
+\end{figure}
+\customTitle
+\tableofcontents
+\listoffigures
+\pagenumbering{arabic} 
+
+\include{introduction}
+\include{methodology}
+\include{techreview}
+\include{system_design}
+\include{system_evaluation}
+\include{conclusion}
+
+\bibliographystyle{unsrt}
+\bibliography{references.bib}
+\end{document}
