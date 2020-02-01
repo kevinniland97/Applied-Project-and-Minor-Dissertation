@@ -86,7 +86,7 @@ class App extends Component {
      * 
      */
     for (let i = 0; i < this.sortSize; i++) {
-      array.push(Math.floor( Math.random() * 50) + 1);
+      array.push(Math.floor(Math.random() * 50) + 1);
     }
 
     this.setState({array: array, isHighlighted: -1});
@@ -142,7 +142,8 @@ class App extends Component {
       }
     }
 
-    return 'determined';
+    // DOCUMENT
+    return 'snow';
   }
 
   /**
