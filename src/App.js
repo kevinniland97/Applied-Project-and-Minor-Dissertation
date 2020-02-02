@@ -99,8 +99,8 @@ class App extends Component {
       case '/bubble-sort':
         BubbleSort.bubbleSort(array.slice(), sortHistory, highlightHistory);
         break;
-        default:
-          BubbleSort.bubbleSort(array.slice(), sortHistory, highlightHistory);
+      default:
+        BubbleSort.bubbleSort(array.slice(), sortHistory, highlightHistory);
     }
   }
 
@@ -108,7 +108,7 @@ class App extends Component {
    * 
    */
   handleSort() {
-    if (this.interval) { 
+    if (this.interval) {
       return;
     }
 
@@ -124,6 +124,24 @@ class App extends Component {
         return;
       }
     }
+    
+    this.setState({ stillSorting: true });
+
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
+
+    this.interval = setInterval(() => {
+      if (this.sortHistoryIndex >= this.sortHistory.length - 1) {
+        clearInterval(this.interval);
+
+        this.interval = null;
+        this.setState({ stillSorting: false });
+      }
+
+      this.setState({ array: this.sortHistory[this.sortHistoryIndex], isHighlighted: this.highlightHistory[this.sortHistoryIndex]});
+      this.sortHistoryIndex++;
+    }, maxSpeed - this.sortSpeed);
   }
 
   stopSort() {
@@ -184,4 +202,3 @@ function Bar(props) {
 }
 
 export default withStyles(styles)(App);
-// export default (App);
