@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Button, Slider } from '@material-ui/core';
-import './App.css';
+import '../styling/MainPage.css';
 import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
-import Styles from './components/Styles';
-import BubbleSort from './algorithms/BubbleSort.js';
-import MainToolbar from './components/MainToolbar';
+import Styles from '../components/Styles';
+import BubbleSort from '../algorithms/BubbleSort.js';
+import MainToolbar from './MainToolbar;
 
 const defaultSize = 40;
 const defaultSpeed = 150;
@@ -17,7 +17,7 @@ const styles = Styles;
 /**
  * 
  */
-class App extends Component {
+class MainPage extends Component {
   /**
    * 
    * @param {*} props 
@@ -186,7 +186,7 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
+MainPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
@@ -201,4 +201,4 @@ function Bar(props) {
   );
 }
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(MainPage);
