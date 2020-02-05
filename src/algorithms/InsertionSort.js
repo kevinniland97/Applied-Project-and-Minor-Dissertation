@@ -1,6 +1,33 @@
 export default class InsertionSort {
+    /**
+     * Performs the insertion sort algorithm
+     * 
+     * @param {*} array - Array of items to be sorted
+     * @param {*} sortHistory - Previous items that have been sorted 
+     * @param {*} highlightHistory - Previous items that have been... 
+     */
     static insertionSort(array, sortHistory, highlightHistory) {
-        
+        this.clearArray(sortHistory);
+        this.clearArray(highlightHistory);
+
+        let leftColumn = -1;
+
+        for (let i = 0; i < array.length; i++) {
+            leftColumn = i;
+            let temp = array[i];
+
+            for (let j = i - 1; j >= 0 && array[j] > temp; j--) {
+                array[j + 1] = array[j];
+
+                sortHistory.push(array.slice());
+                highlightHistory.push([j, leftColumn]);
+            }
+
+            array[j + 1] = temp;
+        }
+
+        sortHistory.push(array.slice());
+        highlightHistory.push([0, array.length - 1]);
     }
 
     /**
