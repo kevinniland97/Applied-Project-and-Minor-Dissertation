@@ -15,8 +15,9 @@ export default class InsertionSort {
         for (let i = 0; i < array.length; i++) {
             leftColumn = i;
             let temp = array[i];
+            let j;
 
-            for (let j = i - 1; j >= 0 && array[j] > temp; j--) {
+            for (j = i - 1; j >= 0 && array[j] > temp; j--) {
                 array[j + 1] = array[j];
 
                 sortHistory.push(array.slice());

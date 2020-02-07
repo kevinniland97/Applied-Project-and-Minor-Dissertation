@@ -5,7 +5,8 @@ import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import Styles from '../components/Styles';
 import BubbleSort from '../algorithms/BubbleSort.js';
-import MainToolbar from './MainToolbar;
+import InsertionSort from '../algorithms/InsertionSort.js';
+import MainToolbar from './MainToolbar';
 
 const defaultSize = 40;
 const defaultSpeed = 150;
@@ -48,8 +49,11 @@ class MainPage extends Component {
       let path = location.pathname;
       switch (path) {
         case '/bubble-sort':
-            this.setState({ sortName: 'Bubble Sort' });
-            break;             
+          this.setState({ sortName: 'Bubble Sort' });
+          break;
+        case '/insertion-sort':
+          this.setState({ sortName: 'Insertion Sort' });
+          break;
         default:
             this.setState({sortName: 'Bubble Sort'});
       }
@@ -99,6 +103,9 @@ class MainPage extends Component {
       case '/bubble-sort':
         BubbleSort.bubbleSort(array.slice(), sortHistory, highlightHistory);
         break;
+      case '/insertion-sort':
+        InsertionSort.insertionSort(array.slice(), sortHistory, highlightHistory);
+        break;
       default:
         BubbleSort.bubbleSort(array.slice(), sortHistory, highlightHistory);
     }
@@ -144,6 +151,9 @@ class MainPage extends Component {
     }, maxSpeed - this.sortSpeed);
   }
 
+  /**
+   * 
+   */
   stopSort() {
     if (this.interval) {
       clearInterval(this.interval);
@@ -153,6 +163,11 @@ class MainPage extends Component {
     }
   }
 
+  /**
+   * 
+   * @param {*} isHighlighted 
+   * @param {*} index 
+   */
   determineBarColor(isHighlighted, index) {
     for (let i = 0; i < isHighlighted.length; i++)  {
       if (isHighlighted[i] === index) {
