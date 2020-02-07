@@ -89,8 +89,8 @@ function MenuDropdown(props) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={ (e) => { handleClose(e); props.history.push('bubble-sort') }}>Bubble Sort</MenuItem>
-        <MenuItem onClick={ (e) => { handleClose(e); props.history.push('insertion-sort') }}>Insertion Sort</MenuItem>
+        <MenuItem onClick={ (e) => { handleClose(e); props.history.push('/bubble-sort') }}>Bubble Sort</MenuItem>
+        <MenuItem onClick={ (e) => { handleClose(e); props.history.push('/insertion-sort') }}>Insertion Sort</MenuItem>
       </Menu>
   );
 }
@@ -102,8 +102,8 @@ function MenuDropdown(props) {
 function MainToolbarButtons(props) {
   return (
       <div>
-        <Button color="inherit" onClick={() => props.history.push('bubble-sort')}>Bubble Sort</Button>
-        <Button color="inherit" onClick={() => props.history.push('insertion-sort')}>Insertion Sort</Button>
+        <Button color="inherit" onClick={() => props.history.push('#/bubble-sort')}>Bubble Sort</Button>
+        <Button color="inherit" onClick={() => props.history.push('#/insertion-sort')}>Insertion Sort</Button>
       </div>
   );
 }
