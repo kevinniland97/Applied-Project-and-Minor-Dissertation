@@ -33,7 +33,7 @@ function MainToolbar(props) {
     <div>
     <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" >Algorithms Visualizer</Typography>
+          <Typography variant="h6" >Sorting Visualizer</Typography>
           <div style={ styles.line }></div>
           <MediaQuery minWidth={ 1000 }>
             <Typography style={{ flexGrow: 1 }} variant="h6">

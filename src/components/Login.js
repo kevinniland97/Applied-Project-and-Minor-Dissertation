@@ -44,7 +44,7 @@ const styles = () => ({
 //  * 
 //  */
 class Login extends Component {
-  state = { email: "", password: "" };
+//   state = { email: "", password: "" };
 
 //   /**
 //    * 
@@ -75,9 +75,9 @@ class Login extends Component {
    */
   render() {
     const { classes, loginError, isAuthenticated } = this.props;
-    if (isAuthenticated) {
-      return <Redirect to="/" />;
-    } else {
+    // if (isAuthenticated) {
+    //   return <Redirect to="/" />;
+    // } else {
       return (
         <Container component="main" maxWidth="xs">
           <Paper className={classes.paper}>
@@ -121,13 +121,13 @@ class Login extends Component {
             >
               Sign In
             </Button>
-            <Link to="/signUp">Don't have an account? Create an account</Link>
+            Don't have an account? <Link to="/signUp">Create an account</Link>
           </Paper>
         </Container>
       );
     }
   }
-}
+// }
 
 // /**
 //  * 
