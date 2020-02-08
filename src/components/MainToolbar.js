@@ -91,6 +91,7 @@ function MenuDropdown(props) {
       >
         <MenuItem onClick={ (e) => { handleClose(e); props.history.push('/bubble-sort') }}>Bubble Sort</MenuItem>
         <MenuItem onClick={ (e) => { handleClose(e); props.history.push('/insertion-sort') }}>Insertion Sort</MenuItem>
+        <MenuItem onClick={ (e) => { handleClose(e); props.history.push('/selection-sort') }}>Selection Sort</MenuItem>
       </Menu>
   );
 }
@@ -104,6 +105,7 @@ function MainToolbarButtons(props) {
       <div>
         <Button color="inherit" onClick={() => props.history.push('#/bubble-sort')}>Bubble Sort</Button>
         <Button color="inherit" onClick={() => props.history.push('#/insertion-sort')}>Insertion Sort</Button>
+        <Button color="inherit" onClick={() => props.history.push('#/selection-sort')}>Selection Sort</Button>
       </div>
   );
 }

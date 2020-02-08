@@ -13,6 +13,40 @@ body {
     font-family: sans-serif;
     position: relative;
   }
+
+  ul.header li {
+    display: inline;
+    list-style-type: none;
+    margin: 0;
+    position: right;
+  }
+
+  ul.header {
+    background-color: #3f51b5;
+    padding: 0;
+  }
+
+  ul.header li a {
+    color: #FFF;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 20px;
+    display: inline-block;
+  }
+
+  .content {
+    background-color: #FFF;
+    padding: 0px;
+  }
+
+  .content h2 {
+    padding: 0;
+    margin: 0;
+  }
+
+  .content li {
+    margin-bottom: 10px;
+  }
   
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

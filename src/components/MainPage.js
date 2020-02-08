@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Styles from '../components/Styles';
 import BubbleSort from '../algorithms/BubbleSort.js';
 import InsertionSort from '../algorithms/InsertionSort.js';
+import SelectionSort from '../algorithms/SelectionSort.js';
 import MainToolbar from './MainToolbar';
 
 const defaultSize = 40;
@@ -53,6 +54,9 @@ class MainPage extends Component {
           break;
         case '/insertion-sort':
           this.setState({ sortName: 'Insertion Sort' });
+          break;
+        case '/selection-sort':
+          this.setState({ sortName: 'Selection Sort' });
           break;
         default:
             this.setState({sortName: 'Bubble Sort'});
@@ -105,6 +109,9 @@ class MainPage extends Component {
         break;
       case '/insertion-sort':
         InsertionSort.insertionSort(array.slice(), sortHistory, highlightHistory);
+        break;
+      case '/selection-sort':
+        SelectionSort.selectionSort(array.slice(), sortHistory, highlightHistory);
         break;
       default:
         BubbleSort.bubbleSort(array.slice(), sortHistory, highlightHistory);

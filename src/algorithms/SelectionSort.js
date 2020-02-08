@@ -18,7 +18,7 @@ export default class SelectionSort {
          */
         for (let i = 0; i < array.length; i++) {
             let minimum = i;
-            leftColumn = min;
+            leftColumn = minimum;
 
             for (let j = i + 1; j < array.length; j++) {
                 if (array[j] < array[minimum]) {
