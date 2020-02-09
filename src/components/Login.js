@@ -40,11 +40,11 @@ const styles = () => ({
   }
 });
 
-// /**
-//  * 
-//  */
+/**
+ * 
+ */
 class Login extends Component {
-//   state = { email: "", password: "" };
+  state = { email: "", password: "" };
 
 //   /**
 //    * 
@@ -53,12 +53,13 @@ class Login extends Component {
 //     this.setState({ email: target.value });
 //   };
 
-//   /**
-//    * 
-//    */
-//   handlePasswordChange = ({ target }) => {
-//     this.setState({ password: target.value });
-//   };
+  /**
+   * 
+   */
+  handlePasswordChange = ({ target }) => {
+    // console.log(target.value);
+    this.setState({ password: target.value });
+  };
 
 //   /**
 //    * 

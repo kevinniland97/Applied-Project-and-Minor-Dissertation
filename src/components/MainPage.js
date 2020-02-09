@@ -8,6 +8,7 @@ import BubbleSort from '../algorithms/BubbleSort.js';
 import InsertionSort from '../algorithms/InsertionSort.js';
 import SelectionSort from '../algorithms/SelectionSort.js';
 import MainToolbar from './MainToolbar';
+import TextField from "@material-ui/core/TextField";
 
 const defaultSize = 40;
 const defaultSpeed = 150;
@@ -20,6 +21,7 @@ const styles = Styles;
  * 
  */
 class MainPage extends Component {
+  state = { dataset: "" };
   /**
    * 
    * @param {*} props 
@@ -45,7 +47,8 @@ class MainPage extends Component {
     this.sortSpeed = defaultSpeed;
 
     this.props.history.listen((location, action) => {
-      this.generateArray();
+      this.generateRandomArray();
+      this.generateUserArray();
 
       let path = location.pathname;
       switch (path) {
@@ -70,13 +73,43 @@ class MainPage extends Component {
    * componentDidMount() is invoked immediately after a component is mounted (inserted into the tree)
    */
   componentDidMount() {
-    this.generateArray();
+    this.generateRandomArray();
+    this.generateUserArray();
   }
 
   /**
    * 
    */
-  generateArray() {
+  generateRandomArray() {
+    if (this.interval) {
+      clearInterval(this.interval);
+
+      this.interval = null;
+      this.setState({ stillSorting: false });
+    }
+
+    this.sortHistoryIndex = 0;
+    this.sortHistory = [];
+    this.highlightHistory = [];
+
+    let array = [];
+
+    /**
+     * 
+     */
+    for (let i = 0; i < this.sortSize; i++) {
+      array.push(Math.floor(Math.random() * 50) + 1);
+    }
+
+    this.setState({array: array, isHighlighted: -1});
+  }
+
+  handleDataset = ({ target }) => {
+    console.log(target.value);
+    this.setState({ dataset: target.value });
+  };
+
+  generateUserArray() {
     if (this.interval) {
       clearInterval(this.interval);
 
@@ -200,7 +233,16 @@ class MainPage extends Component {
           {this.state.array.map((item, index) => <Bar key={index} size={item} color={this.determineBarColor(this.state.isHighlighted, index)}/>)}
         </div>
         <div className="buttons-wrapper">
-          <Button className={classes.button} onClick={ () => this.generateArray()}>Generate random array</Button>
+          <Button className={classes.button} onClick={ () => this.generateRandomArray()}>Generate random array</Button>
+          <Button className={classes.button} onClick={ () => this.generateUserArray()}>Generate own dataset</Button>
+          <TextField
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          id="dataset"
+          label="Dataset"
+          name="dataset"
+          onChange={this.handleDataset}/>
           <Button className={classes.button} style={{backgroundColor: this.state.stillSorting ? 'red' : classes.button.backgroundColor}} onClick={ this.state.stillSorting ? this.stopSort.bind(this) : this.handleSort.bind(this)} > {this.state.stillSorting ? 'STOP' : 'SORT'}</Button>
         </div>
       </div>
