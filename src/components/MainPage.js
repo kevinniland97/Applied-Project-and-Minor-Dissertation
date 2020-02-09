@@ -134,8 +134,6 @@ class MainPage extends Component {
       this.setState({ stillSorting: false });
     }
 
-    console.log(dataset);
-
     this.sortHistoryIndex = 0;
     this.sortHistory = [];
     this.highlightHistory = [];
@@ -145,19 +143,36 @@ class MainPage extends Component {
     /**
      * 
      */
-    // for (let i = 0; i < this.dataset.size; i++) {
-    //   array.push(dataset);
-    // }
-
     for (let i = 0; i < dataset.length; i++) {
       array = dataset.split("");
     }
 
-    console.log(array);
+    /**
+     * Shuffle the user array using the Fisher-Yates Shuffle
+     * 
+     * Implementation of the Fisher-Yates Shuffle: https://stackoverflow.com/a/2450976/8721358
+     */
+    var currentIndex = array.length, temp, random;
+
+    while (0 !== currentIndex) {
+      random = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      
+      // And swap it with the current element.
+      temp = array[currentIndex];
+      array[currentIndex] = array[random];
+      array[random] = temp;
+    }
 
     this.setState({array: array, isHighlighted: -1});
   }
 
+  /**
+   * 
+   * @param {*} array 
+   * @param {*} sortHistory 
+   * @param {*} highlightHistory 
+   */
   sortAsHighlighted(array, sortHistory, highlightHistory) {
     let path = this.props.location.pathname;
 
