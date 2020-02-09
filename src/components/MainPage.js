@@ -109,7 +109,22 @@ class MainPage extends Component {
     this.setState({ dataset: target.value });
   };
 
-  generateUserArray() {
+  /**
+   * 
+   */
+  handleSubmit = () => {
+    const { dispatch } = this.props;
+    const { dataset } = this.state;
+
+    console.log(dataset);
+  this.generateUserArray(dataset);
+  };
+
+  /**
+   * 
+   * @param {*} dataset 
+   */
+  generateUserArray(dataset) {
     if (this.interval) {
       clearInterval(this.interval);
 
@@ -126,9 +141,9 @@ class MainPage extends Component {
     /**
      * 
      */
-    for (let i = 0; i < this.sortSize; i++) {
-      array.push(Math.floor(Math.random() * 50) + 1);
-    }
+    // for (let i = 0; i < this.dataset.size; i++) {
+    //   array.push(dataset);
+    // }
 
     this.setState({array: array, isHighlighted: -1});
   }
@@ -234,7 +249,7 @@ class MainPage extends Component {
         </div>
         <div className="buttons-wrapper">
           <Button className={classes.button} onClick={ () => this.generateRandomArray()}>Generate random array</Button>
-          <Button className={classes.button} onClick={ () => this.generateUserArray()}>Generate own dataset</Button>
+          <Button className={classes.button} onClick={ this.handleSubmit }>Generate own dataset</Button>
           <TextField
           variant="outlined"
           margin="normal"
