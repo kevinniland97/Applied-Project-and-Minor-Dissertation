@@ -48,7 +48,7 @@ class MainPage extends Component {
 
     this.props.history.listen((location, action) => {
       this.generateRandomArray();
-      this.generateUserArray();
+      // this.generateUserArray();
 
       let path = location.pathname;
       switch (path) {
@@ -74,7 +74,7 @@ class MainPage extends Component {
    */
   componentDidMount() {
     this.generateRandomArray();
-    this.generateUserArray();
+    // this.generateUserArray();
   }
 
   /**
@@ -104,6 +104,9 @@ class MainPage extends Component {
     this.setState({array: array, isHighlighted: -1});
   }
 
+  /**
+   * 
+   */
   handleDataset = ({ target }) => {
     console.log(target.value);
     this.setState({ dataset: target.value });
@@ -116,8 +119,7 @@ class MainPage extends Component {
     const { dispatch } = this.props;
     const { dataset } = this.state;
 
-    console.log(dataset);
-  this.generateUserArray(dataset);
+    this.generateUserArray(dataset);
   };
 
   /**
@@ -132,6 +134,8 @@ class MainPage extends Component {
       this.setState({ stillSorting: false });
     }
 
+    console.log(dataset);
+
     this.sortHistoryIndex = 0;
     this.sortHistory = [];
     this.highlightHistory = [];
@@ -144,6 +148,12 @@ class MainPage extends Component {
     // for (let i = 0; i < this.dataset.size; i++) {
     //   array.push(dataset);
     // }
+
+    for (let i = 0; i < dataset.length; i++) {
+      array = dataset.split("");
+    }
+
+    console.log(array);
 
     this.setState({array: array, isHighlighted: -1});
   }
@@ -214,7 +224,7 @@ class MainPage extends Component {
       clearInterval(this.interval);
 
       this.interval = null;
-      this.setState({stillSorting: false});
+      this.setState({ stillSorting: false });
     }
   }
 
@@ -224,7 +234,7 @@ class MainPage extends Component {
    * @param {*} index 
    */
   determineBarColor(isHighlighted, index) {
-    for (let i = 0; i < isHighlighted.length; i++)  {
+    for (let i = 0; i < isHighlighted.length; i++) {
       if (isHighlighted[i] === index) {
         return highlightColors[i];
       }
@@ -257,6 +267,7 @@ class MainPage extends Component {
           id="dataset"
           label="Dataset"
           name="dataset"
+          color="white"
           onChange={this.handleDataset}/>
           <Button className={classes.button} style={{backgroundColor: this.state.stillSorting ? 'red' : classes.button.backgroundColor}} onClick={ this.state.stillSorting ? this.stopSort.bind(this) : this.handleSort.bind(this)} > {this.state.stillSorting ? 'STOP' : 'SORT'}</Button>
         </div>
