@@ -4,8 +4,14 @@ import {
   NavLink,
   HashRouter
 } from "react-router-dom";
+import './styling/Main.css';
 import MainPage from './components/MainPage';
 import Login from './components/Login';
+import { AppBar, Button, Toolbar, Typography, IconButton, Slider, ClickAwayListener } from '@material-ui/core';
+import { Menu, MenuItem } from '@progress/kendo-react-layout';
+// import MenuItem from '@material-ui/core/MenuItem';
+import MenuIcon from '@material-ui/icons/Menu';
+import MediaQuery from 'react-responsive';
 
 /**
  * 
@@ -13,10 +19,12 @@ import Login from './components/Login';
 const styles = {
   line: {
     height: 40,
-    marginLeft: 15,
-    marginRight: 15,
+    marginLeft: 5,
+    marginRight: 5,
+    marginTop: 5,
+    marginBottom: 5,
     borderRightStyle: 'solid',
-    borderWidth: 1
+    borderWidth: 1,
   }
 }
 
@@ -28,15 +36,18 @@ class Main extends Component {
               <h1>Algorithms Visualizer</h1>
               <ul className="header">
                 <li><NavLink to="/">Sorting</NavLink></li>
-                <div style={ styles.line }></div>
+                {/* <div style={ styles.line }></div> */}
+                {/* <li style={ styles.line }></li> */}
                 <li><NavLink to="/account">User Account</NavLink></li>
-                <div style={ styles.line }></div>
+                {/* <div style={ styles.line }></div> */}
                 <li><NavLink to="/tba">TBA</NavLink></li>
               </ul>
               <div className="content">
                 <Route exact path="/" component={MainPage}/>
                 <Route exact path="/account" component={Login}/>
               </div>
+
+              {/* https://www.telerik.com/kendo-react-ui/components/layout/menu/routing/ */}
             </div>
           </HashRouter>
         );

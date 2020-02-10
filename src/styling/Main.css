@@ -1,0 +1,11 @@
+ul.header {
+    text-align: center;
+}
+
+ul.header li { 
+    display: inline-block; 
+}
+
+h1 {
+    text-align: center;
+}
