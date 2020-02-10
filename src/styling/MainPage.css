@@ -3,45 +3,49 @@
     min-height: 100vh;
   }
   
-  .sort-name {
-    margin-top: 10px;
-    color: white;
-    display: block;
-    text-align: center;
-    font-style: italic;
-  }
+.sort-name {
+  margin-top: 10px;
+  color: white;
+  display: block;
+  text-align: center;
+  font-style: italic;
+}
   
-  .top-slider-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-  }
+.top-slider-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
   
-  .slider-label {
-    display: inline-block;
-    width: 60px;
-    margin-right: 15px;
-    text-align: right;
-    color: white;
-    font-style: italic;
-  }
+.slider-label {
+  display: inline-block;
+  width: 60px;
+  margin-right: 15px;
+  text-align: right;
+  color: white;
+  font-style: italic;
+}
   
-  .bar-wrapper {
-    height: 550px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-  }
+.bar-wrapper {
+  height: 550px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
   
-  .buttons-wrapper {
-    display: block;
-    text-align: center;
-  }
+.buttons-wrapper {
+  display: block;
+  text-align: center;
+}
   
-  .bar {
-    display: inline-block;
-    color: 'white';
-    width: 20px;
-    margin-right: 3px;
-  }
+.bar {
+  display: inline-block;
+  color: 'white';
+  width: 20px;
+  margin-right: 3px;
+}
+
+.clearfix {
+  overflow: auto;
+}

@@ -116,7 +116,7 @@ class MainPage extends Component {
    * 
    */
   handleSubmit = () => {
-    const { dispatch } = this.props;
+    // const { dispatch } = this.props;
     const { dataset } = this.state;
 
     this.generateUserArray(dataset);
@@ -144,9 +144,12 @@ class MainPage extends Component {
      * 
      */
     for (let i = 0; i < dataset.length; i++) {
-      array = dataset.split("");
+      dataset = dataset.split(/[ ,]+/).join(',');
+      array = dataset.split(',');
     }
 
+    console.log(dataset);
+    console.log(array);
     /**
      * Shuffle the user array using the Fisher-Yates Shuffle
      * 
@@ -274,16 +277,21 @@ class MainPage extends Component {
         </div>
         <div className="buttons-wrapper">
           <Button className={classes.button} onClick={ () => this.generateRandomArray()}>Generate random array</Button>
-          <Button className={classes.button} onClick={ this.handleSubmit }>Generate own dataset</Button>
-          <TextField
-          variant="outlined"
-          margin="normal"
-          fullWidth
-          id="dataset"
-          label="Dataset"
-          name="dataset"
-          color="white"
-          onChange={this.handleDataset}/>
+        </div>
+        <div className="clearfix">
+          <div className="buttons-wrapper">
+            <Button className={classes.button} onClick={ this.handleSubmit }>Add to own dataset</Button>
+            <TextField
+            variant="outlined"
+            margin="normal"
+            id="dataset"
+            label="Dataset"
+            name="dataset"
+            color="white"
+            onChange={this.handleDataset}/>
+          </div>
+        </div>
+        <div className="buttons-wrapper">
           <Button className={classes.button} style={{backgroundColor: this.state.stillSorting ? 'red' : classes.button.backgroundColor}} onClick={ this.state.stillSorting ? this.stopSort.bind(this) : this.handleSort.bind(this)} > {this.state.stillSorting ? 'STOP' : 'SORT'}</Button>
         </div>
       </div>
