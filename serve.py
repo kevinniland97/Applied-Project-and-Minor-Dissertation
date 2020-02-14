@@ -18,7 +18,7 @@ jwt = JWTManager(app)
 
 CORS(app)
 
-@app.route(methods=['POST'])
+@app.route('/signUp', methods=['POST'])
 def register():
     users = mongo.db.users
     first_name = request.get_json()['first_name']
@@ -26,3 +26,26 @@ def register():
     email = request.get_json()['email']
     password = bcrypt.generate_password_hash(request.get_json()['password'].decode('utf-8'))
     created = datetime.utcnow()
+
+    user_id = users.insert({
+        'first_name': first_name,
+        'last_name': last_name,
+        'email': email,
+        'password': password,
+        'created': created
+    })
+
+    new_user = users.find_one({
+        '_id': user_id
+    })
+
+    result = {'email': new_user['email'] + ' registered'}
+
+    return jsonify({
+        'result': result
+    })
+
+@app.route('/login', methods=['POST'])
+def login():
+
+    return
