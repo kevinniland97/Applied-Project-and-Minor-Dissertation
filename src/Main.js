@@ -7,6 +7,7 @@ import {
 import './styling/Main.css';
 import MainPage from './components/MainPage';
 import Login from './components/Login';
+import SignUp from './components/SignUp';
 import { AppBar, Button, Toolbar, Typography, IconButton, Slider, ClickAwayListener } from '@material-ui/core';
 import { Menu, MenuItem } from '@progress/kendo-react-layout';
 // import MenuItem from '@material-ui/core/MenuItem';
@@ -38,13 +39,15 @@ class Main extends Component {
                 <li><NavLink to="/">Sorting</NavLink></li>
                 {/* <div style={ styles.line }></div> */}
                 {/* <li style={ styles.line }></li> */}
-                <li><NavLink to="/account">User Account</NavLink></li>
+                <li><NavLink to="/login-register">Login/Register</NavLink></li>
                 {/* <div style={ styles.line }></div> */}
-                <li><NavLink to="/tba">TBA</NavLink></li>
+                <li><NavLink to="/account">User Profile</NavLink></li>
               </ul>
               <div className="content">
-                <Route exact path="/" component={MainPage}/>
-                <Route exact path="/account" component={Login}/>
+                <Route exact path="/" component={MainPage} />
+                <Route exact path="/login-register" component={Login} />
+                <Route exact path="/signUp" component={SignUp} />
+                <Route exact path="/login-register" component={SignUp} />
               </div>
 
               {/* https://www.telerik.com/kendo-react-ui/components/layout/menu/routing/ */}
