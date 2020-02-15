@@ -24,7 +24,7 @@ def register():
     first_name = request.get_json()['first_name']
     last_name = request.get_json()['first_name']
     email = request.get_json()['email']
-    password = bcrypt.generate_password_hash(request.get_json()['password'].decode('utf-8'))
+    password = bcrypt.generate_password_hash(request.get_json()['password']).decode('utf-8')
     created = datetime.utcnow()
 
     user_id = users.insert({
@@ -59,7 +59,7 @@ def login():
             access_token = create_access_token(identity = {
                 'first_name': response['first_name'],
                 'last_name': response['last_name'],
-                'email': response['email'],
+                'email': response['email']
             })
 
             result = jsonify({ 'token': access_token })
@@ -69,5 +69,5 @@ def login():
         result = jsonify({ 'result': 'No results found' })
     return result
 
-if __name__ == 'main':
+if __name__ == '__main__':
     app.run(debug=True)
