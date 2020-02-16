@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const register = newUser => {
+export const RegisterUser = newUser => {
     return axios
     .post('/signUp', {
         first_name: newUser.first_name,
@@ -13,7 +13,7 @@ export const register = newUser => {
     })
 }
 
-export const login = user => {
+export const LoginUser = user => {
     return axios
     .post('/login', {
         email: user.email,

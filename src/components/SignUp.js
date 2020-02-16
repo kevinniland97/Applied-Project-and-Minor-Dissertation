@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUpUser } from "../actions";
 import { withStyles } from "@material-ui/styles";
+import { RegisterUser } from './UserFunctions';
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -91,89 +92,128 @@ class SignUp extends Component {
   //   dispatch(signUpUser(username, firstName, lastName, email, password));
   // };
 
+  constructor() {
+    super()
+
+    this.state = {
+      first_name: '',
+      last_name: '',
+      email: '',
+      password: ''
+    }
+
+    this.onChange = this.onChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
+  }
+
+  onChange(e) {
+    this.setState ({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  onSubmit(e) {
+    e.preventDefault()
+
+    const newUser = {
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
+      email: this.state.email,
+      password: this.state.password
+    }
+
+    RegisterUser(newUser).then(res => {
+      this.props.history.push('/signUp')
+    })
+  }
+
   /**
    * 
    */
   render() {
-    const { classes, signUpError, isAuthenticated } = this.props;
-    if (isAuthenticated) {
-      return <Redirect to="/" />;
-    } else {
-      return (
-        <Container component="main" maxWidth="xs">
-          <Paper className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign up
+    // const { classes, signUpError, isAuthenticated } = this.props;
+    // if (isAuthenticated) {
+    //   return <Redirect to="/" />;
+    // } else {
+    return (
+      <Container component="main" maxWidth="xs">
+        <Paper className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
+          {/* <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            id="username"
+            label="Username"
+            name="username"
+            onChange={this.handleUsernameChange}
+          /> */}
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            id="firstName"
+            label="First Name"
+            name="firstName"
+            value={this.state.first_name}
+            onChange={this.onChange}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            id="lastName"
+            label="Last Name"
+            name="lastName"
+            value={this.state.last_name}
+            onChange={this.onChange}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            value={this.state.email}
+            onChange={this.onChange}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            value={this.state.password}
+            onChange={this.onChange}
+          />
+          {/* {signUpError && (
+            <Typography component="p" className={classes.errorText}>
+              Invalid credentials.
             </Typography>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="username"
-              label="Username"
-              name="username"
-              onChange={this.handleUsernameChange}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="firstName"
-              label="First Name"
-              name="firstName"
-              onChange={this.handleFirstNameChange}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="lastName"
-              label="Last Name"
-              name="lastName"
-              onChange={this.handleLastNameChange}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              onChange={this.handleEmailChange}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              onChange={this.handlePasswordChange}
-            />
-            {signUpError && (
-              <Typography component="p" className={classes.errorText}>
-                Invalid credentials.
-              </Typography>
-            )}
-            <Button
-              type="button"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={this.handleSubmit}
-            >
-              Sign Up
-            </Button>
-          </Paper>
-        </Container>
-      );
-    }
+          )} */}
+          <Button
+            type="button"
+            fullWidth
+            variant="contained"
+            color="primary"
+            // className={classes.submit}
+            onClick={this.onSubmit}
+          >
+            Sign Up
+          </Button>
+        </Paper>
+      </Container>
+    );
   }
+  // }
 }
 
 /**

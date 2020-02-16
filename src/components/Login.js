@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import { loginUser } from "../actions";
 import { withStyles } from "@material-ui/styles";
+import { LoginUser } from './UserFunctions';
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -44,7 +45,7 @@ const styles = () => ({
  * 
  */
 class Login extends Component {
-  state = { email: "", password: "" };
+  // state = { email: "", password: "" };
 
 //   /**
 //    * 
@@ -56,10 +57,10 @@ class Login extends Component {
   /**
    * 
    */
-  handlePasswordChange = ({ target }) => {
-    // console.log(target.value);
-    this.setState({ password: target.value });
-  };
+  // handlePasswordChange = ({ target }) => {
+  //   // console.log(target.value);
+  //   this.setState({ password: target.value });
+  // };
 
 //   /**
 //    * 
@@ -71,63 +72,98 @@ class Login extends Component {
 //     dispatch(loginUser(email, password));
 //   };
 
+  constructor() {
+    super()
+
+    this.state = {
+      email: '',
+      password: ''
+    }
+
+    this.onChange = this.onChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
+  }
+
+  onChange(e) {
+    this.setState ({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  onSubmit(e) {
+    e.preventDefault()
+
+    const user = {
+      email: this.state.email,
+      password: this.state.password
+    }
+
+    LoginUser(user).then(res => {
+      if (!res.error) {
+        this.props.history.push('/userProfile')
+      }
+    })
+  }
+
   /**
    * 
    */
   render() {
-    const { classes, loginError, isAuthenticated } = this.props;
+    // const { classes, loginError, isAuthenticated } = this.props;
     // if (isAuthenticated) {
     //   return <Redirect to="/" />;
     // } else {
-      return (
-        <Container component="main" maxWidth="xs">
-          <Paper className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
+    return (
+      <Container component="main" maxWidth="xs">
+        <Paper className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            value={this.state.email}
+            onChange={this.onChange}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            value={this.state.password}
+            onChange={this.onChange}
+          />
+          {loginError && (
+            <Typography component="p" className={classes.errorText}>
+              Incorrect email or password.
             </Typography>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              onChange={this.handleEmailChange}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              onChange={this.handlePasswordChange}
-            />
-            {loginError && (
-              <Typography component="p" className={classes.errorText}>
-                Incorrect email or password.
-              </Typography>
-            )}
-            <Button
-              type="button"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={this.handleSubmit}
-            >
-              Sign In
-            </Button>
-            Don't have an account? <Link to="/signUp">Create an account</Link>
-          </Paper>
-        </Container>
-      );
-    }
+          )}
+          <Button
+            type="button"
+            fullWidth
+            variant="contained"
+            color="primary"
+            // className={classes.submit}
+            onClick={this.onSubmit}
+          >
+            Sign In
+          </Button>
+          Don't have an account? <Link to="/signUp">Create an account</Link>
+        </Paper>
+      </Container>
+    );
   }
+}
 // }
 
 // /**

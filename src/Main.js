@@ -47,7 +47,7 @@ class Main extends Component {
                 <Route exact path="/" component={MainPage} />
                 <Route exact path="/login-register" component={Login} />
                 <Route exact path="/signUp" component={SignUp} />
-                <Route exact path="/login-register" component={SignUp} />
+                <Route exact path="/userProfile" component={UserProfile} />
               </div>
 
               {/* https://www.telerik.com/kendo-react-ui/components/layout/menu/routing/ */}
