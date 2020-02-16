@@ -44,52 +44,52 @@ const styles = () => ({
  * 
  */
 class SignUp extends Component {
-  state = { username: "", firstName: "", lastName: "", email: "", password: "" };
+  // state = { username: "", firstName: "", lastName: "", email: "", password: "" };
 
-  /**
-   * 
-   */
-  handleUsernameChange = ({ target }) => {
-    this.setState({ username: target.value });
-  };
+  // /**
+  //  * 
+  //  */
+  // handleUsernameChange = ({ target }) => {
+  //   this.setState({ username: target.value });
+  // };
 
-  /**
-   * 
-   */
-  handleFirstNameChange = ({ target }) => {
-    this.setState({ firstName: target.value });
-  };
+  // /**
+  //  * 
+  //  */
+  // handleFirstNameChange = ({ target }) => {
+  //   this.setState({ firstName: target.value });
+  // };
 
-  /**
-   * 
-   */
-  handleLastNameChange = ({ target }) => {
-    this.setState({ lastName: target.value });
-  };
+  // /**
+  //  * 
+  //  */
+  // handleLastNameChange = ({ target }) => {
+  //   this.setState({ lastName: target.value });
+  // };
 
-  /**
-   * 
-   */
-  handleEmailChange = ({ target }) => {
-    this.setState({ email: target.value });
-  };
+  // /**
+  //  * 
+  //  */
+  // handleEmailChange = ({ target }) => {
+  //   this.setState({ email: target.value });
+  // };
 
-  /**
-   * 
-   */
-  handlePasswordChange = ({ target }) => {
-    this.setState({ password: target.value });
-  };
+  // /**
+  //  * 
+  //  */
+  // handlePasswordChange = ({ target }) => {
+  //   this.setState({ password: target.value });
+  // };
 
-  /**
-   * 
-   */
-  handleSubmit = () => {
-    const { dispatch } = this.props;
-    const { username, firstName, lastName, email, password } = this.state;
+  // /**
+  //  * 
+  //  */
+  // handleSubmit = () => {
+  //   const { dispatch } = this.props;
+  //   const { username, firstName, lastName, email, password } = this.state;
 
-    dispatch(signUpUser(username, firstName, lastName, email, password));
-  };
+  //   dispatch(signUpUser(username, firstName, lastName, email, password));
+  // };
 
   /**
    * 

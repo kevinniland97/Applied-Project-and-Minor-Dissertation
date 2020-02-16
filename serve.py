@@ -22,7 +22,7 @@ CORS(app)
 def register():
     users = mongo.db.users
     first_name = request.get_json()['first_name']
-    last_name = request.get_json()['first_name']
+    last_name = request.get_json()['last_name']
     email = request.get_json()['email']
     password = bcrypt.generate_password_hash(request.get_json()['password']).decode('utf-8')
     created = datetime.utcnow()
@@ -62,7 +62,7 @@ def login():
                 'email': response['email']
             })
 
-            result = jsonify({ 'token': access_token })
+            result = jsonify({ 'Successfully logged in. Token': access_token })
         else:
             result = jsonify({ 'ERROR: Invalid username or password' })
     else:
