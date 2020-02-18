@@ -109,7 +109,7 @@ class Login extends Component {
    * 
    */
   render() {
-    // const { classes, loginError, isAuthenticated } = this.props;
+    const { classes, loginError, isAuthenticated } = this.props;
     // if (isAuthenticated) {
     //   return <Redirect to="/" />;
     // } else {

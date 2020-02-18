@@ -24,7 +24,8 @@ class MainPage extends Component {
   state = { dataset: "" };
   /**
    * 
-   * @param {*} props 
+   * @param {*} props - "Props" is a special keyword in React, which stands for 
+   * properties and is being used for passing data from one component to another
    */
   constructor(props) {
     super(props);
@@ -51,6 +52,7 @@ class MainPage extends Component {
       // this.generateUserArray();
 
       let path = location.pathname;
+
       switch (path) {
         case '/bubble-sort':
           this.setState({ sortName: 'Bubble Sort' });
@@ -78,7 +80,7 @@ class MainPage extends Component {
   }
 
   /**
-   * 
+   * Generates a random array of a set size (currently)
    */
   generateRandomArray() {
     if (this.interval) {
@@ -95,13 +97,13 @@ class MainPage extends Component {
     let array = [];
 
     /**
-     * 
+     * Generates an array of a set size, with elements of varying size
      */
     for (let i = 0; i < this.sortSize; i++) {
       array.push(Math.floor(Math.random() * 50) + 1);
     }
 
-    this.setState({array: array, isHighlighted: -1});
+    this.setState({ array: array, isHighlighted: -1 });
   }
 
   /**
@@ -109,6 +111,7 @@ class MainPage extends Component {
    */
   handleDataset = ({ target }) => {
     console.log(target.value);
+
     this.setState({ dataset: target.value });
   };
 
@@ -116,13 +119,13 @@ class MainPage extends Component {
    * 
    */
   handleSubmit = () => {
-    // const { dispatch } = this.props;
     const { dataset } = this.state;
 
     this.generateUserArray(dataset);
   };
 
   /**
+   * Generates a user specified array to be sorted. Elements are then initially randomized by using the Fisher-Yates Shuffle
    * 
    * @param {*} dataset 
    */
@@ -141,7 +144,7 @@ class MainPage extends Component {
     let array = [];
 
     /**
-     * 
+     * Process the user's array and format it correctly
      */
     for (let i = 0; i < dataset.length; i++) {
       dataset = dataset.split(/[ ,]+/).join(',');
@@ -150,6 +153,7 @@ class MainPage extends Component {
 
     console.log(dataset);
     console.log(array);
+
     /**
      * Shuffle the user array using the Fisher-Yates Shuffle
      * 
@@ -195,7 +199,7 @@ class MainPage extends Component {
   }
 
   /**
-   * 
+   * Handle the sorting process
    */
   handleSort() {
     if (this.interval) {
@@ -235,7 +239,7 @@ class MainPage extends Component {
   }
 
   /**
-   * 
+   * Stop/Pause the sort process
    */
   stopSort() {
     if (this.interval) {
@@ -273,7 +277,7 @@ class MainPage extends Component {
         <MainToolbar history={ this.props.history } />
         <span className="sort-name"> { this.state.sortName }</span>
         <div className="bar-wrapper">
-          {this.state.array.map((item, index) => <Bar key={index} size={item} color={this.determineBarColor(this.state.isHighlighted, index)}/>)}
+          {this.state.array.map((item, index) => <Bar key={index} size={item} color={this.determineBarColor(this.state.isHighlighted, index)} />)}
         </div>
         <div className="buttons-wrapper">
           <Button className={classes.button} onClick={ () => this.generateRandomArray()}>Generate random array</Button>

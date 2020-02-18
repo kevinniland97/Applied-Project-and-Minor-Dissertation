@@ -8,6 +8,7 @@ import './styling/Main.css';
 import MainPage from './components/MainPage';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import UserProfile from './components/UserProfile';
 import { AppBar, Button, Toolbar, Typography, IconButton, Slider, ClickAwayListener } from '@material-ui/core';
 import { Menu, MenuItem } from '@progress/kendo-react-layout';
 // import MenuItem from '@material-ui/core/MenuItem';
