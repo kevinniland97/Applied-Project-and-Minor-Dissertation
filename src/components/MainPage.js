@@ -7,6 +7,7 @@ import Styles from '../components/Styles';
 import BubbleSort from '../algorithms/BubbleSort.js';
 import InsertionSort from '../algorithms/InsertionSort.js';
 import SelectionSort from '../algorithms/SelectionSort.js';
+import QuickSort from '../algorithms/QuickSort.js';
 import MainToolbar from './MainToolbar';
 import TextField from "@material-ui/core/TextField";
 
@@ -62,6 +63,9 @@ class MainPage extends Component {
           break;
         case '/selection-sort':
           this.setState({ sortName: 'Selection Sort' });
+          break;
+        case '/quick-sort':
+          this.setState({ sortName: 'Quick Sort' });
           break;
         default:
             this.setState({sortName: 'Bubble Sort'});
@@ -192,6 +196,9 @@ class MainPage extends Component {
         break;
       case '/selection-sort':
         SelectionSort.selectionSort(array.slice(), sortHistory, highlightHistory);
+        break;
+      case '/quick-sort':
+        QuickSort.quickSort(array.slice(), sortHistory, highlightHistory);
         break;
       default:
         BubbleSort.bubbleSort(array.slice(), sortHistory, highlightHistory);

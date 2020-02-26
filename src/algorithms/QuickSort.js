@@ -1,4 +1,15 @@
 export default class QuickSort {
+    static quickSort(array, sortHistory, highlightHistory) {
+        this.clearArray(sortHistory);
+        this.clearArray(highlightHistory);
+
+        this.quickSortIterative(array, 0, array.length - 1, sortHistory, highlightHistory);
+    }
+
+    static quickSortIterative(array, l, h, sortHistory, highlightHistory) {
+        // Create an auxiliary stack 
+        let stack = [];
+    }
 
     /**
      * Swaps items in the array depending on their size

@@ -92,6 +92,7 @@ function MenuDropdown(props) {
         <MenuItem onClick={ (e) => { handleClose(e); props.history.push('/bubble-sort') }}>Bubble Sort</MenuItem>
         <MenuItem onClick={ (e) => { handleClose(e); props.history.push('/insertion-sort') }}>Insertion Sort</MenuItem>
         <MenuItem onClick={ (e) => { handleClose(e); props.history.push('/selection-sort') }}>Selection Sort</MenuItem>
+        <MenuItem onClick={ (e) => { handleClose(e); props.history.push('/quick-sort') }}>Quick Sort</MenuItem>
       </Menu>
   );
 }
