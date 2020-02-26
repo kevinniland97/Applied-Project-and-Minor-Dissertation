@@ -7,8 +7,23 @@ export default class QuickSort {
     }
 
     static quickSortIterative(array, l, h, sortHistory, highlightHistory) {
-        // Create an auxiliary stack 
         let stack = [];
+
+        let top = -1; 
+  
+        stack[++top] = l; 
+        stack[++top] = h; 
+  
+        while (top >= 0) { 
+            h = stack[top--]; 
+            l = stack[top--]; 
+    
+            let p = this.partition(array, l, h, sortHistory, highlightHistory);
+        }
+    }
+
+    static partition(array, l, h, sortHistory, highlightHistory) { 
+
     }
 
     /**
