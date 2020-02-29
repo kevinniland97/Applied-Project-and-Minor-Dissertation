@@ -93,6 +93,7 @@ function MenuDropdown(props) {
         <MenuItem onClick={ (e) => { handleClose(e); props.history.push('/insertion-sort') }}>Insertion Sort</MenuItem>
         <MenuItem onClick={ (e) => { handleClose(e); props.history.push('/selection-sort') }}>Selection Sort</MenuItem>
         <MenuItem onClick={ (e) => { handleClose(e); props.history.push('/quick-sort') }}>Quick Sort</MenuItem>
+        <MenuItem onClick={ (e) => { handleClose(e); props.history.push('/merge-sort') }}>Merge Sort</MenuItem>
         <MenuItem onClick={ (e) => { handleClose(e); props.history.push('/bogo-sort') }}>Bogo Sort</MenuItem>
       </Menu>
   );
@@ -109,6 +110,7 @@ function MainToolbarButtons(props) {
         <Button color="inherit" onClick={() => props.history.push('#/insertion-sort')}>Insertion Sort</Button>
         <Button color="inherit" onClick={() => props.history.push('#/selection-sort')}>Selection Sort</Button>
         <Button color="inherit" onClick={() => props.history.push('#/quick-sort')}>Quick Sort</Button>
+        <Button color="inherit" onClick={() => props.history.push('#/merge-sort')}>Merge Sort</Button>
         <Button color="inherit" onClick={() => props.history.push('#/bogo-sort')}>Bogo Sort</Button>
       </div>
   );

@@ -7,7 +7,7 @@ export default class MergeSort {
 
             while (left + step < array.length) {
                 this.mergeBottomUp(array, left, step, sortHistory, highlightHistory);
-                
+
                 left += step * 2;
             }
 
@@ -16,7 +16,11 @@ export default class MergeSort {
     }
 
     static mergeBottomUp(array, left, step, sortHistory, highlightHistory) {
-
+        let right = left + step;
+        let end = Math.min(left + step * 2 - 1, arr.length - 1);
+        let leftMoving = left;
+        let rightMoving = right;
+        let temp = [];
     }
 
     /**
