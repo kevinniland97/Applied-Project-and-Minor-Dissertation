@@ -17,34 +17,54 @@ export default class MergeSort {
 
     static mergeBottomUp(array, left, step, sortHistory, highlightHistory) {
         let right = left + step;
-        let end = Math.min(left + step * 2 - 1, arr.length - 1);
-        let leftMoving = left;
-        let rightMoving = right;
+        let end = Math.min(left + step * 2 - 1, array.length - 1);
+        let movingLeft = left;
+        let mmovingRight = right;
         let temp = [];
-    }
 
-    /**
-     * Swaps items in the array depending on their size
-     * 
-     * @param {*} array - The array of items to be sorted
-     * @param {*} i - Index
-     * @param {*} j - Index
-     */
-    static swap(array, i, j) {
-        let temp = array[i];
+        for (let i = left; i <= end; i++) {
+            if ((array[movingLeft] <= array[mmovingRight] || mmovingRight > end) && movingLeft < right) {
+                temp[i] = array[movingLeft];
 
-        array[i] = array[j];
-        array[j] = temp;
-    }
+                movingLeft++;
+            } else {
+                temp[i] = array[mmovingRight];
 
-    /**
-     * Clear the array i.e. pop an item off the array
-     * 
-     * @param {*} array - The array of items
-     */
-    static clearArray(array) {
-        while (array.length) {
-            array.pop();
+                mmovingRight++;
+            }
         }
+
+        for (let j = left; j <= end; j++) {
+            array[j] = temp[j];
+        }
+
+        sortHistory.push(array.slice());
+        highlightHistory.push([-1]);
     }
+}
+
+/**
+ * Swaps items in the array depending on their size
+ * 
+ * @param {*} array - The array of items to be sorted
+ * @param {*} i - Index
+ * @param {*} j - Index
+ */
+static swap(array, i, j) {
+    let temp = array[i];
+
+    array[i] = array[j];
+    array[j] = temp;
+}
+
+/**
+ * Clear the array i.e. pop an item off the array
+ * 
+ * @param {*} array - The array of items
+ */
+static clearArray(array) {
+    while (array.length) {
+        array.pop();
+    }
+}
 }
