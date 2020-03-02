@@ -1,6 +1,6 @@
 import { Route, Switch } from "react-router-dom";
 import React from "react";
-import App from '../App.js';
+import MainPage from "./MainPage.js";
 
 /**
  * 
@@ -8,7 +8,7 @@ import App from '../App.js';
 function Routes() {
     return (
         <Switch>
-            <Route path="/" component={App} />
+            <Route path="/" component={MainPage} />
         </Switch>
     );
 }
