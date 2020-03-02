@@ -1,3 +1,5 @@
+
+# A very simple Flask Hello World app for you to get started with...
 from flask import Flask, jsonify, request, json
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -5,7 +7,6 @@ from datetime import datetime
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, create_access_token
-
 app = Flask(__name__)
 
 app.config['MONGO_DBNAME'] = 'algorithms_visualizer'
@@ -69,5 +70,12 @@ def login():
         result = jsonify({ 'result': 'No results found' })
     return result
 
+@app.route('/', methods=['GET'])
+def server_info():
+    return "<h1>Flask server for Kevin Niland's Algorithms Visualizer</h1> \
+    <p>Owner: Kevin Niland</p> \
+    <p>Running since: 02/03/2020</p>"
+
 if __name__ == '__main__':
     app.run(debug=True)
+
