@@ -4,6 +4,8 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
 import MediaQuery from 'react-responsive';
+import HamburgerMenu from './Hamburger.js';
+import '../styling/MainToolbar.css';
 
 const styles = {
   line: {
@@ -16,6 +18,9 @@ const styles = {
   menuButton: {
     position: 'absolute',
     right: 15
+  },
+  title: {
+    marginLeft: 15
   }
 }
 
@@ -26,7 +31,9 @@ function MainToolbar(props) {
     <div>
     <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6">Sorting</Typography>
+          <HamburgerMenu />
+
+          <Typography variant="h6" style={styles.title}>Sorting</Typography>
 
           <div style={styles.line}></div>
 

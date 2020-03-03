@@ -1,5 +1,8 @@
-
-# A very simple Flask Hello World app for you to get started with...
+# Flask server - Used for user authentication
+# This code is hosted on PythonAnywhere. React makes requests to the Flask server on PythonAnywhere
+#
+# If you wish to run the React application locally, you must also run this Python script if you wish to utilize
+# the functionality specific to users, such as registering/logging in, uploading previous sorts
 from flask import Flask, jsonify, request, json
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
