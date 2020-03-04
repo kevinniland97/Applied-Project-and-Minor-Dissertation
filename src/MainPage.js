@@ -3,6 +3,7 @@ import { Button, Slider } from '@material-ui/core';
 import './styling/MainPage.css';
 import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
+import TextField from "@material-ui/core/TextField";
 import Styles from './components/Styles';
 import BubbleSort from './algorithms/BubbleSort.js';
 import InsertionSort from './algorithms/InsertionSort.js';
@@ -11,7 +12,8 @@ import QuickSort from './algorithms/QuickSort.js';
 import BogoSort from './algorithms/BogoSort.js';
 import MergeSort from './algorithms/MergeSort.js';
 import MainToolbar from './components/MainToolbar';
-import TextField from "@material-ui/core/TextField";
+import UserPages from './components/UserPages';
+import Backdrop from './components/backdrop/Backdrop';
 
 const defaultDatasetSize = 50;
 const defaultSortSpeed = 200;
@@ -231,8 +233,11 @@ class MainPage extends Component {
     const { classes } = this.props;
 
     return (
-      <div className="App">
+      // <div className="App">
+      <div style={{height: '100%'}}>
         <MainToolbar history={this.props.history} />
+        <UserPages />
+        <Backdrop />
         <span className="sort-name"> {this.state.sortName}</span>
         <div className="bar-wrapper">
           {this.state.array.map((item, index) => <Bar key={index} size={item} color={this.determineBarColor(this.state.isSelected, index)}/>)}
