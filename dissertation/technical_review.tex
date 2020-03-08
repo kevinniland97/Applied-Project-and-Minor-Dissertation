@@ -46,3 +46,25 @@ React has many advantages, several of which apply to this project:
 \subsubsection{Advantages}
 
 \subsubsection{Disadvantages}
+
+\subsection{PythonAnywhere}
+PythonAnywhere is an online integrated development environment (IDE) and web hosting service (Platform as a service) based on the Python programming language. it provides in-browser access to server-based Python and Bash command-line interfaces, along with a code editor with syntax highlighting. Program files can be transferred to and from the service using the user's browser. Web applications hosted by the service can be written using any WSGI-based application framework. For this project, the user authentication side of things was initially handled entirely by Firebase. However, as suggested by my supervisor, I decided to implement registering a user, logging a user into the application etc. myself. The functionality for this was written in Python and could be accessed by the application by using a proxy to delegate any requests made by the application to the Flask server. However, to enable the functionality to be accessed from anywhere (and, in turn, remove the need to run the Flask server alongside the application everytime), I decided to use PythonAnywhere. EXPLAIN
+
+\subsubsection{Advantages}
+There a number of advantages to using PythonAnywhere:
+
+\paragraph{Always running}
+Even on a free tier account, PythonAnywhere never sleeps (compared to something like Heroku). This means real time services are viable with PythonAnywhere.
+
+\paragraph{Fully configured}
+PythonAnywhere gives you a fully configured Python environment...
+
+\paragraph{Free}
+PythonAnywhere is free to use. On a free tier account, web applications stay running 24/7 for 3 months. After 3 months, it will shut down. However, one needs only to start it up again.
+
+\subsubsection{Disadvantages}
+
+\paragraph{Python-only on the server side}
+You are free to use JavaScript in your web pages and so on, but you can't use Rails or Node on the server side of things.
+
+\paragraph{No WebSocket support}
