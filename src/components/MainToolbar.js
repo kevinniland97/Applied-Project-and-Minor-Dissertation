@@ -30,8 +30,6 @@ function MainToolbar(props) {
     <div>
     <AppBar position="static">
         <Toolbar>
-          <HamburgerMenu />
-
           <Typography variant="h6" style={styles.title}>Sorting</Typography>
 
           <div style={styles.line}></div>

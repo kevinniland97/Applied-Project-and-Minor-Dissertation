@@ -12,8 +12,9 @@ import QuickSort from './algorithms/QuickSort.js';
 import BogoSort from './algorithms/BogoSort.js';
 import MergeSort from './algorithms/MergeSort.js';
 import MainToolbar from './components/MainToolbar';
-import UserPages from './components/UserPages';
-import Backdrop from './components/backdrop/Backdrop';
+import SignUp from './components/SignUp';
+import Login from './components/Login';
+import UserProfile from './components/UserProfile';
 
 const defaultDatasetSize = 50;
 const defaultSortSpeed = 200;
@@ -30,6 +31,7 @@ class MainPage extends Component {
       array: [],
       isSelected: [],
       stillSorting: false,
+      sideMenuOpen: false,
       sortName: 'Bubble Sort',
       dataset: ''
     };
@@ -69,6 +71,21 @@ class MainPage extends Component {
             this.setState({sortName: 'Bubble Sort'});
       }
     });
+  }
+
+  routes() {
+    const navLinks = [{
+      text: 'Login',
+      path: '/login'
+    },
+    {
+      text: 'Register',
+      path: '/signUp'
+    },
+    {
+      text: 'User Profile',
+      path: '/userProfile'
+    }]
   }
 
   componentDidMount() {
@@ -234,10 +251,13 @@ class MainPage extends Component {
 
     return (
       // <div className="App">
-      <div style={{height: '100%'}}>
+      <div className="App">
         <MainToolbar history={this.props.history} />
-        <UserPages />
-        <Backdrop />
+        {/* <Router>
+          <SignUp path="/signUp" />
+          <Login path="/login" />
+          <UserProfile path="/userProfile" />
+        </Router> */}
         <span className="sort-name"> {this.state.sortName}</span>
         <div className="bar-wrapper">
           {this.state.array.map((item, index) => <Bar key={index} size={item} color={this.determineBarColor(this.state.isSelected, index)}/>)}

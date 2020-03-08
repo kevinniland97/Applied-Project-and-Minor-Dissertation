@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
-import { loginUser } from "../actions";
+// import { loginUser } from "../actions";
 import { withStyles } from "@material-ui/styles";
 import { LoginUser } from './UserFunctions';
 
