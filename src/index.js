@@ -4,8 +4,6 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import MainPage from "./MainPage.js"; 
 import Routes from './Routes.js';
-import Users from './components/Users';
-import Contact from './components/Contact';
 import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
