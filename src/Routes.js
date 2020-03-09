@@ -1,6 +1,10 @@
 import { Route, Switch } from "react-router-dom";
 import React from "react";
 import MainPage from "./MainPage.js";
+import Users from "./components/Users.js";
+import Login from "./components/Login.js";
+import SignUp from "./components/SignUp.js";
+import UserProfile from "./components/UserProfile.js";
 
 /**
  * 
@@ -8,7 +12,8 @@ import MainPage from "./MainPage.js";
 function Routes() {
     return (
         <Switch>
-            <Route path="/" component={MainPage} />
+            <Route exact path="/" component={MainPage} />
+            <Route path="/users" component={Users} />
         </Switch>
     );
 }

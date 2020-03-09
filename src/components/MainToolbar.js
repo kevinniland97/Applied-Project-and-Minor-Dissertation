@@ -4,7 +4,6 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
 import MediaQuery from 'react-responsive';
-import HamburgerMenu from './Hamburger.js';
 
 const styles = {
   line: {

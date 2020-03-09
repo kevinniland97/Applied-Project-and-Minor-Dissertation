@@ -250,18 +250,14 @@ class MainPage extends Component {
     const { classes } = this.props;
 
     return (
-      // <div className="App">
       <div className="App">
         <MainToolbar history={this.props.history} />
-        {/* <Router>
-          <SignUp path="/signUp" />
-          <Login path="/login" />
-          <UserProfile path="/userProfile" />
-        </Router> */}
+
         <span className="sort-name"> {this.state.sortName}</span>
         <div className="bar-wrapper">
           {this.state.array.map((item, index) => <Bar key={index} size={item} color={this.determineBarColor(this.state.isSelected, index)}/>)}
         </div>
+
         <div className="buttons-wrapper">
           <Button className={classes.button} onClick={ () => this.generateRandomArray()}>Generate random array</Button>
           <Button className={classes.button} style={{backgroundColor: this.state.stillSorting ? 'red' : classes.button.backgroundColor}} onClick={ this.state.stillSorting ? this.stopSort.bind(this) : this.handleSort.bind(this)} > {this.state.stillSorting ? 'Stop Sorting' : 'Start Sorting'}</Button>
