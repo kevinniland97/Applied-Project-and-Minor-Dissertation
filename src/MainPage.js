@@ -12,9 +12,6 @@ import QuickSort from './algorithms/QuickSort.js';
 import BogoSort from './algorithms/BogoSort.js';
 import MergeSort from './algorithms/MergeSort.js';
 import MainToolbar from './components/MainToolbar';
-import SignUp from './components/SignUp';
-import Login from './components/Login';
-import UserProfile from './components/UserProfile';
 
 const defaultDatasetSize = 50;
 const defaultSortSpeed = 200;

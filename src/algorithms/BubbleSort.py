@@ -1,2 +1,2 @@
-def bubbleSort(array, sortHistory, highlightHistory):
+# def bubbleSort(array, sortHistory, highlightHistory):
     
