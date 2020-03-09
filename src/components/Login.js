@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 import { LoginUser } from './UserFunctions';
-import LoginToolbar from './LoginToolbar';
+import LoginRegisterToolbar from './LoginRegisterToolbar';
+import '../styling/LoginPage.css';
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -115,7 +116,7 @@ class Login extends Component {
     } else {
     return (
       <div>
-        <LoginToolbar history={this.props.history} />
+        <LoginRegisterToolbar history={this.props.history} />
       {/* // <Container component="main" maxWidth="xs"> */}
         <Paper className={classes.paper}>
           <Avatar className={classes.avatar}>

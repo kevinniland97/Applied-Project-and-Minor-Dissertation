@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 // import { signUpUser } from "../actions";
 import { withStyles } from "@material-ui/styles";
 import { RegisterUser } from './UserFunctions';
+import LoginRegisterToolbar from './LoginRegisterToolbar';
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -131,141 +132,144 @@ class SignUp extends Component {
    * 
    */
   render() {
-    // const { classes, signUpError, isAuthenticated } = this.props;
-    // if (isAuthenticated) {
-    //   return <Redirect to="/" />;
-    // } else {
+    const { classes, signUpError, isAuthenticated } = this.props;
+    if (isAuthenticated) {
+      return <Redirect to="/" />;
+    } else {
     return (
-      // <Container component="main" maxWidth="xs">
-      //   <Paper className={classes.paper}>
-      //     <Avatar className={classes.avatar}>
-      //       <LockOutlinedIcon />
-      //     </Avatar>
-      //     <Typography component="h1" variant="h5">
-      //       Sign up
-      //     </Typography>
-      //     {/* <TextField
-      //       variant="outlined"
-      //       margin="normal"
-      //       fullWidth
-      //       id="username"
-      //       label="Username"
-      //       name="username"
-      //       onChange={this.handleUsernameChange}
-      //     /> */}
-      //     <form>
-      //     <TextField
-      //       variant="outlined"
-      //       margin="normal"
-      //       fullWidth
-      //       id="first_name"
-      //       label="First Name"
-      //       name="first_name"
-      //       value={this.state.first_name}
-      //       onChange={this.onChange}
-      //     />
-      //     <TextField
-      //       variant="outlined"
-      //       margin="normal"
-      //       fullWidth
-      //       id="last_name"
-      //       label="Last Name"
-      //       name="last_name"
-      //       value={this.state.last_name}
-      //       onChange={this.onChange}
-      //     />
-      //     <TextField
-      //       variant="outlined"
-      //       margin="normal"
-      //       fullWidth
-      //       id="email"
-      //       label="Email Address"
-      //       name="email"
-      //       value={this.state.email}
-      //       onChange={this.onChange}
-      //     />
-      //     <TextField
-      //       variant="outlined"
-      //       margin="normal"
-      //       fullWidth
-      //       name="password"
-      //       label="Password"
-      //       type="password"
-      //       id="password"
-      //       value={this.state.password}
-      //       onChange={this.onChange}
-      //     />
-      //     {/* {signUpError && (
-      //       <Typography component="p" className={classes.errorText}>
-      //         Invalid credentials.
-      //       </Typography>
-      //     )} */}
-      //     <Button
-      //       type="button"
-      //       fullWidth
-      //       variant="contained"
-      //       color="primary"
-      //       // className={classes.submit}
-      //       onClick={this.onSubmit}
-      //     >
-      //       Sign Up
-      //     </Button>
-      //     </form>
-      //   </Paper>
-      // </Container>
-
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6 mt-5 mx-auto">
-            <form noValidate onSubmit={this.onSubmit}>
-              <h1 className="h3 mb-3 font-weight-normal">Register</h1>
-              <div className="form-group">
-                <label htmlFor="first_name">First Name</label>
-                <input type="test"
-                className="form-control"
-                name="first_name"
-                placeholder="First Name"
-                value={this.state.first_name} 
-                onChange={this.onChange} />
-              </div>
-              <div className="form-group">
-                <label htmlFor="last_name">Last Name</label>
-                <input type="test"
-                className="form-control"
-                name="last_name"
-                placeholder="Last Name"
-                value={this.state.last_name} 
-                onChange={this.onChange} />
-              </div>
-              <div className="form-group">
-                <label htmlFor="email">Email Address</label>
-                <input type="email"
-                className="form-control"
-                name="email"
-                placeholder="Email Address"
-                value={this.state.email} 
-                onChange={this.onChange} />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input type="password"
-                className="form-control"
-                name="password"
-                placeholder="Password"
-                value={this.state.password} 
-                onChange={this.onChange} />
-              </div>
-
-              <button type="submit" className="btn btn-lg btn-primary btn-block">
-                Register
-              </button>
-            </form>
-          </div>
-        </div>
+      <div>
+        <LoginRegisterToolbar history={this.props.history} />   
+      {/* // <Container component="main" maxWidth="xs"> */}
+        <Paper className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
+          {/* <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            id="username"
+            label="Username"
+            name="username"
+            onChange={this.handleUsernameChange}
+          /> */}
+          <form>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            id="first_name"
+            label="First Name"
+            name="first_name"
+            value={this.state.first_name}
+            onChange={this.onChange}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            id="last_name"
+            label="Last Name"
+            name="last_name"
+            value={this.state.last_name}
+            onChange={this.onChange}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            value={this.state.email}
+            onChange={this.onChange}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            value={this.state.password}
+            onChange={this.onChange}
+          />
+          {signUpError && (
+            <Typography component="p" className={classes.errorText}>
+              Invalid credentials.
+            </Typography>
+          )}
+          <Button
+            type="button"
+            fullWidth
+            variant="contained"
+            color="primary"
+            // className={classes.submit}
+            onClick={this.onSubmit}
+          >
+            Sign Up
+          </Button>
+          </form>
+        </Paper>
+      {/* </Container> */}
       </div>
+
+      /* // <div className="container">
+      //   <div className="row">
+      //     <div className="col-md-6 mt-5 mx-auto">
+      //       <form noValidate onSubmit={this.onSubmit}>
+      //         <h1 className="h3 mb-3 font-weight-normal">Register</h1>
+      //         <div className="form-group">
+      //           <label htmlFor="first_name">First Name</label>
+      //           <input type="test"
+      //           className="form-control"
+      //           name="first_name"
+      //           placeholder="First Name"
+      //           value={this.state.first_name} 
+      //           onChange={this.onChange} />
+      //         </div>
+      //         <div className="form-group">
+      //           <label htmlFor="last_name">Last Name</label>
+      //           <input type="test"
+      //           className="form-control"
+      //           name="last_name"
+      //           placeholder="Last Name"
+      //           value={this.state.last_name} 
+      //           onChange={this.onChange} />
+      //         </div>
+      //         <div className="form-group">
+      //           <label htmlFor="email">Email Address</label>
+      //           <input type="email"
+      //           className="form-control"
+      //           name="email"
+      //           placeholder="Email Address"
+      //           value={this.state.email} 
+      //           onChange={this.onChange} />
+      //         </div>
+      //         <div className="form-group">
+      //           <label htmlFor="password">Password</label>
+      //           <input type="password"
+      //           className="form-control"
+      //           name="password"
+      //           placeholder="Password"
+      //           value={this.state.password} 
+      //           onChange={this.onChange} />
+      //         </div>
+
+      //         <button type="submit" className="btn btn-lg btn-primary btn-block">
+      //           Register
+      //         </button>
+      //       </form>
+      //     </div>
+      //   </div>
+      // </div> */
     );
   }
-  // }
+}
 }
 
 /**

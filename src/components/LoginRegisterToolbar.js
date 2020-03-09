@@ -23,7 +23,7 @@ const styles = {
     }
   }
 
-  function LoginToolbar(props) {
+  function LoginRegisterToolbar(props) {
     var menu;
   
     return (
@@ -32,13 +32,13 @@ const styles = {
           <Toolbar>
             {/* <Typography variant="h6" style={styles.title}>Sorting</Typography> */}
             <Dropdown as={ButtonGroup}>
-              <Button variant="success" variant="h6" color="white" style={styles.title}>Login</Button>
+              <Button variant="success" variant="h6" color="white" style={styles.title}>Login/Register</Button>
   
               <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
   
               <Dropdown.Menu>
                 <Dropdown.Item href="/">Sorting</Dropdown.Item>
-                <Dropdown.Item href="/userProfile">User Profile</Dropdown.Item>
+                <Dropdown.Item href="/userProfile">Account</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
   
@@ -60,4 +60,4 @@ const styles = {
     );
   }
 
-  export default LoginToolbar;
+  export default LoginRegisterToolbar;

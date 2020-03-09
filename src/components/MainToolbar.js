@@ -37,8 +37,8 @@ function MainToolbar(props) {
             <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
 
             <Dropdown.Menu>
-              <Dropdown.Item href="/login">Login</Dropdown.Item>
-              <Dropdown.Item href="/userProfile">User Profile</Dropdown.Item>
+              <Dropdown.Item href="/login">Login/Register</Dropdown.Item>
+              <Dropdown.Item href="/userProfile">Account</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
 
