@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { AppBar, Button, Toolbar, Typography, IconButton, Slider, ClickAwayListener } from '@material-ui/core';
+import { AppBar, Button, Toolbar, Typography, IconButton, Slider, ClickAwayListener, ButtonGroup } from '@material-ui/core';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
 import MediaQuery from 'react-responsive';
+import { Dropdown } from 'react-bootstrap';
 
 const styles = {
   line: {
@@ -29,7 +30,17 @@ function MainToolbar(props) {
     <div>
     <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" style={styles.title}>Sorting</Typography>
+          {/* <Typography variant="h6" style={styles.title}>Sorting</Typography> */}
+          <Dropdown as={ButtonGroup}>
+            <Button variant="success" style={styles.title}>Sorting</Button>
+
+            <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
+
+            <Dropdown.Menu>
+              <Dropdown.Item href="/login">Login</Dropdown.Item>
+              <Dropdown.Item href="/userProfile">User Profile</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
 
           <div style={styles.line}></div>
 

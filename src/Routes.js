@@ -10,19 +10,6 @@ import UserProfile from "./components/UserProfile.js";
  */
 function Routes() {
     return (
-    <Router>
-        <div>
-            <ul>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
-                    <Link to="/login">Users</Link>
-                </li>
-                <li>
-                    <Link to="/signUp">Contact</Link>
-                </li>
-            </ul>
         <Switch>
             {/* Needed to add keyword exact to enable proper routing */}
             {/* Added routing for all algorithms - pure and utter cowboy code - FIX!!!! */}
@@ -36,8 +23,6 @@ function Routes() {
             <Route path="/signUp" component={SignUp} />
             <Route path="/userProfile" component={UserProfile} />
         </Switch>
-        </div>
-  </Router>
     );
 }
 
