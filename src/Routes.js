@@ -1,4 +1,4 @@
-import { Link, Route, Switch } from "react-router-dom";
+import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import React from "react";
 import MainPage from "./MainPage.js";
 import Login from "./components/Login.js";
@@ -10,13 +10,34 @@ import UserProfile from "./components/UserProfile.js";
  */
 function Routes() {
     return (
+    <Router>
+        <div>
+            <ul>
+                <li>
+                    <Link to="/">Home</Link>
+                </li>
+                <li>
+                    <Link to="/login">Users</Link>
+                </li>
+                <li>
+                    <Link to="/signUp">Contact</Link>
+                </li>
+            </ul>
         <Switch>
             {/* Needed to add keyword exact to enable proper routing */}
-            <Route path="/" component={MainPage} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signUp" component={SignUp} />
-            <Route exact path="/userProfile" component={UserProfile} />
+            {/* Added routing for all algorithms - pure and utter cowboy code - FIX!!!! */}
+            <Route exact path="/" component={MainPage} />
+            <Route exact path="/bubble-sort" component={MainPage} />
+            <Route exact path="/insertion-sort" component={MainPage} />
+            <Route exact path="/merge-sort" component={MainPage} />
+            <Route exact path="/quick-sort" component={MainPage} />
+            <Route exact path="/selection-sort" component={MainPage} />
+            <Route path="/login" component={Login} />
+            <Route path="/signUp" component={SignUp} />
+            <Route path="/userProfile" component={UserProfile} />
         </Switch>
+        </div>
+  </Router>
     );
 }
 
