@@ -32,7 +32,7 @@ function MainToolbar(props) {
         <Toolbar>
           {/* <Typography variant="h6" style={styles.title}>Sorting</Typography> */}
           <Dropdown as={ButtonGroup}>
-            <Button variant="success" style={styles.title}>Sorting</Button>
+            <Button variant="success" variant="h6" color="white" style={styles.title}>Sorting</Button>
 
             <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
 
