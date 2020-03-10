@@ -2,7 +2,7 @@ import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import React from "react";
 import MainPage from "./MainPage.js";
 import Login from "./components/Login.js";
-import SignUp from "./components/SignUp.js";
+import Register from "./components/Register.js";
 import UserProfile from "./components/UserProfile.js";
 
 /**
@@ -20,7 +20,7 @@ function Routes() {
             <Route exact path="/quick-sort" component={MainPage} />
             <Route exact path="/selection-sort" component={MainPage} />
             <Route path="/login" component={Login} />
-            <Route path="/signUp" component={SignUp} />
+            <Route path="/register" component={Register} />
             <Route path="/userProfile" component={UserProfile} />
         </Switch>
     );

@@ -70,21 +70,6 @@ class MainPage extends Component {
     });
   }
 
-  routes() {
-    const navLinks = [{
-      text: 'Login',
-      path: '/login'
-    },
-    {
-      text: 'Register',
-      path: '/signUp'
-    },
-    {
-      text: 'User Profile',
-      path: '/userProfile'
-    }]
-  }
-
   componentDidMount() {
     this.generateRandomArray();
   }
