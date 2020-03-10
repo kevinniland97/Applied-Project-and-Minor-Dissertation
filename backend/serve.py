@@ -22,7 +22,7 @@ jwt = JWTManager(app)
 
 CORS(app)
 
-@app.route('/signUp', methods=['POST'])
+@app.route('/register', methods=['POST'])
 def register():
     users = mongo.db.users
     first_name = request.get_json()['first_name']
