@@ -3,7 +3,7 @@ import React from "react";
 import MainPage from "./MainPage.js";
 import Login from "./components/Login.js";
 import Register from "./components/Register.js";
-import UserProfile from "./components/UserProfile.js";
+import Profile from "./components/Profile.js";
 
 /**
  * 
@@ -21,7 +21,7 @@ function Routes() {
             <Route exact path="/selection-sort" component={MainPage} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
-            <Route path="/userProfile" component={UserProfile} />
+            <Route path="/userProfile" component={Profile} />
         </Switch>
     );
 }

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
 
-class UserProfile extends Component {
+class Profile extends Component {
     constructor() {
         super()
-
         this.state = {
             first_name: '',
             last_name: '',
@@ -12,25 +11,23 @@ class UserProfile extends Component {
         }
     }
 
-    componentDidMount() {
-        const token = localStorage.token
+    componentDidMount () {
+        const token = localStorage.usertoken
         const decoded = jwt_decode(token)
-        
-        this.setState ({
+        this.setState({
             first_name: decoded.identity.first_name,
             last_name: decoded.identity.last_name,
             email: decoded.identity.email
         })
     }
 
-    render() {
+    render () {
         return (
             <div className="container">
                 <div className="jumbotron mt-5">
                     <div className="col-sm-8 mx-auto">
-                        <h1 className="text-center">User Profile</h1>
+                        <h1 className="text-center">PROFILE</h1>
                     </div>
-
                     <table className="table col-md-6 mx-auto">
                         <tbody>
                             <tr>
@@ -53,4 +50,4 @@ class UserProfile extends Component {
     }
 }
 
-export default UserProfile;
+export default Profile;

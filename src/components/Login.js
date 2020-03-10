@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
-import { LoginUser } from './UserFunctions';
+// import { LoginUser } from './UserFunctions';
+import { login } from './UserFunctions';
 import LoginRegisterToolbar from './LoginRegisterToolbar';
 import '../styling/LoginPage.css';
 
@@ -66,7 +67,7 @@ class Login extends Component {
           password: this.state.password
       }
 
-      LoginUser(user).then(res => {
+      login(user).then(res => {
           if (!res.error) {
               this.props.history.push('/profile')
           }
@@ -111,18 +112,6 @@ class Login extends Component {
 }
 
 export default Login;
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

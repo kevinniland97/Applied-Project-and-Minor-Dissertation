@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 // import { signUpUser } from "../actions";
 import { withStyles } from "@material-ui/styles";
-import { RegisterUser } from './UserFunctions';
+// import { RegisterUser } from './UserFunctions';
+import { register } from './UserFunctions';
 import LoginRegisterToolbar from './LoginRegisterToolbar';
 
 import Avatar from "@material-ui/core/Avatar";
@@ -73,8 +74,8 @@ class Register extends Component {
           password: this.state.password
       }
 
-      RegisterUser(newUser).then(res => {
-          this.props.history.push('/login')
+      register(newUser).then(res => {
+          this.props.history.push(`/login`)
       })
   }
 
@@ -134,17 +135,6 @@ class Register extends Component {
 }
 
 export default Register;
-
-
-
-
-
-
-
-
-
-
-
 
 
   // state = { username: "", firstName: "", lastName: "", email: "", password: "" };
