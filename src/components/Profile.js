@@ -1,5 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Redirect, Link } from "react-router-dom";
+import { withStyles } from "@material-ui/styles";
 import jwt_decode from 'jwt-decode';
+import ProfileToolbar from './ProfileToolbar';
 
 class Profile extends Component {
     constructor() {
@@ -23,7 +27,8 @@ class Profile extends Component {
 
     render () {
         return (
-            <div className="container">
+            <div className="App">
+                <ProfileToolbar />
                 <div className="jumbotron mt-5">
                     <div className="col-sm-8 mx-auto">
                         <h1 className="text-center">PROFILE</h1>

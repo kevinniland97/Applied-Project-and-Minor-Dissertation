@@ -42,6 +42,7 @@ class MainPage extends Component {
 
     this.props.history.listen((location, action) => {
       this.generateRandomArray();
+      this.generateUserArray();
 
       let path = location.pathname;
 
@@ -72,6 +73,68 @@ class MainPage extends Component {
 
   componentDidMount() {
     this.generateRandomArray();
+  }
+
+  handleDataset = ({ target }) => {
+    console.log(target.value);
+    this.setState({ dataset: target.value });
+  };
+
+  handleSubmit = () => {
+    const { dataset } = this.state;
+
+    console.log(dataset);
+    this.generateUserArray(dataset);
+  };
+
+  /**
+   * 
+   * @param {*} dataset 
+   */
+  generateUserArray(dataset) {
+    if (this.interval) {
+      clearInterval(this.interval);
+
+      this.interval = null;
+      this.setState({ stillSorting: false });
+    }
+
+    this.sortHistoryIndex = 0;
+    this.sortHistory = [];
+    this.highlightHistory = [];
+
+    let array = [];
+
+    /**
+     * 
+     */
+    for (let i = 0; i < dataset.length; i++) {
+      array = dataset.split("");
+      dataset = dataset.split(/[ ,]+/).join(',');
+      array = dataset.split(',');
+    }
+
+    console.log(dataset);
+    console.log(array);
+
+    /**
+     * Shuffle the user array using the Fisher-Yates Shuffle
+     * 
+     * Implementation of the Fisher-Yates Shuffle: https://stackoverflow.com/a/2450976/8721358
+     */
+    var currentIndex = array.length, temp, random;
+
+    while (0 !== currentIndex) {
+      random = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      
+      // And swap it with the current element.
+      temp = array[currentIndex];
+      array[currentIndex] = array[random];
+      array[random] = temp;
+    }
+
+    this.setState({array: array, isHighlighted: -1});
   }
 
   generateRandomArray() {
@@ -243,6 +306,19 @@ class MainPage extends Component {
         <div className="buttons-wrapper">
           <Button className={classes.button} onClick={ () => this.generateRandomArray()}>Generate random array</Button>
           <Button className={classes.button} style={{backgroundColor: this.state.stillSorting ? 'red' : classes.button.backgroundColor}} onClick={ this.state.stillSorting ? this.stopSort.bind(this) : this.handleSort.bind(this)} > {this.state.stillSorting ? 'Stop Sorting' : 'Start Sorting'}</Button>
+          <div className="clearfix">
+            <div className="buttons-wrapper">
+              <Button className={classes.button} onClick={ this.handleSubmit }>Add to own dataset</Button>
+              <TextField
+              variant="outlined"
+              margin="normal"
+              id="dataset"
+              label="Dataset"
+              name="dataset"
+              color="white"
+              onChange={this.handleDataset} />
+            </div>
+          </div>
         </div>
       </div>
     );

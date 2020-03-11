@@ -60,4 +60,4 @@ const styles = {
     );
   }
 
-  export default LoginRegisterToolbar;
+  export default ProfileToolbar;
