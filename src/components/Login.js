@@ -76,7 +76,8 @@ class Login extends Component {
 
   render () {
       return (
-          <div className="container">
+          <div className="App">
+            <LoginRegisterToolbar />
               <div className="row">
                   <div className="col-md-6 mt-5 mx-auto">
                       <form noValidate onSubmit={this.onSubmit}>
@@ -104,6 +105,7 @@ class Login extends Component {
                               Sign in
                           </button>
                       </form>
+                      Don't have an account? <Link to="/register">Create an account</Link>
                   </div>
               </div>
           </div>

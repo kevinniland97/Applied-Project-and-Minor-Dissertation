@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 // import { signUpUser } from "../actions";
 import { withStyles } from "@material-ui/styles";
 // import { RegisterUser } from './UserFunctions';
@@ -81,7 +81,9 @@ class Register extends Component {
 
   render () {
       return (
-          <div className="container">
+          <div className="App">
+            <LoginRegisterToolbar />
+
               <div className="row">
                   <div className="col-md-6 mt-5 mx-auto">
                       <form noValidate onSubmit={this.onSubmit}>
@@ -127,6 +129,9 @@ class Register extends Component {
                               Register
                           </button>
                       </form>
+                      <div className="linkToLoginRegister">
+                        Already have an account? <Link to="/login">Login</Link>
+                      </div>
                   </div>
               </div>
           </div>

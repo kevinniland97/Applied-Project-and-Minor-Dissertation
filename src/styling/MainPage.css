@@ -57,3 +57,7 @@ body {
 .clearfix {
   overflow: auto;
 }
+
+.linkToLoginRegister {
+  position: center
+}
