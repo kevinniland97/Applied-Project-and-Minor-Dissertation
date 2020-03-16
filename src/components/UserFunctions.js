@@ -9,18 +9,18 @@ export const register = newUser => {
             password: newUser.password
         })
         .then(response => {
-            console.log("Registered")
+            console.log("User successfully registered")
         })
 }
 
 export const login = user => {
     return axios
-        .post("/login", {
+        .post("/login", { 
             email: user.email,
             password: user.password
         })
         .then(response => {
-            localStorage.setItem('usertoken', response.data.token)
+            localStorage.setItem('User successfully logged in. Token', response.data.token)
             return response.data.token
         })
         .catch(err => {

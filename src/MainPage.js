@@ -42,7 +42,7 @@ class MainPage extends Component {
 
     this.props.history.listen((location, action) => {
       this.generateRandomArray();
-      this.generateUserArray();
+      // this.generateUserArray();
 
       let path = location.pathname;
 

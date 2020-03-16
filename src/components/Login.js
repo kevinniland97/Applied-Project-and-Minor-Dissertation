@@ -68,9 +68,11 @@ class Login extends Component {
       }
 
       login(user).then(res => {
-          if (!res.error) {
-              this.props.history.push('/')
-          }
+          // if (!res.error) {
+          //     this.props.history.push('/bubble-sort')
+          // }
+          console.log("Success")
+          this.props.history.push('/')
       })
   }
 

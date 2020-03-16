@@ -8,6 +8,7 @@ import ProfileToolbar from './ProfileToolbar';
 class Profile extends Component {
     constructor() {
         super()
+        
         this.state = {
             first_name: '',
             last_name: '',
@@ -18,6 +19,7 @@ class Profile extends Component {
     componentDidMount () {
         const token = localStorage.usertoken
         const decoded = jwt_decode(token)
+
         this.setState({
             first_name: decoded.identity.first_name,
             last_name: decoded.identity.last_name,
@@ -29,9 +31,10 @@ class Profile extends Component {
         return (
             <div className="App">
                 <ProfileToolbar />
+
                 <div className="jumbotron mt-5">
                     <div className="col-sm-8 mx-auto">
-                        <h1 className="text-center">PROFILE</h1>
+                        <h1 className="text-center">Your Account</h1>
                     </div>
                     <table className="table col-md-6 mx-auto">
                         <tbody>
