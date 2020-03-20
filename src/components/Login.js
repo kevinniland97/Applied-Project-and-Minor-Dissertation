@@ -48,7 +48,8 @@ class Login extends Component {
       super()
       this.state = {
           email: '',
-          password: ''
+          password: '',
+          loggedIn: false
       }
 
       this.onChange = this.onChange.bind(this)
@@ -64,14 +65,16 @@ class Login extends Component {
 
       const user = {
           email: this.state.email,
-          password: this.state.password
+          password: this.state.password,
+          loggedIn: true
       }
 
       login(user).then(res => {
-        this.props.history.push('/bubble-sort')
-          
-          // console.log("Success")
-          // this.props.history.push('/')
+        // if (!res.error) {
+            this.props.history.push('/bubble-sort')
+            localStorage.setItem("user", user.email);
+            localStorage.setItem("loggedIn", user.loggedIn)
+        // }
       })
   }
 

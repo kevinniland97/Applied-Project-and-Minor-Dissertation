@@ -23,6 +23,14 @@ const styles = {
   }
 }
 
+const loginStatus = {
+  loggedIn: true
+}
+
+const loggedIn = localStorage.getItem('loggedIn') === 'true';
+const loggedOut = localStorage.setItem('loggedIn', loginStatus.loggedIn) === 'false';
+const loggedInUser = loggedIn ? localStorage.getItem('user') : "";
+
 function MainToolbar(props) {
   var menu;
 
@@ -57,6 +65,16 @@ function MainToolbar(props) {
           </MediaQuery>
           
           <MenuDropdown onMenuClick={(e) => {menu = e;}} history={props.history} />
+
+          { loggedInUser }
+
+          <Dropdown as={ButtonGroup}>
+            <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
+
+            <Dropdown.Menu>
+              <Dropdown.Item loggedOut >Log Out</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </Toolbar>
     </AppBar>
     </div>

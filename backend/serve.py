@@ -5,17 +5,23 @@
 # the functionality specific to users, such as registering/logging in, uploading previous sorts
 from flask import Flask, jsonify, request, json
 from flask_pymongo import PyMongo
+import pymongo
 from bson.objectid import ObjectId
 from datetime import datetime
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, create_access_token
+from pprint import pprint
 
 app = Flask(__name__)
 
 app.config['MONGO_DBNAME'] = 'algorithms_visualizer'
 app.config['MONGO_URI'] = 'mongodb://admin:admin123@ds217809.mlab.com:17809/algorithms_visualizer?retryWrites=false'
 app.config['JWT_SECRET_KEY'] = 'secret'
+
+client = pymongo.MongoClient("mongodb://admin:admin123@ds217809.mlab.com:17809/algorithms_visualizer?retryWrites=false")
+db = client["algorithms_visualizer"]
+col = db["users"]
 
 mongo = PyMongo(app)
 bcrypt = Bcrypt(app)
@@ -73,6 +79,18 @@ def login():
     else:
         result = jsonify({ 'result': 'No results found' })
     return result
+
+@app.route('/getAll', methods=['GET'])
+def getAll():
+    docs = []
+
+    for doc in mongo.db.users.find():
+        doc.pop('_id')
+        docs.append(doc)
+
+    print(docs)
+
+    return jsonify(docs)
 
 @app.route('/', methods=['GET'])
 def server_info():
