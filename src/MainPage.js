@@ -408,13 +408,16 @@ function Bar(props) {
       margin: 3,
       height: props.size * 8, 
       backgroundColor: props.color
+    },
+    text: {
+      display: 'inline-block',
     }
   }
 
   // Renders a bar for element in the array
   return (
     <div className='bar' style={barStyling.bar}>
-      <p>{ barStyling.bar.height / 8 }</p>
+      <h7 style={barStyling.text}>{ barStyling.bar.height / 8}</h7>
     </div>
   );
 }

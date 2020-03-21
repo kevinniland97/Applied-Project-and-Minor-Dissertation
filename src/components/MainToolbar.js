@@ -6,6 +6,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import MediaQuery from 'react-responsive';
 import { Dropdown } from 'react-bootstrap';
 
+/**
+ * Styling for toolbar
+ */
 const styles = {
   line: {
     height: 40,
@@ -23,14 +26,21 @@ const styles = {
   }
 }
 
+/**
+ * Determines login status
+ */
 const loginStatus = {
   loggedIn: true
 }
 
-const loggedIn = localStorage.getItem('loggedIn') === 'true';
-const loggedOut = localStorage.setItem('loggedIn', loginStatus.loggedIn) === 'false';
-const loggedInUser = loggedIn ? localStorage.getItem('user') : "";
+const loggedIn = localStorage.getItem('loggedIn') === 'true'; // Gets loggedIn if true
+const loggedOut = localStorage.setItem('loggedIn', loginStatus.loggedIn) === 'false'; // Sets logged in status to true
+const loggedInUser = loggedIn ? localStorage.getItem('user') : ""; // Will display logged in user if loggedIn is true
 
+/**
+ * 
+ * @param {*} props 
+ */
 function MainToolbar(props) {
   var menu;
 
@@ -81,6 +91,10 @@ function MainToolbar(props) {
   );
 }
 
+/**
+ * 
+ * @param {*} props 
+ */
 function MenuDropdown(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -112,6 +126,10 @@ function MenuDropdown(props) {
   );
 }
 
+/**
+ * 
+ * @param {*} props 
+ */
 function MainToolbarButtons(props) {
   return (
       <div>
