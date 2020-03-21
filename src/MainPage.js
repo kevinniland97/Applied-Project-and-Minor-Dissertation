@@ -1,10 +1,11 @@
+// Imports
 import React, { Component } from 'react';
 import { Button, Slider } from '@material-ui/core';
 import './styling/MainPage.css';
 import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import TextField from "@material-ui/core/TextField";
-import Styles from './components/Styles';
+// import Styles from './components/Styles';
 import BubbleSort from './algorithms/BubbleSort.js';
 import InsertionSort from './algorithms/InsertionSort.js';
 import SelectionSort from './algorithms/SelectionSort.js';
@@ -13,27 +14,15 @@ import BogoSort from './algorithms/BogoSort.js';
 import MergeSort from './algorithms/MergeSort.js';
 import MainToolbar from './components/MainToolbar';
 
+// Constants
 const defaultDatasetSize = 50;
 const defaultSortSpeed = 200;
 const maxSortSize = 200;
 const maxSortSpeed = 200;
 const highlightColors = ['red', 'purple', 'blue', 'gray'];
-// const styles = Styles;
+
+// Styling
 const styles = {
-  // line: {
-  //   height: 40,
-  //   marginLeft: 15,
-  //   marginRight: 15,
-  //   borderRightStyle: 'solid',
-  //   borderWidth: 1
-  // },
-  // menuButton: {
-  //   position: 'absolute',
-  //   right: 15
-  // },
-  // title: {
-  //   marginLeft: 15
-  // },
   button: {
     display: 'inline-block',
     backgroundColor: '#3f51b5',
@@ -45,21 +34,23 @@ const styles = {
   }
 }
 
-
+/**
+ * MainPage - Main page of the application. Allows users to choose a sorting algorithm to visualize
+ */
 class MainPage extends Component {
   constructor(props) {
     super(props);
 
+    // Contains various states related to sorting aspect
     this.state = {
-      array: [],
-      isSelected: [],
-      stillSorting: false,
-      sideMenuOpen: false,
-      sortName: 'Bubble Sort',
-      dataset: ''
+      array: [], // Array of elements to sort
+      isSelected: [], // Array of selected elements up for sorting
+      stillSorting: false, // Determines whether the array of elements is still being sorted
+      sortName: 'Bubble Sort', // Default sort name
+      dataset: '' // Contains the user dataset
     };
 
-    this.sortHistory = [];
+    this.sortHistory = []; 
     this.selectedHistory = [];
     this.sortHistoryIndex = 0;
     this.interval = null;
@@ -97,15 +88,24 @@ class MainPage extends Component {
     });
   }
 
+  /**
+   * 
+   */
   componentDidMount() {
     this.generateRandomArray();
   }
 
+  /**
+   * 
+   */
   handleDataset = ({ target }) => {
     console.log(target.value);
     this.setState({ dataset: target.value });
   };
 
+  /**
+   * 
+   */
   handleSubmit = () => {
     const { dataset } = this.state;
 
@@ -150,6 +150,9 @@ class MainPage extends Component {
      */
     var currentIndex = array.length, temp, random;
 
+    /**
+     * 
+     */
     while (0 !== currentIndex) {
       random = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
@@ -160,9 +163,13 @@ class MainPage extends Component {
       array[random] = temp;
     }
 
+    // 
     this.setState({array: array, isHighlighted: -1});
   }
 
+  /** 
+   * Generates a random array of a fixed size
+   */ 
   generateRandomArray() {
     if (this.interval) {
       clearInterval(this.interval);
@@ -171,6 +178,7 @@ class MainPage extends Component {
       this.setState({stillSorting: false});
     }
 
+    
     this.sortHistoryIndex = 0;
     this.sortHistory = [];
     this.selectedHistory = [];
@@ -184,6 +192,9 @@ class MainPage extends Component {
     this.setState({array: array, isSelected: -1});
   }
 
+  /**
+   * 
+   */
   sortSelected(array, sortHistory, selectedHistory) {
     let path = this.props.location.pathname;
 
@@ -211,6 +222,9 @@ class MainPage extends Component {
     }
   }
 
+  /**
+   * 
+   */
   handleSort() {
     if (this.interval) {
       return;
@@ -253,6 +267,9 @@ class MainPage extends Component {
     }, maxSortSpeed - this.sortSpeed);
   }
 
+  /**
+   * 
+   */
   stopSort() {
     if (this.interval) {
       clearInterval(this.interval);
@@ -262,6 +279,11 @@ class MainPage extends Component {
     }
   }
 
+  /**
+   * 
+   * @param {*} event 
+   * @param {*} newValue 
+   */
   handleSizeSlide(event, newValue) {
     let array = this.state.array;
 
@@ -283,10 +305,20 @@ class MainPage extends Component {
     this.setState({array: array});
   }
 
+  /**
+   * 
+   * @param {*} event 
+   * @param {*} newValue 
+   */
   handleSpeedSlide(event, newValue) {
     this.sortSpeed = newValue;
   }
 
+  /**
+   * 
+   * @param {*} event 
+   * @param {*} newValue 
+   */
   handleHistorySlide(event, newValue) {
     if (newValue < 0 || newValue > this.sortHistory.length - 1) {
       return;
@@ -306,6 +338,11 @@ class MainPage extends Component {
     this.sortHistoryIndex = newValue;
   }
 
+  /**
+   * Determines the color of each bar during the sorting process
+   * @param {*} isSelected 
+   * @param {*} index 
+   */
   determineBarColor(isSelected, index) {
     for (let i = 0; i < isSelected.length; i++) {
       if (isSelected[i] === index) {
@@ -313,10 +350,11 @@ class MainPage extends Component {
       }
     }
 
-    // Document
+    // Determines the color of the bars when not being sorted
     return 'aqua';
   }
 
+  // Renders the page
   render() {
     const { classes } = this.props;
 
@@ -352,13 +390,16 @@ class MainPage extends Component {
   }
 }
 
+// 
 MainPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
+/**
+ * 
+ * @param {*} props 
+ */
 function Bar(props) {
-  // props.color = 'aqua';
-
   const barStyling = {
     bar: {
       color: 'green',
@@ -370,9 +411,10 @@ function Bar(props) {
     }
   }
 
+  // Renders a bar for element in the array
   return (
-    // <div className='bar' style={{height: props.size * 8, backgroundColor: props.color, styles.bar}}>
     <div className='bar' style={barStyling.bar}>
+      <p>{ barStyling.bar.height / 8 }</p>
     </div>
   );
 }
