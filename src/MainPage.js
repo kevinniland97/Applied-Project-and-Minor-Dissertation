@@ -18,7 +18,33 @@ const defaultSortSpeed = 200;
 const maxSortSize = 200;
 const maxSortSpeed = 200;
 const highlightColors = ['red', 'purple', 'blue', 'gray'];
-const styles = Styles;
+// const styles = Styles;
+const styles = {
+  // line: {
+  //   height: 40,
+  //   marginLeft: 15,
+  //   marginRight: 15,
+  //   borderRightStyle: 'solid',
+  //   borderWidth: 1
+  // },
+  // menuButton: {
+  //   position: 'absolute',
+  //   right: 15
+  // },
+  // title: {
+  //   marginLeft: 15
+  // },
+  button: {
+    display: 'inline-block',
+    backgroundColor: '#3f51b5',
+    color: 'white',
+    margin: 10,
+    '&:hover': {
+      backgroundColor: '#5f71d4',
+    }
+  }
+}
+
 
 class MainPage extends Component {
   constructor(props) {
@@ -288,7 +314,7 @@ class MainPage extends Component {
     }
 
     // Document
-    return 'snow';
+    return 'aqua';
   }
 
   render() {
@@ -299,6 +325,7 @@ class MainPage extends Component {
         <MainToolbar history={this.props.history} />
 
         <span className="sort-name"> {this.state.sortName}</span>
+
         <div className="bar-wrapper">
           {this.state.array.map((item, index) => <Bar key={index} size={item} color={this.determineBarColor(this.state.isSelected, index)}/>)}
         </div>
@@ -330,8 +357,22 @@ MainPage.propTypes = {
 };
 
 function Bar(props) {
+  // props.color = 'aqua';
+
+  const barStyling = {
+    bar: {
+      color: 'green',
+      display: 'inline-block',
+      width: 20,
+      margin: 3,
+      height: props.size * 8, 
+      backgroundColor: props.color
+    }
+  }
+
   return (
-    <div className='bar' style={{height: props.size * 10, backgroundColor: props.color}}>
+    // <div className='bar' style={{height: props.size * 8, backgroundColor: props.color, styles.bar}}>
+    <div className='bar' style={barStyling.bar}>
     </div>
   );
 }

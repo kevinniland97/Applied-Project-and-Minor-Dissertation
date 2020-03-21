@@ -7,6 +7,9 @@ const Styles = theme => ({
       '&:hover': {
         backgroundColor: '#5f71d4',
       }
+    },
+    bar: {
+      color: 'blue'
     }
   });
 
