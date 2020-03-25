@@ -411,6 +411,7 @@ function Bar(props) {
     },
     text: {
       display: 'inline-block',
+      
     }
   }
 
