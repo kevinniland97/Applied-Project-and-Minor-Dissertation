@@ -1,4 +1,10 @@
 export default class QuickSort {
+    /**
+     * 
+     * @param {*} array 
+     * @param {*} sortHistory 
+     * @param {*} highlightHistory 
+     */
     static quickSort(array, sortHistory, highlightHistory) {
         this.clearArray(sortHistory);
         this.clearArray(highlightHistory);
@@ -6,6 +12,14 @@ export default class QuickSort {
         this.quickSortIterative(array, 0, array.length - 1, sortHistory, highlightHistory);
     }
 
+    /**
+     * 
+     * @param {*} array 
+     * @param {*} l 
+     * @param {*} h 
+     * @param {*} sortHistory 
+     * @param {*} highlightHistory 
+     */
     static quickSortIterative(array, l, h, sortHistory, highlightHistory) {
         let stack = [];
 
@@ -32,6 +46,14 @@ export default class QuickSort {
         }
     }
 
+    /**
+     * 
+     * @param {*} array 
+     * @param {*} l 
+     * @param {*} h 
+     * @param {*} sortHistory 
+     * @param {*} highlightHistory 
+     */
     static partition(array, l, h, sortHistory, highlightHistory) {
         let x = array[h];
         let i = (l - 1);

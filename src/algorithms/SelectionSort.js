@@ -1,4 +1,3 @@
-// 
 export default class SelectionSort {
     /**
      * Performs the selection sort algorithm

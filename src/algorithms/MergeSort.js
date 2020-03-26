@@ -1,4 +1,11 @@
 export default class MergeSort {
+    /**
+     * Performs the merge sort algorithm
+     * 
+     * @param {*} array 
+     * @param {*} sortHistory 
+     * @param {*} highlightHistory 
+     */
     static mergeSort(array, sortHistory, highlightHistory) {
         let step = 1;
 
@@ -15,6 +22,14 @@ export default class MergeSort {
         }
     }
 
+    /**
+     * 
+     * @param {*} array - Array to be sorted
+     * @param {*} left - 
+     * @param {*} step - 
+     * @param {*} sortHistory -
+     * @param {*} highlightHistory -
+     */
     static mergeBottomUp(array, left, step, sortHistory, highlightHistory) {
         let right = left + step;
         let end = Math.min(left + step * 2 - 1, array.length - 1);
