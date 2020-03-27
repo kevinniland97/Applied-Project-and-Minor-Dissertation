@@ -57,6 +57,7 @@ function MainToolbar(props) {
             <Dropdown.Menu>
               <Dropdown.Item href="/login">Login/Register</Dropdown.Item>
               <Dropdown.Item href="/userProfile">Account</Dropdown.Item>
+              <Dropdown.Item href="/screenRecord">Record</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
 

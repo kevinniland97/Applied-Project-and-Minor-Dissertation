@@ -2,18 +2,24 @@ export default class InsertionSort {
     /**
      * Performs the insertion sort algorithm
      * 
+     * Insertion sort is a simple sorting algorithm that builds the final sorted array (or list) one item at a time. 
+     * It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort, or merge sort.
+     * This algorithm is not suitable for large data sets as its average and worst case complexities are of Ο(n2), where n is the 
+     * number of items.
+     * 
      * @param {*} array - Array of items to be sorted
-     * @param {*} sortHistory - Previous items that have been sorted 
-     * @param {*} highlightHistory - Previous items that have been... 
+     * @param {*} sortHistory - Elements that have been sorted
+     * @param {*} selectedHistory - Elements that have been previously selected for sorting 
      */
-    static insertionSort(array, sortHistory, highlightHistory) {
+    static insertionSort(array, sortHistory, selectedHistory) {
         this.clearArray(sortHistory);
-        this.clearArray(highlightHistory);
+        this.clearArray(selectedHistory);
 
-        let leftColumn = -1;
+        let leftCol = -1;
 
+        // Iterate through entire array
         for (let i = 0; i < array.length; i++) {
-            leftColumn = i;
+            leftCol = i;
             let temp = array[i];
             let j;
 
@@ -21,14 +27,14 @@ export default class InsertionSort {
                 array[j + 1] = array[j];
 
                 sortHistory.push(array.slice());
-                highlightHistory.push([j, leftColumn]);
+                selectedHistory.push([j, leftCol]);
             }
 
             array[j + 1] = temp;
         }
 
         sortHistory.push(array.slice());
-        highlightHistory.push([0, array.length - 1]);
+        selectedHistory.push([0, array.length - 1]);
     }
 
     /**

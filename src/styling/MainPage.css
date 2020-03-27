@@ -48,6 +48,11 @@ body {
   display: block;
   text-align: center;
 }
+
+.record-wrapper {
+  display: block;
+  text-align: center;
+}
   
 .bar {
   display: inline-block;

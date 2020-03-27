@@ -2,6 +2,11 @@ export default class BubbleSort {
     /**
      * Performs the bubble sort algorithm
      * 
+     * Bubble sort, sometimes referred to as sinking sort, is a simple sorting algorithm that repeatedly 
+     * steps through the list, compares adjacent elements and swaps them if they are in the wrong order. 
+     * The pass through the list is repeated until the list is sorted. This algorithm is not suitable for large data 
+     * sets as its average and worst case complexities are of Ο(n2), where n is the number of items.
+     * 
      * @param {*} array - Array of items to be sorted
      * @param {*} sortHistory - Previous items that have been sorted 
      * @param {*} highlightHistory - Previous items that have been...

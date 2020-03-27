@@ -6,7 +6,7 @@ import Register from "./components/Register.js";
 import Profile from "./components/Profile.js";
 
 /**
- * 
+ * Provides routes for each page in the application
  */
 function Routes() {
     return (

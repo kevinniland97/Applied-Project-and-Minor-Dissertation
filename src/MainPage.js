@@ -1,11 +1,11 @@
 // Imports
 import React, { Component } from 'react';
+import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { Button, Slider } from '@material-ui/core';
 import './styling/MainPage.css';
 import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import TextField from "@material-ui/core/TextField";
-// import Styles from './components/Styles';
 import BubbleSort from './algorithms/BubbleSort.js';
 import InsertionSort from './algorithms/InsertionSort.js';
 import SelectionSort from './algorithms/SelectionSort.js';
@@ -50,8 +50,8 @@ class MainPage extends Component {
       dataset: '' // Contains the user dataset
     };
 
-    this.sortHistory = []; 
-    this.selectedHistory = [];
+    // this.sortHistory = []; 
+    // this.selectedHistory = [];
     this.sortHistoryIndex = 0;
     this.interval = null;
     this.sortSize = defaultDatasetSize;
@@ -104,7 +104,7 @@ class MainPage extends Component {
   };
 
   /**
-   * 
+   * Submits dataset to be sorted
    */
   handleSubmit = () => {
     const { dataset } = this.state;
@@ -114,8 +114,9 @@ class MainPage extends Component {
   };
 
   /**
+   * Generates an array to be sorted based on user input
    * 
-   * @param {*} dataset 
+   * @param {*} dataset - Dataset defined by user
    */
   generateUserArray(dataset) {
     if (this.interval) {
@@ -193,7 +194,11 @@ class MainPage extends Component {
   }
 
   /**
+   * Performs sorting based on chosen sorting algorithm
    * 
+   * @param {*} array - Array to be sorted
+   * @param {*} sortHistory - Elements that have been sorted
+   * @param {*} selectedHistory - Elements that have been selected for sorting
    */
   sortSelected(array, sortHistory, selectedHistory) {
     let path = this.props.location.pathname;
@@ -207,6 +212,7 @@ class MainPage extends Component {
         break;
       case '/selection-sort':
         SelectionSort.selectionSort(array.slice(), sortHistory, selectedHistory);
+        // SelectionSort.selectionSort(array.slice());
         break;
       case '/merge-sort':
         MergeSort.mergeSort(array.slice(), sortHistory, selectedHistory);
@@ -223,7 +229,7 @@ class MainPage extends Component {
   }
 
   /**
-   * 
+   * Handles sorting
    */
   handleSort() {
     if (this.interval) {
@@ -268,7 +274,7 @@ class MainPage extends Component {
   }
 
   /**
-   * 
+   * Stops sorting the array on button click
    */
   stopSort() {
     if (this.interval) {
@@ -364,6 +370,15 @@ class MainPage extends Component {
 
         <span className="sort-name"> {this.state.sortName}</span>
 
+        {/* <div>
+          <a href="https://jmperezperez.com/screenflow/">Screen Record API</a>
+        </div> */}
+        <div className="record-wrapper">
+          <a href="https://jmperezperez.com/screenflow/" target="_blank">
+            <Button className={classes.button}>Screen Record API</Button>
+          </a>
+        </div>
+
         <div className="bar-wrapper">
           {this.state.array.map((item, index) => <Bar key={index} size={item} color={this.determineBarColor(this.state.isSelected, index)}/>)}
         </div>
@@ -396,7 +411,7 @@ MainPage.propTypes = {
 };
 
 /**
- * 
+ * Renders a bar - these bars are for visualisation and will be sorted based on heigh/value
  * @param {*} props 
  */
 function Bar(props) {
@@ -411,7 +426,6 @@ function Bar(props) {
     },
     text: {
       display: 'inline-block',
-      
     }
   }
 
