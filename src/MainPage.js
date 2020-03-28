@@ -6,6 +6,9 @@ import './styling/MainPage.css';
 import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import TextField from "@material-ui/core/TextField";
+import firebase from 'firebase';
+import FileUploader from 'react-firebase-file-uploader';
+import firebaseConfig from './firebase/firebase-config';
 import BubbleSort from './algorithms/BubbleSort.js';
 import InsertionSort from './algorithms/InsertionSort.js';
 import SelectionSort from './algorithms/SelectionSort.js';
@@ -13,6 +16,8 @@ import QuickSort from './algorithms/QuickSort.js';
 import BogoSort from './algorithms/BogoSort.js';
 import MergeSort from './algorithms/MergeSort.js';
 import MainToolbar from './components/MainToolbar';
+
+firebase.initializeApp(firebaseConfig);
 
 // Constants
 const defaultDatasetSize = 50;
@@ -47,7 +52,10 @@ class MainPage extends Component {
       isSelected: [], // Array of selected elements up for sorting
       stillSorting: false, // Determines whether the array of elements is still being sorted
       sortName: 'Bubble Sort', // Default sort name
-      dataset: '' // Contains the user dataset
+      dataset: '', // Contains the user dataset
+      video: '',
+      videoURL: '',
+      progress: 0
     };
 
     // this.sortHistory = []; 
@@ -344,6 +352,24 @@ class MainPage extends Component {
     this.sortHistoryIndex = newValue;
   }
 
+  handleUploadStart = () => {
+    this.setState ({
+      progress: 0
+    })
+  }
+
+  handleUploadSuccess = filename => {
+    this.setState ({
+      video: filename, 
+      progress: 100
+    })
+
+    firebase.storage().ref('sorts').child(filename).getDownloadURL()
+    .then(url => this.setState ({
+      videoURL: url
+    }))
+  }
+
   /**
    * Determines the color of each bar during the sorting process
    * @param {*} isSelected 
@@ -363,7 +389,7 @@ class MainPage extends Component {
   // Renders the page
   render() {
     const { classes } = this.props;
-
+    console.log(this.state);
     return (
       <div className="App">
         <MainToolbar history={this.props.history} />
@@ -386,6 +412,13 @@ class MainPage extends Component {
         <div className="buttons-wrapper">
           <Button className={classes.button} onClick={ () => this.generateRandomArray()}>Generate random array</Button>
           <Button className={classes.button} style={{backgroundColor: this.state.stillSorting ? 'red' : classes.button.backgroundColor}} onClick={ this.state.stillSorting ? this.stopSort.bind(this) : this.handleSort.bind(this)} > {this.state.stillSorting ? 'Stop Sorting' : 'Start Sorting'}</Button>
+          <FileUploader 
+          // accept="video/*"
+          name="video"
+          storageRef={firebase.storage().ref('sorts')} 
+          onUploadStart={this.handleUploadStart}
+          onUploadSuccess={this.handleUploadSucess}
+          />
           <div className="clearfix">
             <div className="buttons-wrapper">
               <Button className={classes.button} onClick={ this.handleSubmit }>Add to own dataset</Button>
