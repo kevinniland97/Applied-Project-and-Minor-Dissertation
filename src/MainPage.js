@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 import TextField from "@material-ui/core/TextField";
 import firebase from 'firebase';
 import FileUploader from 'react-firebase-file-uploader';
+import { Dropdown } from 'react-bootstrap';
+import { ButtonGroup } from '@material-ui/core';
 import firebaseConfig from './firebase/firebase-config';
 import BubbleSort from './algorithms/BubbleSort.js';
 import InsertionSort from './algorithms/InsertionSort.js';
@@ -56,7 +58,7 @@ class MainPage extends Component {
       video: '',
       videoURL: '',
       progress: 0
-    };
+    }; 
 
     // this.sortHistory = []; 
     // this.selectedHistory = [];
@@ -403,6 +405,15 @@ class MainPage extends Component {
           <a href="https://jmperezperez.com/screenflow/" target="_blank">
             <Button className={classes.button}>Screen Record API</Button>
           </a>
+          <Dropdown as={ButtonGroup}>
+            <Button variant="success" variant="h6" color="white" style={styles.title}>Sorting</Button>
+
+            <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
+
+            <Dropdown.Menu>
+              <Dropdown.Item href="/screenRecord">Record</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </div>
 
         <div className="bar-wrapper">
