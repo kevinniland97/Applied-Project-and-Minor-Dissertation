@@ -1,8 +1,13 @@
 \chapter{Technology Review}
-This chapter discusses the different technologies used in throughout the project. It discusses the the advantages and disadvantages of each technology and why certain technologies were used over others.
+This chapter discusses the different technologies used in throughout the
+project. It discusses the the advantages and disadvantages of each technology 
+and why certain technologies were used over others.
 
 \section{Overview}
-This project is comprised of React as the frontend, Flask as the server which is hosted on PythonAnywhere, MongoDB as the database, and ... to host the application. Throughout the project, the following technologies were also used and tested before the above was ultimately chosen:
+This project is comprised of React as the frontend, Flask as the server which is
+hosted on PythonAnywhere, MongoDB as the database, and ... to host the 
+application. Throughout the project, the following technologies were also used 
+and tested before the above was ultimately chosen:
 \begin{itemize}
     \item Angular/Ionic
     \item Firebase
@@ -11,10 +16,11 @@ This project is comprised of React as the frontend, Flask as the server which is
     \item Amazon Web Services
 \end{itemize}
 
-\section{Main Technologies}
-This section will discuss the main technologies currently in use in the web application. The preceding section will discuss other technologies tried but ultimately weren't incorporated. 
-
 \newpage
+\section{Main Technologies}
+This section will discuss the main technologies currently in use in the web 
+application. The preceding section will discuss other technologies tried but 
+ultimately weren't incorporated. 
 
 \subsection{React}
 \par
@@ -22,22 +28,33 @@ This section will discuss the main technologies currently in use in the web appl
 \begin{center}
     \includegraphics[width=8cm,height=3.3cm,keepaspectratio]{images/react}
 \end{center}
-React (also known as React.js or ReactJS) is a JavaScript library for building user interfaces. It is maintained by Facebook and a community of individual developers and companies.
+React (also known as React.js or ReactJS) is a JavaScript library for building 
+user interfaces. It is maintained by Facebook and a community of individual 
+developers and companies.
 
-React can be used as a base in the development of single-page or mobile applications. However React is only concerned with rendering data to the DOM and so creating React applications usually requires the use of additional libraries for state management and routing. Redux and React Router are respective examples of such libraries. 
+React can be used as a base in the development of single-page or mobile 
+applications. However React is only concerned with rendering data to the DOM and
+so creating React applications usually requires the use of additional libraries 
+for state management and routing. Redux and React Router are respective examples
+of such libraries. 
 
 \subsubsection{Advantages}
 React has many advantages, several of which apply to this project:
 
-% https://www.altexsoft.com/blog/engineering/the-good-and-the-bad-of-reactjs-and-react-native/
-\paragraph{Virtual DOM in ReactJS makes user experience better and developer’s work faster}
-
-\paragraph{Redux: convenient state container}
-
-\paragraph{Wide React and Redux toolset}
+\begin{itemize}
+    \item \textbf{Wide React and Redux toolset} - Both React and Redux come with a decent set of related tools that make a developer’s life easier. For instance, React Developer Tools extension for Chrome and a similar one for Firefox allow for examining component hierarchies in the virtual DOM and editing states and properties. Additionally, you can check React Sight that visualizes state and prop trees; Reselect DevTools that helps with debugging and visualizing Reselect, a selector library for Redux. Redux DevTools Profiler Monitor allows for profiling actions in well.
+    \item \textbf{Faster Rendering} - Building a high-load application is essential to consider how the structure will impact the overall app performance. Even latest platforms and engines can't ensure the absence of annoying bottlenecks, because DOM (Document Object Model) is tree-structured and even small changes at the upper layer can cause awful ripples to the interface. To solve the issue, Facebook development team has introduced Virtual DOM – currently, one of the benefits of using React for heavy loaded and dynamic software solutions. As the name suggests, it is a virtual representation of the document object model, so all the changes are applied to the virtual DOM first and then, using diff algorithm, the minimal scope of necessary DOM operations is calculated. Finally, the real DOM tree is updated accordingly, ensuring minimum time consumed. This method guarantees better user experience and higher app performance.
+    \item \textbf{Guaranteed Stable Code} - To make sure that even small changes that take place in the child structures won't affect their parents, ReactJS uses only downward data flow. Changing an object, developers just modify its state, make changes, and, after that, only particular components will be updated. This structure of data binding ensures code stability and continuous app performance.
+    \item \textbf{Strong Community} - Initially, React library was created for internal use and later shared with the entire world. Currently, it is supported by Facebook and Instagram engineering teams, plus external experts. For example, React GitHub repository numbers over 1100 contributors, while users can ask their questions on Stack Overflow, Discussion forum, Reactiflux Chart, Freenode IRC, social media platforms and many others.
+\end{itemize}
 
 \subsubsection{Disadvantages}
+There are a few disadvantages to using React:
 
+\begin{itemize}
+    \item \textbf{Poor Documentation} - The problem with documentation traces back to constant releases of new tools. Different and new libraries like Redux and Reflux are promising to accelerate the work of a library or improve the entire React ecosystem. At the end, developers struggle with integrating these tools with ReactJS. Some members of the community think that React technologies are updating and accelerating so fast that there is no time to write proper instruction. To solve this, developers write their own documentation for specific tools used by them in current projects.
+    \item \textbf{JSX as a barrier} - ReactJS uses JSX. It’s a syntax extension, which allows mixing HTML with JavaScript. JSX has its own benefits (for instance, protecting code from injections), but some members of the development community consider JSX to be a serious disadvantage. Developers and designers complain about JSX’s complexity and consequent steep learning curve.
+\end{itemize}
 
 \subsection{Flask}
 \par
@@ -45,7 +62,12 @@ React has many advantages, several of which apply to this project:
 \begin{center}
     \includegraphics[width=8cm,height=3.3cm,keepaspectratio]{images/flask}
 \end{center}
-Flask is a micro web framework written in Python. It is classified as a micro-framework because it does not require particular tools or libraries. It has no database abstraction layer, form validation, or any other components where pre-existing third-party libraries provide common functions. However, Flask supports extensions that can add application features as if they were implemented in Flask itself. Some of the main features of Flask are:
+Flask is a micro web framework written in Python. It is classified as a 
+micro-framework because it does not require particular tools or libraries. It 
+has no database abstraction layer, form validation, or any other components 
+where pre-existing third-party libraries provide common functions. However, 
+Flask supports extensions that can add application features as if they were 
+implemented in Flask itself. Some of the main features of Flask are:
 
 \begin{itemize}
     \item Development server and debugger
@@ -54,60 +76,117 @@ Flask is a micro web framework written in Python. It is classified as a micro-fr
     \item 100\% WSGI 1.0 compliant
 \end{itemize}
 
-For this project, Flask was used as the middle-man for the React application and MongoDB database. Certain functionality, such as enabling users to register, login, upload sorts, etc. are written in Flask which are then accessed by the React application when needed. The Flask application is hosted on PythonAnywhere.
+For this project, Flask was used as the middle-man for the React application and
+MongoDB database. Certain functionality, such as enabling users to register, 
+login, upload sorts, etc. are written in Flask which are then accessed by the 
+React application when needed. The Flask application is hosted on 
+PythonAnywhere.
 
 \subsubsection{Advantages}
 There are a number of advantages to using Flask:
 
+\begin{itemize}
+    \item \textbf{Flexibility} - There are very few parts of Flask that cannot
+    be easily and safely altered, due to its simplicity and minimality.
+    \item \textbf{Modularity} - Modular code provides a huge number of benefits.
+    With Flask, you have the ability to create multiple Flask applications or 
+    servers, distributed across a large network of servers, each with specific 
+    purposes. This creates more efficiency, better testability, and better 
+    performance.
+    \item \textbf{Performance} - A micro framework can be thought of as being 
+    slightly more “low-level” than something like Django. There are fewer levels
+    of abstraction between the user and the database, the requests, the cache, 
+    etc. so performance is inherently better from the start.
+    \item \textbf{Scalable} - Flask can be argued to be more scalable than 
+    monoliths if using modern methods. Today, applications are often running in 
+    containers or using cloud computing with auto-scaling. Applications do not 
+    typically “scale” themselves. The infrastructure scales. With a smaller 
+    application, it's easier to deploy instances across thousands of server 
+    easily to handle increased traffic/load. For example, it's partly the reason
+    why Pinterest needed to migrate from Django to Flask as they grew to support
+    more of a micro-services pattern.
+    \item \textbf{Simpler Development} - If one understands Python well, then 
+    you’ll be able to move around and contribute to a Flask application easily. 
+    It’s less opinionated so there are fewer standards to learn.
+\end{itemize}
+
 \subsubsection{Disadvantages}
 There are a few disadvantages to using Flask:
 
+\begin{itemize}
+    \item \textbf{Community} - The monoliths provide such a large toolset,
+    focused on providing solutions for a larger set of use cases out of the box,
+    that they typically have a larger community. This means more eyes on the
+    code, more code reviews, and better-tested core code. This is a little bit
+    of a generalization though.
+    \item \textbf{Fewer tools} -  You don’t have a full toolset underneath you.
+    So you may need to build more on your own or search out extensions/libraries
+    from the community.
+    \item \textbf{Not standardized} - While Flask is simple, it’s
+    not very opinionated. A Python developer without Flask experience will get 
+    adjusted to a Flask application quicker than a Python developer without 
+    Django experience would get adjusted to a Django application. But Django is 
+    building up a large group of talent who knows the framework very well. A 
+    Python developer with Django experience will get adjusted to a new Django 
+    app quicker than a Python developer with Flask experience would get adjusted
+    to a large Flask application.
+\end{itemize}
 
+\newpage
 \subsection{MongoDB}
 \par
 \medskip
 \begin{center}
     \includegraphics[width=8cm,height=3.3cm,keepaspectratio]{images/mongodb}
 \end{center}
-MongoDB is a cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with schema. Some of the main features of MongoDB are:
+MongoDB is a cross-platform document-oriented database program. Classified as a
+NoSQL database program, MongoDB uses JSON-like documents with schema. Some of 
+the main features of MongoDB are:
 
 \begin{itemize}
-    \item Ad-hoc queries (MongoDB supports field, range query, and regular-expression searches)
-    \item Indexing (Fields in a MongoDB document can be indexed with primary and secondary indices)
-    \item File storage (MongoDB can be used as a file system, called GridFS, with load balancing and data replication features over multiple machines for storing files)  
+    \item Ad-hoc queries (MongoDB supports field, range query, and
+    regular-expression searches)
+    \item Indexing (Fields in a MongoDB document can be indexed with primary and
+    secondary indices)
+    \item File storage (MongoDB can be used as a file system, called GridFS,
+    with load balancing and data replication features over multiple machines for
+    storing files)  
 \end{itemize}
 
-For this project, MongoDB was used as the main database. It stores user details and user sorts. To write to the database, a request is first made through the application. Using a proxy, these requests are delegated to a flask application. The flask application then processes the request and will then access the database to perform a certain action (such as writing user details to the database, accessing user details, storing user sorts, etc). 
+For this project, MongoDB was used as the main database. It stores user details
+and user sorts. To write to the database, a request is first made through the 
+application. Using a proxy, these requests are delegated to a flask application.
+The flask application then processes the request and will then access the 
+database to perform a certain action (such as writing user details to the 
+database, accessing user details, storing user sorts, etc). 
 
 \subsubsection{Advantages}
 There are a number of advantages to using MongoDB:
 
-\paragraph{Schema-less NoSQL Database}
-MongoDB is a schema-less NoSQL database, meaning there is no need to design the schema of the database when using MongoDB. The code defines the schema.
-
-\paragraph{Performance}
-Performance of MongoDB is much higher than compared to any relational database.
-
-\paragraph{Internal Memory}
-MongoDB uses internal memory for storage which enables faster access to the data.
-
-\paragraph{No Joins}
-MongoDB doesn't use complex joins. There is no relationship among data in MongoDB.
-
-\paragraph{JSON}
-MongoDB supports JSON. Because MongoDB uses JSON format to store data, it is very easy to store arrays and objects.
+\begin{itemize}
+    \item \textbf{Schema-less NoSQL Database} - MongoDB is a schema-less NoSQL
+    database, meaning there is no need to design the schema of the database when
+    using MongoDB. The code defines the schema.
+    \item \textbf{Performace} - Performance of MongoDB is much higher than
+    compared to any relational database.
+    \item \textbf{Internal Memory} - MongoDB uses internal memory for storage
+    which enables faster access to the data.
+    \item \textbf{No Joins} - MongoDB doesn't use complex joins. There is no
+    relationship among data in MongoDB.
+    \item \textbf{JSON} - MongoDB supports JSON. Because MongoDB uses JSON
+    format to store data, it is very easy to store arrays and objects.
+\end{itemize}
 
 \subsubsection{Disadvantages}
 There are a few disadvantages to using MongoDB:
 
-\paragraph{High Memory}
-MongoDB uses high memory for data storage.
-
-\paragraph{Document Size Limit}
-MongoDB has a limit to the size of documents it can store.
-
-\paragraph{Lack Of Transaction Support}
-MongoDB does not support transactions.
+\begin{itemize}
+    \item \textbf{High Memory} - MongoDB uses high memory for data storage.
+    \item \textbf{Document Size Limit} - MongoDB has a limit to the size of
+    documents it can store.
+    \item \textbf{Lack Of Transaction Support} - MongoDB does not support
+    transactions.
+\end{itemize}
 \par
 \medskip
 \par
@@ -119,23 +198,41 @@ MongoDB does not support transactions.
 \begin{center}
     \includegraphics[width=8cm,height=3.3cm,keepaspectratio]{images/pythonanywhere}
 \end{center}
-PythonAnywhere is an online integrated development environment (IDE) and web hosting service (Platform as a service) based on the Python programming language. it provides in-browser access to server-based Python and Bash command-line interfaces, along with a code editor with syntax highlighting. Program files can be transferred to and from the service using the user's browser. Web applications hosted by the service can be written using any WSGI-based application framework. For this project, the user authentication side of things was initially handled entirely by Firebase. However, as suggested by my supervisor, I decided to implement registering a user, logging a user into the application etc. myself. The functionality for this was written in Python and could be accessed by the application by using a proxy to delegate any requests made by the application to the Flask server. However, to enable the functionality to be accessed from anywhere (and, in turn, remove the need to run the Flask server alongside the application everytime), I decided to use PythonAnywhere. EXPLAIN
+PythonAnywhere is an online integrated development environment (IDE) and web
+hosting service (Platform as a service) based on the Python programming 
+language. it provides in-browser access to server-based Python and Bash 
+command-line interfaces, along with a code editor with syntax highlighting. 
+Program files can be transferred to and from the service using the user's 
+browser. Web applications hosted by the service can be written using any 
+WSGI-based application framework. For this project, the user authentication side
+of things was initially handled entirely by Firebase. However, as suggested by 
+my supervisor, I decided to implement registering a user, logging a user into 
+the application etc. myself. The functionality for this was written in Python 
+and could be accessed by the application by using a proxy to delegate any 
+requests made by the application to the Flask server. However, to enable the 
+functionality to be accessed from anywhere (and, in turn, remove the need to run
+the Flask server alongside the application everytime), I decided to use 
+PythonAnywhere. EXPLAIN
 
 \subsubsection{Advantages}
 There are a number of advantages to using PythonAnywhere:
 
-\paragraph{Always running}
-Even on a free tier account, PythonAnywhere never sleeps (compared to something like Heroku). This means real time services are viable with PythonAnywhere.
-
-\paragraph{Fully configured}
-PythonAnywhere gives you a fully configured Python environment...
-
-\paragraph{Free}
-PythonAnywhere is free to use. On a free tier account, web applications stay running 24/7 for 3 months. After 3 months, it will shut down. However, one needs only to start it up again.
+\begin{itemize}
+    \item \textbf{Always running} - Even on a free tier account, PythonAnywhere
+    never sleeps (compared to something like Heroku). This means real time 
+    services are viable with PythonAnywhere.
+    \item \textbf{Fully configured} - PythonAnywhere gives you a fully
+    configured Python environment...
+    \item \textbf{Free} - PythonAnywhere is free to use. On a free tier account,
+    web applications stay running 24/7 for 3 months. After 3 months, it will
+    shut down. However, one needs only to start it up again.
+\end{itemize}
 
 \subsubsection{Disadvantages}
+There are a few disadvantages to using PythonAnywhere:
 
-\paragraph{Python-only on the server side}
-You are free to use JavaScript in your web pages and so on, but you can't use Rails or Node on the server side of things.
-
-\paragraph{No WebSocket support}
+\begin{itemize}
+    \item \textbf{Python-only on the server side} - You are free to use
+    JavaScript in your web pages and so on, but you can't use Rails or Node on 
+    the server side of things.
+\end{itemize}

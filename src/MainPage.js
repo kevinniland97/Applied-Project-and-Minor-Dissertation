@@ -405,7 +405,7 @@ class MainPage extends Component {
           <a href="https://jmperezperez.com/screenflow/" target="_blank">
             <Button className={classes.button}>Screen Record API</Button>
           </a>
-          <Dropdown as={ButtonGroup}>
+          {/* <Dropdown as={ButtonGroup}>
             <Button variant="success" variant="h6" color="white" style={styles.title}>Sorting</Button>
 
             <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
@@ -413,7 +413,7 @@ class MainPage extends Component {
             <Dropdown.Menu>
               <Dropdown.Item href="/screenRecord">Record</Dropdown.Item>
             </Dropdown.Menu>
-          </Dropdown>
+          </Dropdown> */}
         </div>
 
         <div className="bar-wrapper">

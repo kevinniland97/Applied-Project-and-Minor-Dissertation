@@ -18,7 +18,7 @@
     "react-firebase-file-uploader": "^2.4.3",
     "react-hamburger-menu": "^1.1.1",
     "react-redux": "^7.2.0",
-    "react-scripts": "1.1.4",
+    "react-scripts": "^1.1.4",
     "redux": "^4.0.5",
     "semantic-ui-css": "^2.4.1"
   },
