@@ -124,6 +124,7 @@ function MenuDropdown(props) {
         <MenuItem onClick={(e) => {handleClose(e); props.history.push('selection-sort')}}>Selection Sort</MenuItem>
         <MenuItem onClick={(e) => {handleClose(e); props.history.push('bogo-sort')}}>Bogo Sort</MenuItem>
         <MenuItem onClick={(e) => {handleClose(e); props.history.push('heap-sort')}}>Heap Sort</MenuItem>
+        <MenuItem onClick={(e) => {handleClose(e); props.history.push('shell-sort')}}>Shell Sort</MenuItem>
       </Menu>
   );
 }
@@ -142,6 +143,7 @@ function MainToolbarButtons(props) {
         <Button color="inherit" onClick={() => props.history.push('selection-sort')}>Selection Sort</Button>
         <Button color="inherit" onClick={() => props.history.push('bogo-sort')}>Bogo Sort</Button>
         <Button color="inherit" onClick={() => props.history.push('heap-sort')}>Heap Sort</Button>
+        <Button color="inherit" onClick={() => props.history.push('shell-sort')}>Shell Sort</Button>
       </div>
   );
 }

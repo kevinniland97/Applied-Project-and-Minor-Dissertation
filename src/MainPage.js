@@ -18,6 +18,7 @@ import QuickSort from './algorithms/QuickSort.js';
 import BogoSort from './algorithms/BogoSort.js';
 import MergeSort from './algorithms/MergeSort.js';
 import HeapSort from './algorithms/HeapSort.js';
+import Shell from './algorithms/ShellSort.js';
 import MainToolbar from './components/MainToolbar';
 
 firebase.initializeApp(firebaseConfig);
@@ -95,7 +96,10 @@ class MainPage extends Component {
           break;
         case '/heap-sort':
           this.setState({sortName: 'Heap Sort'});
-          break;          
+          break;
+        case '/shell-sort':
+          this.setState({sortName: 'Shell Sort'});
+          break;         
         default:
           this.setState({sortName: 'Bubble Sort'});
       }
@@ -239,7 +243,10 @@ class MainPage extends Component {
         break;
       case '/heap-sort':
         HeapSort.heapSort(array.slice(), sortHistory, selectedHistory);
-        break;            
+        break;
+      case '/shell-sort':
+        Shell.shellSort(array.slice(), sortHistory, selectedHistory);
+        break;           
       default:
         BubbleSort.bubbleSort(array.slice(), sortHistory, selectedHistory);
     }

@@ -23,6 +23,7 @@ function Routes() {
             <Route exact path="/selection-sort" component={MainPage} />
             <Route exact path="/bogo-sort" component={MainPage} />
             <Route exact path="/heap-sort" component={MainPage} />
+            <Route exact path="/shell-sort" component={MainPage} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/userProfile" component={Profile} />

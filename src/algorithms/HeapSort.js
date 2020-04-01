@@ -25,20 +25,20 @@ export default class HeapSort {
         array[index_B] = temp;
     }
     
-    static heapSort(array, sortHistory, highlightHistory) {
+    static heapSort(array, sortHistory, selectedHistory) {
         this.clearArray(sortHistory);
-        this.clearArray(highlightHistory);
+        this.clearArray(selectedHistory);
     
         for (let i = Math.floor(array.length / 2); i >= 0; i -= 1) {
             sortHistory.push(array.slice());
-            highlightHistory.push([array, i]);
+            selectedHistory.push([array]);
 
             this.heap_root(array, i);
           }
     
         for (let i = array.length - 1; i > 0; i--) {
             sortHistory.push(array.slice());
-            highlightHistory.push([array, i]);
+            selectedHistory.push([array]);
 
             this.swap(array, 0, i);
             array.length--;
