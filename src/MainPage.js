@@ -17,6 +17,7 @@ import SelectionSort from './algorithms/SelectionSort.js';
 import QuickSort from './algorithms/QuickSort.js';
 import BogoSort from './algorithms/BogoSort.js';
 import MergeSort from './algorithms/MergeSort.js';
+import HeapSort from './algorithms/HeapSort.js';
 import MainToolbar from './components/MainToolbar';
 
 firebase.initializeApp(firebaseConfig);
@@ -91,9 +92,12 @@ class MainPage extends Component {
           break;
         case '/bogo-sort':
           this.setState({sortName: 'Bogo Sort'});
-          break;             
+          break;
+        case '/heap-sort':
+          this.setState({sortName: 'Heap Sort'});
+          break;          
         default:
-            this.setState({sortName: 'Bubble Sort'});
+          this.setState({sortName: 'Bubble Sort'});
       }
     });
   }
@@ -215,14 +219,14 @@ class MainPage extends Component {
 
     switch (path) {
       case '/bubble-sort':
-        BubbleSort.bubbleSort(array.slice(), sortHistory, selectedHistory);
+        // BubbleSort.bubbleSort(array.slice(), sortHistory, selectedHistory);
+        BubbleSort.bubbleSort(array.slice());
         break;
       case '/insertion-sort':
         InsertionSort.insertionSort(array.slice(), sortHistory, selectedHistory);
         break;
       case '/selection-sort':
         SelectionSort.selectionSort(array.slice(), sortHistory, selectedHistory);
-        // SelectionSort.selectionSort(array.slice());
         break;
       case '/merge-sort':
         MergeSort.mergeSort(array.slice(), sortHistory, selectedHistory);
@@ -230,9 +234,12 @@ class MainPage extends Component {
       case '/quick-sort':
         QuickSort.quickSort(array.slice(), sortHistory, selectedHistory);
         break;
-      case '/bubble-sort':
-        BogoSort.bogosort(array.slice(), sortHistory, selectedHistory);
-        break;             
+      case '/bogo-sort':
+        BogoSort.bogoSort(array.slice());
+        break;
+      case '/heap-sort':
+        HeapSort.heapSort(array.slice(), sortHistory, selectedHistory);
+        break;            
       default:
         BubbleSort.bubbleSort(array.slice(), sortHistory, selectedHistory);
     }

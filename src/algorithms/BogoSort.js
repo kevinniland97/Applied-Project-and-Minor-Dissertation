@@ -1,38 +1,35 @@
 export default class BogoSort {
-    static bogosort(array, sortHistory, highlightHistory) {
-        this.clearArray(sortHistory);
-        this.clearArray(highlightHistory);
-
+    static bogoSort(array) {
         while (!this.isSorted(array)) {
             this.shuffle(array);
         }
     }
-
+   
     static isSorted(array) {
-        for (var i = 0; i < array.length - 1; i++) {
+        for (let i = 0; i < array.length - 1; i++) {
             if (array[i] > array[i + 1])
                 return false;
         }
 
         return true;
     }
+   
+    static shuffle(array, sortHistory, highlightHistory) {
+        this.clearArray(sortHistory);
+        this.clearArray(highlightHistory);
+        
+        for (let i = array.length - 1; i > 0; i--) {
+            sortHistory.push(array.slice());
+            highlightHistory.push([i + 1, i]);
 
-    static shuffle(array) {
-        for (var i = array.length - 1; i > 0; i--) {
-            this.swap(array, i, Math.random() * (i + 1));
+            this.swapKeys(array, i, (Math.random() * (i + 1)));
         }
     }
+   
+    static swapKeys(array, i, j) {
+        let temp;
 
-    /**
-     * Swaps items in the array depending on their size
-     * 
-     * @param {*} array - The array of items to be sorted
-     * @param {*} i - Index
-     * @param {*} j - Index
-     */
-    static swap(array, i, j) {
-        let temp = array[i];
-
+        temp = array[i];
         array[i] = array[j];
         array[j] = temp;
     }
@@ -43,8 +40,8 @@ export default class BogoSort {
      * @param {*} array - The array of items
      */
     static clearArray(array) {
-        while (array.length) {
-            array.pop();
-        }
+        // while (array.length) {
+        //     array.pop();
+        // }
     }
 }
