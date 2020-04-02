@@ -30,6 +30,9 @@ class ScreenFlowEmbedder extends Component {
             this.sendMessage('stop-recording');
             break;
           }
+          default : {
+            break;
+          }
         }
       });
   

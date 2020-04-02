@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Redirect, Link } from "react-router-dom";
-import { withStyles } from "@material-ui/styles";
 import jwt_decode from 'jwt-decode';
 import ProfileToolbar from './ProfileToolbar';
 

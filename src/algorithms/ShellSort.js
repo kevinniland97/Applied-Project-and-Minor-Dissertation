@@ -3,7 +3,7 @@ export default class ShellSort {
         this.clearArray(sortHistory);
         this.clearArray(selectedHistory);
 
-        for (let h = array.length; h > 0; h = parseInt(h / 2)) {
+        for (let h = array.length; h > 0; h = parseInt(h / 2, 10)) {
             for (let i = h; i < array.length; i++) {
                 sortHistory.push(array.slice());
                 selectedHistory.push([i + 1, i]);

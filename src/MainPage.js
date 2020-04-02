@@ -1,15 +1,15 @@
 // Imports
 import React, { Component } from 'react';
-import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import { Button, Slider } from '@material-ui/core';
+// import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Button } from '@material-ui/core';
 import './styling/MainPage.css';
 import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import TextField from "@material-ui/core/TextField";
 import firebase from 'firebase';
 import FileUploader from 'react-firebase-file-uploader';
-import { Dropdown } from 'react-bootstrap';
-import { ButtonGroup } from '@material-ui/core';
+// import { Dropdown } from 'react-bootstrap';
+// import { ButtonGroup } from '@material-ui/core';
 import firebaseConfig from './firebase/firebase-config';
 import BubbleSort from './algorithms/BubbleSort.js';
 import InsertionSort from './algorithms/InsertionSort.js';
@@ -26,7 +26,7 @@ firebase.initializeApp(firebaseConfig);
 // Constants
 const defaultDatasetSize = 50;
 const defaultSortSpeed = 200;
-const maxSortSize = 200;
+// const maxSortSize = 200;
 const maxSortSpeed = 200;
 const highlightColors = ['red', 'purple', 'blue', 'gray'];
 
@@ -223,8 +223,7 @@ class MainPage extends Component {
 
     switch (path) {
       case '/bubble-sort':
-        // BubbleSort.bubbleSort(array.slice(), sortHistory, selectedHistory);
-        BubbleSort.bubbleSort(array.slice());
+        BubbleSort.bubbleSort(array.slice(), sortHistory, selectedHistory);
         break;
       case '/insertion-sort':
         InsertionSort.insertionSort(array.slice(), sortHistory, selectedHistory);
@@ -239,7 +238,7 @@ class MainPage extends Component {
         QuickSort.quickSort(array.slice(), sortHistory, selectedHistory);
         break;
       case '/bogo-sort':
-        BogoSort.bogoSort(array.slice());
+        BogoSort.bogoSort(array.slice(), sortHistory, selectedHistory);
         break;
       case '/heap-sort':
         HeapSort.heapSort(array.slice(), sortHistory, selectedHistory);
@@ -416,7 +415,7 @@ class MainPage extends Component {
           <a href="https://jmperezperez.com/screenflow/">Screen Record API</a>
         </div> */}
         <div className="record-wrapper">
-          <a href="https://jmperezperez.com/screenflow/" target="_blank">
+          <a href="https://jmperezperez.com/screenflow/" target="_blank" rel="noopener noreferrer">
             <Button className={classes.button}>Screen Record API</Button>
           </a>
           {/* <Dropdown as={ButtonGroup}>

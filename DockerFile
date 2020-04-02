@@ -5,11 +5,19 @@ FROM node:alpine
 WORKDIR '/app'
 
 # install and cache app dependencies
-COPY package.json
+COPY package.json .
 
+RUN apk update && apk add nodejs
 RUN npm install
+RUN npm install @material-ui/core
+RUN npm install @material-ui/icons
+RUN npm install history
+RUN npm install react-responsive
+RUN npm install react-router-dom 
 
 COPY . .
 
+EXPOSE 3001
+
 # start app
-CMD ["npm", "start"]
+CMD ["npm", "run", "build"]

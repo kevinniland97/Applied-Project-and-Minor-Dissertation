@@ -15,14 +15,14 @@ export default class BubbleSort {
         this.clearArray(sortHistory);
         this.clearArray(highlightHistory);
 
-        let counter = 0;
+        // let counter = 0;
 
         for (let i = 0; i < array.length - 1; i++) {
             for (let j = 0; j < array.length - (i + 1); j++) {
                 sortHistory.push(array.slice());
                 highlightHistory.push([j + 1, j]);
 
-                counter++;
+                // counter++;
 
                 // If index j in the array is larger than index j + 1 in the array, swap them
                 if (array[j] > array[j + 1]) {

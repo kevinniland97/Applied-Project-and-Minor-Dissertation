@@ -12,7 +12,7 @@ export default class HeapSort {
             max = right;
         }
     
-        if (max != i) {
+        if (max !== i) {
             this.swap(array, i, max);
             this.heap_root(array, max);
         }

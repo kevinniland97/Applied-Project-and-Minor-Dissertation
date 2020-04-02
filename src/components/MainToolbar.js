@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { AppBar, Button, Toolbar, Typography, IconButton, Slider, ClickAwayListener, ButtonGroup } from '@material-ui/core';
+import React from 'react';
+import { AppBar, Button, Toolbar, Typography, IconButton, ButtonGroup } from '@material-ui/core';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -29,12 +29,12 @@ const styles = {
 /**
  * Determines login status
  */
-const loginStatus = {
-  loggedIn: true
-}
+// const loginStatus = {
+//   loggedIn: true
+// }
 
 const loggedIn = localStorage.getItem('loggedIn') === 'true'; // Gets loggedIn if true
-const loggedOut = localStorage.setItem('loggedIn', loginStatus.loggedIn) === 'false'; // Sets logged in status to true
+// const loggedOut = localStorage.setItem('loggedIn', loginStatus.loggedIn) === 'false'; // Sets logged in status to true
 const loggedInUser = loggedIn ? localStorage.getItem('user') : ""; // Will display logged in user if loggedIn is true
 
 /**
@@ -50,7 +50,7 @@ function MainToolbar(props) {
         <Toolbar>
           {/* <Typography variant="h6" style={styles.title}>Sorting</Typography> */}
           <Dropdown as={ButtonGroup}>
-            <Button variant="success" variant="h6" color="white" style={styles.title}>Sorting</Button>
+            <Button variant="success, h6" color="white" style={styles.title}>Sorting</Button>
 
             <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
 
@@ -122,8 +122,8 @@ function MenuDropdown(props) {
         <MenuItem onClick={(e) => {handleClose(e); props.history.push('merge-sort')}}>Merge Sort</MenuItem>
         <MenuItem onClick={(e) => {handleClose(e); props.history.push('quick-sort')}}>Quick Sort</MenuItem>
         <MenuItem onClick={(e) => {handleClose(e); props.history.push('selection-sort')}}>Selection Sort</MenuItem>
-        <MenuItem onClick={(e) => {handleClose(e); props.history.push('bogo-sort')}}>Bogo Sort</MenuItem>
-        <MenuItem onClick={(e) => {handleClose(e); props.history.push('heap-sort')}}>Heap Sort</MenuItem>
+        <MenuItem onClick={(e) => {handleClose(e); props.history.push('bogo-sort')}}>Bogo Sort (Not working)</MenuItem>
+        <MenuItem onClick={(e) => {handleClose(e); props.history.push('heap-sort')}}>Heap Sort (Almost)</MenuItem>
         <MenuItem onClick={(e) => {handleClose(e); props.history.push('shell-sort')}}>Shell Sort</MenuItem>
       </Menu>
   );
@@ -141,8 +141,8 @@ function MainToolbarButtons(props) {
         <Button color="inherit" onClick={() => props.history.push('merge-sort')}>Merge Sort</Button>
         <Button color="inherit" onClick={() => props.history.push('quick-sort')}>Quick Sort</Button>
         <Button color="inherit" onClick={() => props.history.push('selection-sort')}>Selection Sort</Button>
-        <Button color="inherit" onClick={() => props.history.push('bogo-sort')}>Bogo Sort</Button>
-        <Button color="inherit" onClick={() => props.history.push('heap-sort')}>Heap Sort</Button>
+        <Button color="inherit" onClick={() => props.history.push('bogo-sort')}>Bogo Sort (Not working)</Button>
+        <Button color="inherit" onClick={() => props.history.push('heap-sort')}>Heap Sort (Almost)</Button>
         <Button color="inherit" onClick={() => props.history.push('shell-sort')}>Shell Sort</Button>
       </div>
   );

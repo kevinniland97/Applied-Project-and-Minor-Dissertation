@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-import { AppBar, Button, Toolbar, Typography, IconButton, Slider, ClickAwayListener, ButtonGroup } from '@material-ui/core';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import React from 'react';
+import { AppBar, Button, Toolbar, Typography, IconButton, ButtonGroup } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import MediaQuery from 'react-responsive';
 import { Dropdown } from 'react-bootstrap';
@@ -23,7 +21,7 @@ const styles = {
     }
   }
 
-  function LoginRegisterToolbar(props) {
+  function LoginRegisterToolbar() {
     var menu;
   
     return (
@@ -32,7 +30,7 @@ const styles = {
           <Toolbar>
             {/* <Typography variant="h6" style={styles.title}>Sorting</Typography> */}
             <Dropdown as={ButtonGroup}>
-              <Button variant="success" variant="h6" color="white" style={styles.title}>Login/Register</Button>
+              <Button variant="success, h6" color="white" style={styles.title}>Login/Register</Button>
   
               <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
   
