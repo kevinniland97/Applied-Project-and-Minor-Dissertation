@@ -1,60 +1,93 @@
-// import React, { Component } from "react";
-// import { connect } from "react-redux";
-// import { Redirect, Link } from "react-router-dom";
-// // import { signUpUser } from "../actions";
-// import { withStyles } from "@material-ui/styles";
-// // import { RegisterUser } from './UserFunctions';
-// import { register } from './UserFunctions';
-// import LoginRegisterToolbar from './LoginRegisterToolbar';
+import React, { Component } from "react";
+import { withStyles } from "@material-ui/styles";
+import firebase from 'firebase';
+import firebaseConfig from '../firebase/firebase-config';
+import FileUploader from 'react-firebase-file-uploader';
+import SortsToolbar from './SortsToolbar.js';
 
-// import Avatar from "@material-ui/core/Avatar";
-// import Button from "@material-ui/core/Button";
-// import TextField from "@material-ui/core/TextField";
-// import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-// import Typography from "@material-ui/core/Typography";
-// import Paper from "@material-ui/core/Paper";
-// import Container from "@material-ui/core/Container";
+const styles = () => ({
+    "@global": {
+        body: {
+            backgroundColor: "#fff"
+        }
+    },
+    paper: {
+        marginTop: 100,
+        display: "flex",
+        padding: 20,
+        flexDirection: "column",
+        alignItems: "center"
+    },
+    avatar: {
+        marginLeft: "auto",
+        marginRight: "auto",
+        backgroundColor: "#f50057"
+    },
+    form: {
+        marginTop: 1
+    },
+    errorText: {
+        color: "#f50057",
+        marginBottom: 5,
+        textAlign: "center"
+    }
+});
 
-// const styles = () => ({
-//     "@global": {
-//         body: {
-//             backgroundColor: "#fff"
-//         }
-//     },
-//     paper: {
-//         marginTop: 100,
-//         display: "flex",
-//         padding: 20,
-//         flexDirection: "column",
-//         alignItems: "center"
-//     },
-//     avatar: {
-//         marginLeft: "auto",
-//         marginRight: "auto",
-//         backgroundColor: "#f50057"
-//     },
-//     form: {
-//         marginTop: 1
-//     },
-//     errorText: {
-//         color: "#f50057",
-//         marginBottom: 5,
-//         textAlign: "center"
-//     }
-// });
+firebase.initializeApp(firebaseConfig);
 
+class Sorts extends Component {
+    constructor(props) {
+        super(props);
 
-// class Sorts extends Component {
-//     render() {
-//         const { classes } = this.props;
-//         console.log(this.state);
+        this.state = {
+            name: [], 
+            size: [],
+            uploaded: [],
+            sort: '',
+            pastSorts: [],
+            videoURL: [],
+            progress: 0
+        };
+    }
+
+    handleUploadStart = () => {
+        this.setState ({
+          progress: 0
+        })
+      }
+    
+      handleUploadSuccess = filename => {
+        this.setState ({
+          sort: filename, 
+          progress: 100
+        })
+    
+        firebase.storage().ref('sorts').child(filename).getDownloadURL()
+        .then(url => this.setState ({
+          videoURL: url
+        }))
+      }
+
+    render() {
+        const { classes } = this.props;
+        console.log(this.state);
         
-//         return (
-//         <div className="App">
-//             {/* <MainToolbar history={this.props.history} /> */}
-//         </div>
-//         );
-//     }
-// }
+        return (
+        <div className="App">
+            <SortsToolbar history={this.props.history} />
+            <FileUploader 
+            accept="*"
+            name="video"
+            storageRef={firebase.storage().ref('sorts')} 
+            onUploadStart={this.handleUploadStart}
+            onUploadSuccess={this.handleUploadSuccess}
+            />
+            <div>
+                <ul>{this.state.sort}</ul>
+            </div>
+        </div>
+        );
+    }
+}
 
-// export default withStyles(styles)(Sorts);
+export default withStyles(styles)(Sorts);

@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-import { AppBar, Button, Toolbar, Typography, IconButton, Slider, ClickAwayListener, ButtonGroup } from '@material-ui/core';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import React from 'react';
+import { AppBar, Button, Toolbar, Typography, IconButton, ButtonGroup } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import MediaQuery from 'react-responsive';
 import { Dropdown } from 'react-bootstrap';
@@ -23,7 +21,7 @@ const styles = {
     }
   }
 
-  function SortsToolbar(props) {
+  function SortsToolbar() {
     var menu;
   
     return (
@@ -32,13 +30,13 @@ const styles = {
           <Toolbar>
             {/* <Typography variant="h6" style={styles.title}>Sorting</Typography> */}
             <Dropdown as={ButtonGroup}>
-              <Button variant="success" variant="h6" color="white" style={styles.title}>Sorts</Button>
+              <Button variant="success, h6" color="white" style={styles.title}>Sorts</Button>
   
               <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
   
               <Dropdown.Menu>
                 <Dropdown.Item href="/">Sorting</Dropdown.Item>
-                <Dropdown.Item href="/userProfile">Account</Dropdown.Item>
+                <Dropdown.Item href="/login">Login/Register</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
   
