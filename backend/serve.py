@@ -19,10 +19,6 @@ app.config['MONGO_DBNAME'] = 'algorithms_visualizer'
 app.config['MONGO_URI'] = 'mongodb://admin:admin123@ds217809.mlab.com:17809/algorithms_visualizer?retryWrites=false'
 app.config['JWT_SECRET_KEY'] = 'secret'
 
-client = pymongo.MongoClient("mongodb://admin:admin123@ds217809.mlab.com:17809/algorithms_visualizer?retryWrites=false")
-db = client["algorithms_visualizer"]
-col = db["users"]
-
 mongo = PyMongo(app)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
@@ -64,6 +60,8 @@ def login():
     result = ''
 
     response = users.find_one({ 'email': email })
+    unique = users.find({'email': { "email": email}}).count()
+    print(unique)
 
     if response:
         if bcrypt.check_password_hash(response['password'], password):
@@ -82,15 +80,13 @@ def login():
 
 @app.route('/getAll', methods=['GET'])
 def getAll():
-    docs = []
+    users = mongo.db.users
+    email = request.get_json()['email']
 
-    for doc in mongo.db.users.find():
-        doc.pop('_id')
-        docs.append(doc)
+    unique = users.find({'email': email}).count()
+    print(unique)
 
-    print(docs)
-
-    return jsonify(docs)
+    return jsonify(unique)
 
 @app.route('/', methods=['GET'])
 def server_info():

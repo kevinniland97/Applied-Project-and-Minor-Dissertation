@@ -1,12 +1,12 @@
-# base image
-FROM node:alpine
+# FROM node:alpine
+FROM node:alpine as react-build
 
-# set working directory
 WORKDIR '/app'
 
-# install and cache app dependencies
-COPY package.json .
+COPY package.json ./
+COPY . ./
 
+RUN npm install
 RUN apk update && apk add nodejs
 RUN npm install
 RUN npm install @material-ui/core
@@ -14,10 +14,18 @@ RUN npm install @material-ui/icons
 RUN npm install history
 RUN npm install react-responsive
 RUN npm install react-router-dom 
+RUN npm run-script build
 
-COPY . .
+FROM nginx:plane
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=react-build /app/build /usr/share/nginx/html
 
 EXPOSE 3001
 
-# start app
-CMD ["npm", "run", "build"]
+# COPY . .
+
+EXPOSE 300
+
+# CMD ["npm", "start", "production"]
+CMD ["nginx", "-g", "daemon off;"]
