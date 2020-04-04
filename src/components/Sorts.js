@@ -48,6 +48,16 @@ class Sorts extends Component {
             videoURL: [],
             progress: 0
         };
+
+        var storage = firebase.storage();
+        var storageRef = storage.ref();
+        var i = 0;
+
+        storageRef.child('sorts/').listAll().then(function(result) {
+            result.items.forEach(function(fileRef) {
+                console.log('File reference: ' + fileRef.toString());
+            });
+        });
     }
 
     handleUploadStart = () => {

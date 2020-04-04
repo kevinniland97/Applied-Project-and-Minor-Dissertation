@@ -117,13 +117,13 @@ function MenuDropdown(props) {
         onClose={handleClose}
       >
         <MenuItem onClick={(e) => {handleClose(e); props.history.push('bubble-sort')}}>Bubble Sort</MenuItem>
+        <MenuItem onClick={(e) => {handleClose(e); props.history.push('heap-sort')}}>Heap Sort (Almost)</MenuItem>
         <MenuItem onClick={(e) => {handleClose(e); props.history.push('insertion-sort')}}>Insertion Sort</MenuItem>
         <MenuItem onClick={(e) => {handleClose(e); props.history.push('merge-sort')}}>Merge Sort</MenuItem>
         <MenuItem onClick={(e) => {handleClose(e); props.history.push('quick-sort')}}>Quick Sort</MenuItem>
         <MenuItem onClick={(e) => {handleClose(e); props.history.push('selection-sort')}}>Selection Sort</MenuItem>
-        <MenuItem onClick={(e) => {handleClose(e); props.history.push('bogo-sort')}}>Bogo Sort (Not working)</MenuItem>
-        <MenuItem onClick={(e) => {handleClose(e); props.history.push('heap-sort')}}>Heap Sort (Almost)</MenuItem>
         <MenuItem onClick={(e) => {handleClose(e); props.history.push('shell-sort')}}>Shell Sort</MenuItem>
+        <MenuItem onClick={(e) => {handleClose(e); props.history.push('bogo-sort')}}>Bogo Sort (Not working)</MenuItem>
       </Menu>
   );
 }
@@ -136,13 +136,13 @@ function MainToolbarButtons(props) {
   return (
       <div>
         <Button color="inherit" onClick={() => props.history.push('bubble-sort')}>Bubble Sort</Button>
+        <Button color="inherit" onClick={() => props.history.push('heap-sort')}>Heap Sort (Almost)</Button>
         <Button color="inherit" onClick={() => props.history.push('insertion-sort')}>Insertion Sort</Button>
         <Button color="inherit" onClick={() => props.history.push('merge-sort')}>Merge Sort</Button>
         <Button color="inherit" onClick={() => props.history.push('quick-sort')}>Quick Sort</Button>
         <Button color="inherit" onClick={() => props.history.push('selection-sort')}>Selection Sort</Button>
-        <Button color="inherit" onClick={() => props.history.push('bogo-sort')}>Bogo Sort (Not working)</Button>
-        <Button color="inherit" onClick={() => props.history.push('heap-sort')}>Heap Sort (Almost)</Button>
         <Button color="inherit" onClick={() => props.history.push('shell-sort')}>Shell Sort</Button>
+        <Button color="inherit" onClick={() => props.history.push('bogo-sort')}>Bogo Sort (Not working)</Button>
       </div>
   );
 }
