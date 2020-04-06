@@ -4,7 +4,7 @@ import MainPage from "./MainPage.js";
 import Login from "./components/Login.js";
 import Register from "./components/Register.js";
 import Profile from "./components/Profile.js";
-import Sorts from "./screenrecord/Sorts";
+import Sorts from "./components/Sorts";
 
 /**
  * Provides routes for each page in the application
