@@ -4,8 +4,7 @@ import MainPage from "./MainPage.js";
 import Login from "./components/Login.js";
 import Register from "./components/Register.js";
 import Profile from "./components/Profile.js";
-import ScreenFlowEmbedder from "./screenrecord/embed";
-import Sorts from "./components/Sorts";
+import Sorts from "./screenrecord/Sorts";
 
 /**
  * Provides routes for each page in the application
@@ -27,7 +26,6 @@ function Routes() {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/userProfile" component={Profile} />
-            <Route path="/screenRecord" component={ScreenFlowEmbedder} />
             <Route path="/sorts" component={Sorts} />
         </Switch>
     );

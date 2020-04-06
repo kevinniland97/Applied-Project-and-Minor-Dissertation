@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "algorithms-visualiser-react"
+    "default": "algorithms-visualiser-react",
+    "staging": "algorithms-visualiser-react"
   }
 }

@@ -42,6 +42,8 @@ const styles = {
   }
 }
 
+const loggedIn = localStorage.getItem('loggedIn') === 'true'; // Gets loggedIn if true
+
 /**
  * MainPage - Main page of the application. Allows users to choose a sorting algorithm to visualize
  */
@@ -56,6 +58,7 @@ class MainPage extends Component {
       stillSorting: false, // Determines whether the array of elements is still being sorted
       sortName: 'Bubble Sort', // Default sort name
       dataset: '', // Contains the user dataset
+      show: true
     }; 
 
     // this.sortHistory = []; 
@@ -107,6 +110,24 @@ class MainPage extends Component {
    */
   componentDidMount() {
     this.generateRandomArray();
+
+    if (localStorage.getItem('loggedIn') === 'true') {
+      console.log("Logged in");
+
+      this.setState({
+        show: true
+      })
+
+      return;
+    } else {
+      console.log("Not logged in");
+
+      this.setState({
+        show: false
+      })
+
+      return;
+    }
   }
 
   /**
@@ -309,58 +330,8 @@ class MainPage extends Component {
    * @param {*} event 
    * @param {*} newValue 
    */
-  handleSizeSlide(event, newValue) {
-    let array = this.state.array;
-
-    this.sortHistoryIndex = 0;
-    this.sortHistory = [];
-    this.selectedHistory = [];
-
-    if (newValue > array.length) {
-      for (let i = 0; i < newValue - array.length; i++) {
-        array.push(Math.floor( Math.random() * 50) + 1);
-      }
-    } else {
-      for (let i = 0; i < array.length - newValue; i++) {
-        array.pop();
-      }
-    }
-
-    this.sortSize = newValue;
-    this.setState({array: array});
-  }
-
-  /**
-   * 
-   * @param {*} event 
-   * @param {*} newValue 
-   */
   handleSpeedSlide(event, newValue) {
     this.sortSpeed = newValue;
-  }
-
-  /**
-   * 
-   * @param {*} event 
-   * @param {*} newValue 
-   */
-  handleHistorySlide(event, newValue) {
-    if (newValue < 0 || newValue > this.sortHistory.length - 1) {
-      return;
-    }
-
-    if (this.interval) {
-      clearInterval(this.interval);
-      this.interval = null;
-
-      this.setState({stillSorting: false});
-    }
-
-    this.setState({
-      array: this.sortHistory[newValue], isSelected: this.selectedHistory[newValue]
-    });
-
-    this.sortHistoryIndex = newValue;
   }
 
   /**
@@ -379,20 +350,29 @@ class MainPage extends Component {
     return 'aqua';
   }
 
+  handleLoggedIn() {
+    
+  }
+
   // Renders the page
   render() {
     const { classes } = this.props;
     console.log(this.state);
+    this.handleLoggedIn()
+
     return (
       <div className="App">
         <MainToolbar history={this.props.history} />
 
-        <span className="sort-name"> {this.state.sortName}</span>
-        
-        <div className="record-wrapper">
-          <a href="https://jmperezperez.com/screenflow/" target="_blank" rel="noopener noreferrer">
-            <Button className={classes.button}>Screen Record API</Button>
-          </a>
+        <span className="sort-name">{this.state.sortName}</span>
+
+        <div>
+        {this.state.show &&
+          <div className="record-wrapper">
+            <a href="https://jmperezperez.com/screenflow/" target="_blank" rel="noopener noreferrer">
+              <Button className={classes.button}>Screen Record API</Button>
+            </a>
+          </div>}
         </div>
 
         <div className="bar-wrapper">

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
-class ScreenFlowEmbedder extends Component {
+class ScreenFlowEmbedder {
     constructor() {
-        super();
       this.base = 'https://jmperezperez.com/screenflow/lib/';
       const iframe = document.createElement('iframe');
       iframe.src = this.base + 'embed.html';
@@ -28,9 +27,6 @@ class ScreenFlowEmbedder extends Component {
           }
           case 27 /* escape */ : {
             this.sendMessage('stop-recording');
-            break;
-          }
-          default : {
             break;
           }
         }
@@ -93,19 +89,9 @@ class ScreenFlowEmbedder extends Component {
         data: messageData
       }, '*');
     }
-
-    render() {
-        return (
-            <div className="App">
-              <p>Hi, how y'all doing?</p>
-            </div>
-        );
-    }
   }
   
   {
     const embedder = new ScreenFlowEmbedder();
     embedder.initialize();
   }
-
-  export default (ScreenFlowEmbedder);
