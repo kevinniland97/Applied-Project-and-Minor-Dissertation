@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { withStyles } from "@material-ui/styles";
 import { Button } from '@material-ui/core';
 import firebase from 'firebase';
-import $ from 'jquery';
 // import ReactPlayer from 'react-player';
 import firebaseConfig from '../firebase/firebase-config';
 import FileUploader from 'react-firebase-file-uploader';
@@ -75,28 +74,25 @@ class Sorts extends Component {
         var i = 0;
         let displayFile = '';
         const sorts = [];
-        $('#Sorts').find('tbody').html('');
+        let arr = [];
 
         firebase.storage().ref().child('sorts/').listAll().then(function(result) {
             result.items.forEach(function(fileRef) {
                 i++; // Counter for each file in storage
 
                 fileRef.getDownloadURL().then(function(fileURL) {
-                    console.log(fileURL);
-
-                    displayFile += '<tr>';
-                    displayFile += '<td>';
-                    displayFile += i;
-                    displayFile += '</td>';
-                    displayFile += '<td>';
-                    displayFile += '<img src="' + fileURL + '" width="100px" style="float:right">';
-                    displayFile += '</td>';
-                    displayFile += '</tr>';
-
-                    $('#List').find('tbody').append(displayFile);
+                    sorts.push(fileURL.toString());
                 })
             });
         });
+
+        console.log(sorts);
+
+        const listSorts = sorts.map((sort) =>
+            <li>{sort}</li>
+        );
+
+        console.log(listSorts);
 
         return (
         <div className="App">
@@ -107,11 +103,9 @@ class Sorts extends Component {
             storageRef={firebase.storage().ref('sorts')} 
             onUploadStart={this.handleUploadStart}
             onUploadSuccess={this.handleUploadSuccess} />
-            <br />
-            <table id="Sorts">
-                <tbody>
-                </tbody>
-            </table>
+            <br/>
+
+            <ul>{sorts}</ul>
         </div>
         );
     }
