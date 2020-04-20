@@ -1,0 +1,15 @@
+.player {
+    position: absolute;
+}
+
+.react-player {
+    position: absolute;
+    top: 10;
+    right: 50%;
+}
+
+.sort-list {
+    position: absolute;
+    bottom: 10;
+    right: 50%;
+}

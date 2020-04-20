@@ -1,11 +1,15 @@
 import React, { Component } from "react";
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import { withStyles } from "@material-ui/styles";
 import { Button } from '@material-ui/core';
 import firebase from 'firebase';
-// import ReactPlayer from 'react-player';
+import ReactPlayer from 'react-player';
 import firebaseConfig from '../firebase/firebase-config';
 import FileUploader from 'react-firebase-file-uploader';
 import SortsToolbar from '../components/SortsToolbar.js';
+import '../styling/Sorts.css';
+
+const $ = window.$;
 
 const styles = () => ({
     "@global": {
@@ -66,46 +70,66 @@ class Sorts extends Component {
           videoURL: url
         }))
     }
-    
+
     render() {
         const { classes } = this.props;
         console.log(this.state);
 
-        var i = 0;
-        let displayFile = '';
-        const sorts = [];
-        let arr = [];
+        /**
+         * Using React HTML Parser, display the HTML required to list all files in storage. React HTML Parser is a 
+         * utility for converting HTML strings into React components. Avoids the use of dangerouslySetInnerHTML and 
+         * converts standard HTML elements, attributes and in-line styles into their React equivalents
+         * 
+         * This is was the only way I found that could list all files from storage - seems very difficult to do in React itself
+         */
+        const html = '<body><table id="List"><tbody></tbody></table></body>';
 
-        firebase.storage().ref().child('sorts/').listAll().then(function(result) {
-            result.items.forEach(function(fileRef) {
-                i++; // Counter for each file in storage
+        $('#List').find('tbody').html('');
 
-                fileRef.getDownloadURL().then(function(fileURL) {
-                    sorts.push(fileURL.toString());
-                })
+        /**
+         * Get all files from storage and list them
+         */
+        firebase.storage().ref().child('sorts/').listAll().then(function(res) {
+            res.items.forEach(function(ref) {
+                ref.getDownloadURL().then(function(url) {
+                    let new_html = '';
+    
+                    new_html += '<tr>';
+                    new_html += '<td>';
+                    new_html += '<li>';
+                    new_html += '</td>';
+                    new_html += '<td>';
+                    new_html += '<img src="' + url + '" width="100px" style="float:right">';
+                    new_html += '</td>';
+                    new_html += '</tr>';
+    
+                    $('#List').find('tbody').append(new_html);
+                });
             });
         });
 
-        console.log(sorts);
-
-        const listSorts = sorts.map((sort) =>
-            <li>{sort}</li>
-        );
-
-        console.log(listSorts);
-
         return (
         <div className="App">
-            <SortsToolbar history={this.props.history} />
-            <FileUploader 
-            accept="*"
-            name="video"
-            storageRef={firebase.storage().ref('sorts')} 
-            onUploadStart={this.handleUploadStart}
-            onUploadSuccess={this.handleUploadSuccess} />
-            <br/>
+            <div className="player">
+                <SortsToolbar history={this.props.history} />
+                <FileUploader 
+                accept="*"
+                name="video"
+                storageRef={firebase.storage().ref('sorts')} 
+                onUploadStart={this.handleUploadStart}
+                onUploadSuccess={this.handleUploadSuccess} />
+                <br/>
 
-            <ul>{sorts}</ul>
+                <ReactPlayer 
+                className='react-player'
+                url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
+                width='50%'
+                height='50%'/>
+            </div>
+
+            <div className="sort-list">
+                {ReactHtmlParser(html)}
+            </div>
         </div>
         );
     }
