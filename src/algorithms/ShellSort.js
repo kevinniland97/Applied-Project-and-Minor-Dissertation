@@ -13,11 +13,18 @@ export default class ShellSort {
      * @param {*} selectedHistory - Elements that have been previously selected for sorting
      */
     static shellSort(array, sortHistory, selectedHistory) {
+        // Clear sortHistory and selectedHistory
         this.clearArray(sortHistory);
         this.clearArray(selectedHistory);
 
         for (let h = array.length; h > 0; h = parseInt(h / 2, 10)) {
             for (let i = h; i < array.length; i++) {
+                /**
+                 * The slice() method returns a shallow copy of a portion of an array into a 
+                 * new array object selected from begin to end (end not included) where begin and 
+                 * end represent the index of items in that array. The original array will not be 
+                 * modified. Push this portion into sortHistory
+                 */
                 sortHistory.push(array.slice());
                 selectedHistory.push([i + 1, i]);
 
@@ -36,6 +43,7 @@ export default class ShellSort {
      * @param {*} array - The array of items
      */
     static clearArray(array) {
+        // While there are items in the array, pop an element off
         while (array.length) {
             array.pop();
         }

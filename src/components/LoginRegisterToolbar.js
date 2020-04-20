@@ -21,6 +21,9 @@ const styles = {
     }
   }
 
+  /**
+   * Toolbar for login page
+   */
   function LoginRegisterToolbar() {
     var menu;
   

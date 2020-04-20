@@ -12,9 +12,14 @@ export default class QuickSort {
      * @param {*} selectedHistory - Elements that have been previously selected for sorting 
      */
     static quickSort(array, sortHistory, selectedHistory) {
+        // Clear sortHistory and selectedHistory
         this.clearArray(sortHistory);
         this.clearArray(selectedHistory);
 
+        /**
+         * Pass in the array, set index i as 0, set index j as the length of the array, sortHistory 
+         * and selectedHistory
+         */ 
         this.quickSortIterative(array, 0, array.length - 1, sortHistory, selectedHistory);
     }
 
@@ -45,11 +50,17 @@ export default class QuickSort {
             // Partition array
             let partition = this.partition(array, i, j, sortHistory, selectedHistory);
 
+            /**
+             * If partition minus 1 is less than i, stack[++top] is equal to i then partition - 1
+             */ 
             if (partition - 1 > i) {
                 stack[++top] = i;
                 stack[++top] = partition - 1;
             }
 
+            /**
+             * If partition plus 1 is less than j, stack[++top] is equal to partition + 1 then j
+             */ 
             if (partition + 1 < j) {
                 stack[++top] = partition + 1;
                 stack[++top] = j;
@@ -71,6 +82,14 @@ export default class QuickSort {
         let y = (i - 1);
 
         for (let k = i; k <= j - 1; k++) {
+            /**
+             * The slice() method returns a shallow copy of a portion of an array into a 
+             * new array object selected from begin to end (end not included) where begin and 
+             * end represent the index of items in that array. The original array will not be 
+             * modified. Push this portion into sortHistory
+             * 
+             * Push k, i, and j into selectedHistory
+             */
             sortHistory.push(array.slice());
             selectedHistory.push([k, i, j]);
 
@@ -83,8 +102,10 @@ export default class QuickSort {
             }
         }
 
+        // Swap elements again when done
         this.swap(array, y + 1, j);
 
+        // Return y + 1
         return (y + 1);
     }
 
@@ -108,6 +129,7 @@ export default class QuickSort {
      * @param {*} array - The array of items
      */
     static clearArray(array) {
+        // While there are items in the array, pop an element off
         while (array.length) {
             array.pop();
         }

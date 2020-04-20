@@ -33,9 +33,15 @@ import '../styling/LoginPage.css';
 //   }
 // });
 
+// Login page
 class Login extends Component {
   constructor() {
       super()
+
+      /**
+       * State for login - stores email and password and
+       * determines if loggedIn or not
+       */ 
       this.state = {
           email: '',
           password: '',
@@ -53,21 +59,30 @@ class Login extends Component {
   onSubmit (e) {
       e.preventDefault()
 
+      // Logged in user
       const user = {
           email: this.state.email,
           password: this.state.password,
           loggedIn: true
       }
 
+      /**
+       * When logged in, redirect to the sorting page (Bubble Sort is the default sorting algorithm and, 
+       * as such, user is redirected here on login)
+       * 
+       * Set the user value in local storage to that of the user's email and set loggedIn to true
+       */ 
       login(user).then(res => {
         // if (!res.error) {
             this.props.history.push('/bubble-sort')
+
             localStorage.setItem("user", user.email);
             localStorage.setItem("loggedIn", user.loggedIn)
         // }
       })
   }
 
+  // Uses a standard form to allow the user to login
   render () {
       return (
           <div className="App">
@@ -99,6 +114,8 @@ class Login extends Component {
                               Sign in
                           </button>
                       </form>
+
+                      {/* Allow the user to redirect to the register page if user doesn't have an account */}
                       <div className="linkToLoginRegister">
                         Don't have an account? <Link to="/register">Create an account</Link>
                       </div>
@@ -110,181 +127,3 @@ class Login extends Component {
 }
 
 export default Login;
-
-
-
-// class Login extends Component {
-//   // state = { email: "", password: "" };
-
-// //   /**
-// //    * 
-// //    */
-// //   handleEmailChange = ({ target }) => {
-// //     this.setState({ email: target.value });
-// //   };
-
-//   /**
-//    * 
-//    */
-//   // handlePasswordChange = ({ target }) => {
-//   //   // console.log(target.value);
-//   //   this.setState({ password: target.value });
-//   // };
-
-// //   /**
-// //    * 
-// //    */
-// //   handleSubmit = () => {
-// //     const { dispatch } = this.props;
-// //     const { email, password } = this.state;
-
-// //     dispatch(loginUser(email, password));
-// //   };
-
-//   constructor() {
-//     super()
-
-//     this.state = {
-//       email: '',
-//       password: ''
-//     }
-
-//     this.onChange = this.onChange.bind(this)
-//     this.onSubmit = this.onSubmit.bind(this)
-//   }
-
-//   onChange(e) {
-//     this.setState ({
-//       [e.target.name]: e.target.value
-//     })
-//   }
-
-//   onSubmit(e) {
-//     e.preventDefault()
-
-//     const user = {
-//       email: this.state.email,
-//       password: this.state.password
-//     }
-
-//     LoginUser(user).then(res => {
-//       if (!res.error) {
-//         this.props.history.push('/userProfile')
-//       }
-//     })
-//   }
-
-//   /**
-//    * 
-//    */
-//   render() {
-//     const { classes, loginError, isAuthenticated } = this.props;
-//     if (isAuthenticated) {
-//       return <Redirect to="/" />;
-//     } else {
-//     return (
-//       <div>
-//         <LoginRegisterToolbar history={this.props.history} />
-//       {/* // <Container component="main" maxWidth="xs"> */}
-//         <Paper className={classes.paper}>
-//           <Avatar className={classes.avatar}>
-//             <LockOutlinedIcon />
-//           </Avatar>
-//           <Typography component="h1" variant="h5">
-//             Sign in
-//           </Typography>
-//           <form noValidate onSubmit={this.onSubmit}>
-//           <TextField
-//             variant="outlined"
-//             margin="normal"
-//             fullWidth
-//             id="email"
-//             label="Email Address"
-//             name="email"
-//             value={this.state.email}
-//             onChange={this.onChange}
-//           />
-//           <TextField
-//             variant="outlined"
-//             margin="normal"
-//             fullWidth
-//             name="password"
-//             label="Password"
-//             type="password"
-//             id="password"
-//             value={this.state.password}
-//             onChange={this.onChange}
-//           />
-//           {loginError && (
-//             <Typography component="p" className={classes.errorText}>
-//               Incorrect email or password.
-//             </Typography>
-//           )}
-//           <Button
-//             type="button"
-//             fullWidth
-//             variant="contained"
-//             color="primary"
-//             // // className={classes.submit}
-//             // onClick={this.onSubmit}
-//           >
-//             Sign In
-//           </Button>
-//           </form>
-//           Don't have an account? <Link to="/signUp">Create an account</Link>
-//         </Paper>
-//       {/* // </Container> */}
-//       </div>
-//       )}}}
-      
-// //       <div className="container">
-// //         <div className="row">
-// //           <div className="col-md-6 mt-5 mx-auto">
-// //             <form noValidate onSubmit={this.onSubmit}>
-// //               <h1 className="h3 mb-3 font-weight-normal">Sign In</h1>
-// //               <div className="form-group">
-// //                 <label htmlFor="email">Email Address</label>
-// //                 <input type="email"
-// //                 className="form-control"
-// //                 name="email"
-// //                 placeholder="Email Address"
-// //                 value={this.state.email} 
-// //                 onChange={this.onChange} />
-// //               </div>
-// //               <div className="form-group">
-// //                 <label htmlFor="password">Password</label>
-// //                 <input type="password"
-// //                 className="form-control"
-// //                 name="password"
-// //                 placeholder="Password"
-// //                 value={this.state.password} 
-// //                 onChange={this.onChange} />
-// //               </div>
-
-// //               <button className="btn btn-lg btn-primary btn-block">
-// //                 Sign In
-// //               </button>
-// //             </form>
-// //           </div>
-// //         </div>
-// //       </div>
-// //     );
-// //   }
-
-
-// // /**
-// //  * 
-// //  * @param {*} state 
-// //  */
-// // function mapStateToProps(state) {
-// //   return {
-// //     isLoggingIn: state.auth.isLoggingIn,
-// //     loginError: state.auth.loginError,
-// //     isAuthenticated: state.auth.isAuthenticated
-// //   };
-// // }
-
-// /**
-//  * 
-//  */
-// export default withStyles(styles)(Login);

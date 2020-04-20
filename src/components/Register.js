@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import { register } from './UserFunctions';
 import LoginRegisterToolbar from './LoginRegisterToolbar';
 
-/**
- * 
- */
+// Register page
 class Register extends Component {
   constructor() {
       super()
+
+      /**
+       * State for register - stores first name, last name, email, and password
+       */
       this.state = {
           first_name: '',
           last_name: '',
@@ -27,6 +29,7 @@ class Register extends Component {
   onSubmit (e) {
       e.preventDefault()
 
+      // New user
       const newUser = {
           first_name: this.state.first_name,
           last_name: this.state.last_name,
@@ -34,11 +37,13 @@ class Register extends Component {
           password: this.state.password
       }
 
+      // If user has been register successfully, redirect to login page
       register(newUser).then(res => {
           this.props.history.push(`/login`)
       })
   }
 
+  // Uses a standard form to allow the user to register
   render () {
       return (
           <div className="App">
@@ -89,6 +94,8 @@ class Register extends Component {
                               Register
                           </button>
                       </form>
+
+                      {/* Allow the user to redirect to the login page if user does have an account */}
                       <div className="linkToLoginRegister">
                         Already have an account? <Link to="/login">Login</Link>
                       </div>

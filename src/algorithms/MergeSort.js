@@ -14,12 +14,13 @@ export default class MergeSort {
 
         // While still able to step through the array
         while (step < array.length) {
-            let left = 0;
+            let counter = 0;
 
-            while (left + step < array.length) {
-                this.mergeBottomUp(array, left, step, sortHistory, selectedHistory);
+            // While
+            while (counter + step < array.length) {
+                this.mergeBottomUp(array, counter, step, sortHistory, selectedHistory);
 
-                left += step * 2;
+                counter += step * 2;
             }
 
             step *= 2;
@@ -30,19 +31,25 @@ export default class MergeSort {
      * Performs merge sort on remaining half of array
      * 
      * @param {*} array - Array to be sorted
-     * @param {*} left - Starting index
+     * @param {*} counter - Starting index
      * @param {*} step - Amount to step forward in array
      * @param {*} sortHistory - Elements that have been sorted
      * @param {*} selectedHistory - Elements that have been previously selected for sorting
      */
-    static mergeBottomUp(array, left, step, sortHistory, selectedHistory) {
-        let right = left + step;
-        let end = Math.min(left + step * 2 - 1, array.length - 1);
-        let stepLeft = left;
+    static mergeBottomUp(array, counter, step, sortHistory, selectedHistory) {
+        let right = counter + step;
+        let end = Math.min(counter + step * 2 - 1, array.length - 1);
+        let stepLeft = counter;
         let stepRight = right;
         let temp = [];
 
-        for (let i = left; i <= end; i++) {
+
+        for (let i = counter; i <= end; i++) {
+            /**
+             * If index stepLeft is less than or equal to stepRight or stepRight is greater than end and stepLeft is less 
+             * than right, store index stepLeft in array in a temp array at index i and increment stepLeft. If not, store 
+             * index stepRight in a temp array at index i and increment stepRight
+             */ 
             if ((array[stepLeft] <= array[stepRight] || stepRight > end) && stepLeft < right) {
                 temp[i] = array[stepLeft];
 
@@ -54,10 +61,16 @@ export default class MergeSort {
             }
         }
 
-        for (let j = left; j <= end; j++) {
+        for (let j = counter; j <= end; j++) {
             array[j] = temp[j];
         }
 
+        /**
+         * The slice() method returns a shallow copy of a portion of an array into a 
+         * new array object selected from begin to end (end not included) where begin and 
+         * end represent the index of items in that array. The original array will not be 
+         * modified. Push this portion into sortHistory
+         */
         sortHistory.push(array.slice());
         selectedHistory.push([-1]);
     }
@@ -82,6 +95,7 @@ export default class MergeSort {
      * @param {*} array - The array of items
      */
     static clearArray(array) {
+        // While there are items in the array, pop an element off
         while (array.length) {
             array.pop();
         }

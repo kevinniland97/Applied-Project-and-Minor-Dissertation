@@ -38,6 +38,7 @@ const loggedIn = localStorage.getItem('loggedIn') === 'true'; // Gets loggedIn i
 const loggedInUser = loggedIn ? localStorage.getItem('user') : ""; // Will display logged in user if loggedIn is true
 
 /**
+ * Toolbar for main page. Allows user to choose a sorting algorithm to visualize
  * 
  * @param {*} props 
  */
@@ -48,7 +49,7 @@ function MainToolbar(props) {
     <div>
     <AppBar position="static">
         <Toolbar>
-          {/* <Typography variant="h6" style={styles.title}>Sorting</Typography> */}
+          {/* Dropdown menu for links to other pages */}
           <Dropdown as={ButtonGroup}>
             <Button variant="success h6" color="white" style={styles.title}>Sorting</Button>
 
@@ -76,6 +77,7 @@ function MainToolbar(props) {
           
           <MenuDropdown onMenuClick={(e) => {menu = e;}} history={props.history} />
 
+          {/* Display logged in user */}
           { loggedInUser }
 
           <Dropdown as={ButtonGroup}>

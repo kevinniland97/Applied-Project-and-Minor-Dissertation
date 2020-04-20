@@ -21,6 +21,9 @@ const styles = {
     }
   }
 
+  /**
+   * Toolbar for sorts page
+   */
   function SortsToolbar() {
     var menu;
   

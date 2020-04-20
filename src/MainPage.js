@@ -1,15 +1,10 @@
 // Imports
 import React, { Component } from 'react';
-// import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { Button } from '@material-ui/core';
 import './styling/MainPage.css';
 import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import TextField from "@material-ui/core/TextField";
-// import firebase from 'firebase';
-// import { Dropdown } from 'react-bootstrap';
-// import { ButtonGroup } from '@material-ui/core';
-// import firebaseConfig from './firebase/firebase-config';
 import BubbleSort from './algorithms/BubbleSort.js';
 import InsertionSort from './algorithms/InsertionSort.js';
 import SelectionSort from './algorithms/SelectionSort.js';
@@ -20,12 +15,9 @@ import HeapSort from './algorithms/HeapSort.js';
 import Shell from './algorithms/ShellSort.js';
 import MainToolbar from './components/MainToolbar';
 
-// firebase.initializeApp(firebaseConfig);
-
 // Constants
 const defaultDatasetSize = 50;
 const defaultSortSpeed = 200;
-// const maxSortSize = 200;
 const maxSortSpeed = 200;
 const highlightColors = ['red', 'purple', 'blue', 'gray'];
 
@@ -58,7 +50,7 @@ class MainPage extends Component {
       stillSorting: false, // Determines whether the array of elements is still being sorted
       sortName: 'Bubble Sort', // Default sort name
       dataset: '', // Contains the user dataset
-      show: true
+      show: true // Will enable access to various functionality if user is logged in
     }; 
 
     // this.sortHistory = []; 
@@ -68,12 +60,13 @@ class MainPage extends Component {
     this.sortSize = defaultDatasetSize;
     this.sortSpeed = defaultSortSpeed;
 
+    
     this.props.history.listen((location, action) => {
       this.generateRandomArray();
-      // this.generateUserArray();
 
       let path = location.pathname;
 
+      // Determines which sort name to display based on chosen sorting algorithm
       switch (path) {
         case '/bubble-sort':
           this.setState({sortName: 'Bubble Sort'});
@@ -106,7 +99,9 @@ class MainPage extends Component {
   }
 
   /**
-   * 
+   * componentDidMount() is invoked immediately after a component is mounted (inserted into the tree). 
+   * Initialization that requires DOM nodes go here. As such, a random array is automatically generated
+   * and whether or not the user is logged in is also checked
    */
   componentDidMount() {
     this.generateRandomArray();
@@ -131,15 +126,16 @@ class MainPage extends Component {
   }
 
   /**
-   * 
+   * Handles dataset defined by user
    */
   handleDataset = ({ target }) => {
     console.log(target.value);
+
     this.setState({ dataset: target.value });
   };
 
   /**
-   * Submits dataset to be sorted
+   * Submits dataset to be sorted. Generates the user array from this
    */
   handleSubmit = () => {
     const { dataset } = this.state;
@@ -168,7 +164,7 @@ class MainPage extends Component {
     let array = [];
 
     /**
-     * 
+     * Process the dataset, enabling a visual representation to be generated from it
      */
     for (let i = 0; i < dataset.length; i++) {
       array = dataset.split("");
@@ -186,9 +182,6 @@ class MainPage extends Component {
      */
     var currentIndex = array.length, temp, random;
 
-    /**
-     * 
-     */
     while (0 !== currentIndex) {
       random = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
@@ -199,7 +192,6 @@ class MainPage extends Component {
       array[random] = temp;
     }
 
-    // 
     this.setState({array: array, isHighlighted: -1});
   }
 
@@ -326,18 +318,10 @@ class MainPage extends Component {
   }
 
   /**
-   * 
-   * @param {*} event 
-   * @param {*} newValue 
-   */
-  handleSpeedSlide(event, newValue) {
-    this.sortSpeed = newValue;
-  }
-
-  /**
    * Determines the color of each bar during the sorting process
-   * @param {*} isSelected 
-   * @param {*} index 
+   * 
+   * @param {*} isSelected - Selected index in array
+   * @param {*} index - Current index
    */
   determineBarColor(isSelected, index) {
     for (let i = 0; i < isSelected.length; i++) {
@@ -350,10 +334,6 @@ class MainPage extends Component {
     return 'aqua';
   }
 
-  handleLoggedIn() {
-    
-  }
-
   // Renders the page
   render() {
     const { classes } = this.props;
@@ -364,6 +344,7 @@ class MainPage extends Component {
       <div className="App">
         <MainToolbar history={this.props.history} />
 
+        {/* Display the current sorting algorithm chosen */}
         <span className="sort-name">{this.state.sortName}</span>
 
         <div>
@@ -401,13 +382,13 @@ class MainPage extends Component {
   }
 }
 
-// 
 MainPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
 /**
  * Renders a bar - these bars are for visualisation and will be sorted based on heigh/value
+ * 
  * @param {*} props 
  */
 function Bar(props) {

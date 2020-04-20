@@ -14,14 +14,23 @@ export default class HeapSort {
      * @param {*} selectedHistory - Elements that have been previously selected for sorting
      */
     static heapSort(array, sortHistory, selectedHistory) {
+        // Clear sortHistory and selectedHistory
         this.clearArray(sortHistory);
         this.clearArray(selectedHistory);
     
         for (let i = Math.floor(array.length / 2); i >= 0; i -= 1) {
+            /**
+             * The slice() method returns a shallow copy of a portion of an array into a 
+             * new array object selected from begin to end (end not included) where begin and 
+             * end represent the index of items in that array. The original array will not be 
+             * modified. Push this portion into sortHistory
+             * 
+             * Push index i on to selectedHistory
+             */
             sortHistory.push(array.slice());
             selectedHistory.push([i]);
 
-            this.heap_root(array, i);
+            this.heapRoot(array, i);
           }
     
         for (let i = array.length - 1; i > 0; i--) {
@@ -31,7 +40,7 @@ export default class HeapSort {
             this.swap(array, 0, i);
             // array.length--;
           
-            this.heap_root(array, 0);
+            this.heapRoot(array, 0);
         }
     }
 
@@ -40,22 +49,22 @@ export default class HeapSort {
      * @param {*} array - Array to be sorted
      * @param {*} i 
      */
-    static heap_root(array, i) {
+    static heapRoot(array, i) {
         var left = 2 * i + 1;
         var right = 2 * i + 2;
-        var max = i;
+        var index = i;
     
-        if (left < array.length && array[left] > array[max]) {
-            max = left;
+        if (left < array.length && array[left] > array[index]) {
+            index = left;
         }
     
-        if (right < array.length && array[right] > array[max])     {
-            max = right;
+        if (right < array.length && array[right] > array[index])     {
+            index = right;
         }
     
-        if (max !== i) {
-            this.swap(array, i, max);
-            this.heap_root(array, max);
+        if (index !== i) {
+            this.swap(array, i, index);
+            this.heapRoot(array, index);
         }
     }
     
@@ -79,6 +88,7 @@ export default class HeapSort {
      * @param {*} array - The array of items
      */
     static clearArray(array) {
+        // While there are items in the array, pop an element off
         while (array.length) {
             array.pop();
         }

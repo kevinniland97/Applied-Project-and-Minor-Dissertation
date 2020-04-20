@@ -15,6 +15,7 @@ export default class SelectionSort {
      * @param {*} selectedHistory - Elements that have been previously selected for sorting
      */
     static selectionSort(array, sortHistory, selectedHistory) {
+        // Clear sortHistory and selectedHistory
         this.clearArray(sortHistory);
         this.clearArray(selectedHistory);
 
@@ -35,6 +36,14 @@ export default class SelectionSort {
                     min = j;
                 }
 
+                /**
+                 * The slice() method returns a shallow copy of a portion of an array into a 
+                 * new array object selected from begin to end (end not included) where begin and 
+                 * end represent the index of items in that array. The original array will not be 
+                 * modified. Push this portion into sortHistory
+                 * 
+                 * Push j, leftCol, and min into selecedHistory
+                 */
                 sortHistory.push(array.slice());
                 selectedHistory.push([j, leftCol, min]);
             }
@@ -69,6 +78,7 @@ export default class SelectionSort {
      * @param {*} array - The array of items
      */
     static clearArray(array) {
+        // While there are items in the array, pop an element off
         while (array.length) {
             array.pop();
         }

@@ -9,20 +9,25 @@ export default class BubbleSort {
      * 
      * @param {*} array - Array of items to be sorted
      * @param {*} sortHistory - Previous items that have been sorted 
-     * @param {*} highlightHistory - Previous items that have been...
+     * @param {*} selectedHistory - Previous items that have been selected to be sorted
      */
-    static bubbleSort(array, sortHistory, highlightHistory) {
+    static bubbleSort(array, sortHistory, selectedHistory) {
+        // Clear sortHistory and selectedHistory
         this.clearArray(sortHistory);
-        this.clearArray(highlightHistory);
-
-        // let counter = 0;
+        this.clearArray(selectedHistory);
 
         for (let i = 0; i < array.length - 1; i++) {
             for (let j = 0; j < array.length - (i + 1); j++) {
+                /**
+                 * The slice() method returns a shallow copy of a portion of an array into a 
+                 * new array object selected from begin to end (end not included) where begin and 
+                 * end represent the index of items in that array. The original array will not be 
+                 * modified. Push this portion into sortHistory
+                 * 
+                 * Push index j + 1 and index j on to selectedHistory
+                 */
                 sortHistory.push(array.slice());
-                highlightHistory.push([j + 1, j]);
-
-                // counter++;
+                selectedHistory.push([j + 1, j]);
 
                 // If index j in the array is larger than index j + 1 in the array, swap them
                 if (array[j] > array[j + 1]) {
@@ -52,6 +57,7 @@ export default class BubbleSort {
      * @param {*} array - The array of items
      */
     static clearArray(array) {
+        // While there are items in the array, pop an element off
         while (array.length) {
             array.pop();
         }

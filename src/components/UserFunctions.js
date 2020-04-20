@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// User functions - handles requests made by user to register and log in
 export const register = newUser => {
     return axios
         .post("/register", {

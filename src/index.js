@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const history = createBrowserHistory()
 const app = (
+    // Routes
     <Router history={history}>
         <Routes />
     </Router>
