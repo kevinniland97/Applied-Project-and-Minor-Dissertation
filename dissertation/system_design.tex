@@ -9,12 +9,12 @@ This chapter discusses the system design, analysing the various aspects of the p
 This project utilises the multi-tier architecture (often referred to as n-tier architecture) platform. Multi-tier architecture or multilayered architecture is a client–server architecture in which presentation, application processing, and data management functions are physically separated. The most widespread use of multi-tier architecture is the three-tier architecture. This project consists of ... main components, all working together: The web application, which represents the presentation layer, allows users to visualise various sorting algorithms, register and login, upload and view past sorts from other users. The Flask server, which represents the logic tier, handles requests such as account registration and log in, and uploading and retrieving of sorts by users.
 
 \begin{center}
-    \includegraphics[width=15cm,height=15cm,keepaspectratio]{images/system_design}
+    \includegraphics[width=15cm,height=12cm,keepaspectratio]{images/system_design}
 \end{center}
 \newpage
 
 \section{Web Application}
-The web application was designed and developed first as this is the main aspect of the project itself. The main objective of the web application was to allow a user to choose a sorting algorithm and be able to visualise it. Secondary objectives, which were developed at a later point, was to allow users to register and log in to an account, and have the ability to upload and view previous sorts. This was greatly aided by the decision to use ReactJS .... The web application consists of ... main pages: 
+The web application was designed and developed first as this is the main aspect of the project itself. The main objective of the web application was to allow a user to choose a sorting algorithm and be able to visualise it. Secondary objectives, which were developed at a later point, was to allow users to register and log in to an account, and have the ability to upload and view previous sorts. This was greatly aided by the decision to use ReactJS .... The web application consists of four main pages: 
 
 \begin{itemize}
     \item \textbf{Sorting Page} - The sorting page, as shown in Figure \ref{fig:main_page}, is the main page of the application. Allows a user to choose one of several sorting algorithms to visualise, generate a random array of elements to sort, and specify their own dataset to sort.
@@ -35,14 +35,16 @@ The web application was designed and developed first as this is the main aspect 
     \label{fig:main_page}
 \end{center}
 
-There are currently five algorithms that can be visualised within the application. They are as follows:
+There are currently seven algorithms that can be visualised within the application. They are as follows:
 
 \begin{itemize}
     \item Bubble Sort
+    \item Heap Sort
     \item Insertion Sort
     \item Merge Sort
     \item Quick Sort
     \item Selection Sort
+    \item Shell Sort
 \end{itemize}
 
 \subsubsection{Bubble Sort}
@@ -52,7 +54,9 @@ There are currently five algorithms that can be visualised within the applicatio
 Bubble sort, sometimes referred to as sinking sort, is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted. The algorithm, which is a comparison sort, is named for the way smaller or larger elements "bubble" to the top of the list.
 \par
 \bigskip
-This simple algorithm performs poorly in real world use and is used primarily as an educational tool. More efficient algorithms such as timsort, or merge sort are used by the sorting libraries built into popular programming languages such as Python and Java.
+This simple algorithm performs poorly in real world use and is used primarily as an educational tool. More efficient algorithms such as Tim Sort, or Merge Sort are used by the sorting libraries built into popular programming languages such as Python and Java.
+
+\subsubsection{Heap Sort}
 
 \subsubsection{Insertion Sort}
 \begin{center}
@@ -75,7 +79,9 @@ In computer science, merge sort (also commonly spelled mergesort) is an efficien
 
 \subsubsection{Quick Sort}
 \begin{center}
-    \includegraphics[width=15cm,height=15cm,keepaspectratio]{images/quicksort}
+    \includegraphics[width=15cm,height=15cm,keepaspectratio]{images/quicksort1}
+    \includegraphics[width=15cm,height=15cm,keepaspectratio]{images/quicksort3}
+    \includegraphics[width=15cm,height=15cm,keepaspectratio]{images/quicksort2}
 \end{center}
 Quicksort (sometimes called partition-exchange sort) is an efficient sorting algorithm. Developed by British computer scientist Tony Hoare in 1959[1] and published in 1961,[2] it is still a commonly used algorithm for sorting. When implemented well, it can be about two or three times faster than its main competitors, merge sort and heapsort.[3][contradictory]
 
@@ -91,10 +97,14 @@ Mathematical analysis of quicksort shows that, on average, the algorithm takes O
     \includegraphics[width=12cm,height=15cm,keepaspectratio]{images/selectionsort2}
 \end{center}
 In computer science, selection sort is an in-place comparison sorting algorithm. It has an O(n2) time complexity, which makes it inefficient on large lists, and generally performs worse than the similar insertion sort. Selection sort is noted for its simplicity and has performance advantages over more complicated algorithms in certain situations, particularly where auxiliary memory is limited.
-
+\par
+\bigskip
 The algorithm divides the input list into two parts: a sorted sublist of items which is built up from left to right at the front (left) of the list and a sublist of the remaining unsorted items that occupy the rest of the list. Initially, the sorted sublist is empty and the unsorted sublist is the entire input list. The algorithm proceeds by finding the smallest (or largest, depending on sorting order) element in the unsorted sublist, exchanging (swapping) it with the leftmost unsorted element (putting it in sorted order), and moving the sublist boundaries one element to the right.
-
+\par
+\bigskip
 The time efficiency of selection sort is quadratic, so there are a number of sorting techniques which have better time complexity than selection sort. One thing which distinguishes selection sort from other sorting algorithms is that it makes the minimum possible number of swaps, n − 1 in the worst case.
+
+\subsubsection{Shell Sort}
 
 \subsection{Visualization}
 \begin{center}
@@ -111,4 +121,4 @@ The Flask server, which is hosted on PythonAnywhere, is the middle-man of the en
 \end{center}
 
 \section{Database}
-The database 
+Fill out....

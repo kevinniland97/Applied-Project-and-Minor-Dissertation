@@ -6,6 +6,9 @@ short videos were shown to us showing various sorting algorithms being
 visualized. It is a web-based application written in ReactJS, a web framework 
 for building user interfaces. The project allows users to visualize various
 sorting algorithms, which could be helpful in an educational context.
+\par
+\bigskip
+This project also allows users to register and sign in to an account. From here, the user can record their screen and upload these sorts to a database. These sorts are available to be viewed by all users once logged in.
 
 \chapter{Introduction}
 This chapter serves as an introduction to the project. In it, the various aspects
@@ -14,7 +17,7 @@ chapters are briefly discussed as well, detailing what each contains and what is
 discussed in each.
 
 \section{Discussion of the dissertation}
-Throughout this dissertation, the methodologies used throughout the development of the project, development tools, technology used and a review of each, the design of the system, and an evaluation of the system are discussed.
+Throughout this dissertation, the following six chapters each covered a distinct aspect of the project:
 
 \begin{itemize}
     \item \textbf{Chapter 1 - Introduction} - Chapter 1 serves as the introduction to the project, discussing the aim of the project, an overview of sorting algorithms, the project itself, the objectives of the project, and the scope of the project.
@@ -22,7 +25,7 @@ Throughout this dissertation, the methodologies used throughout the development 
     \item \textbf{Chapter 3 - Technology Review} - Chapter 3 introduces each of the different technologies, tools, and languages used to develop the project itself.
     \item \textbf{Chapter 4 - System Design} - Chapter 4 discusses the design of the system and goes over each of the main components of the application.
     \item \textbf{Chapter 5 - System Evaluation} - Chapter 5 evaluates the system as a whole, analysing the various aspects of the project and further discusses the type of testing carried out.
-    \item \textbf{Chapter 6} - Chapter 6 serves as the conclusion...
+    \item \textbf{Chapter 6} - Chapter 6 serves as the conclusion to the project, evaluating the project further relative to initial objectives set out and testing.
 \end{itemize}
 
 \section{Aim of the project}
@@ -79,6 +82,7 @@ There were several objectives I set out when first designing this project:
     \includegraphics[scale=.3]{images/project_timeline} 
     \label{fig:project_timeline}
 \end{center}
+Above is the projected and actual timeline of the project. The first few weeks of the project comprised of different researching project ideas, evaluating each based on complexity and scope and, after the project idea was settled on, the next couple of weeks comprised of researching various technologies to see which would be the most suitable to develop the chosen project idea. After this, the system was designed, along with a timeline of approximately when each feature should be implemented and how long each should take. With all this complete, the actual development of the project was started. The first feature to be implemented was to get basic visualization working. With this done, user authentication was started, which included writing the relevant functions to allow a user to register and log in to an account. After Christmas the project was resumed and user authentication finished. The Flask server, containing the functionality to allow the user to register and log in, was hosted on PythonAnywhere. With this done, more algorithms were written and incorporated and the visualization were enhanced. The final steps of the project included enabling the user to record sorts and upload them, and hosting the project. 
 
 \subsection{Project Requirements}
 \begin{center}
@@ -96,8 +100,6 @@ features required were:
     \item User authentication
     \item Database support
 \end{itemize}
-
-\subsection{Process Requirements}
 
 \subsection{Project Limitations}
 As a whole, the application is primarily built to sort elements represented in a

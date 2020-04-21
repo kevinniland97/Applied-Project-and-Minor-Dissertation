@@ -5,15 +5,14 @@ and why certain technologies were used over others.
 
 \section{Overview}
 This project is comprised of React as the frontend, Flask as the server which is
-hosted on PythonAnywhere, MongoDB as the database, and ... to host the 
-application. Throughout the project, the following technologies were also used 
+hosted on PythonAnywhere, MongoDB as the database for user authentication, Firebase as the database to store sorts, and Docker to deploy/host the application. Throughout the project, the following technologies were also used 
 and tested before the above was ultimately chosen:
 \begin{itemize}
     \item Angular/Ionic
-    \item Firebase
     \item Django
     \item MySQL
     \item Amazon Web Services
+    \item Heroku
 \end{itemize}
 
 \newpage
@@ -42,7 +41,7 @@ of such libraries.
 React has many advantages, several of which apply to this project:
 
 \begin{itemize}
-    \item \textbf{Wide React and Redux toolset} - Both React and Redux come with a decent set of related tools that make a developer’s life easier. For instance, React Developer Tools extension for Chrome and a similar one for Firefox allow for examining component hierarchies in the virtual DOM and editing states and properties. Additionally, you can check React Sight that visualizes state and prop trees; Reselect DevTools that helps with debugging and visualizing Reselect, a selector library for Redux. Redux DevTools Profiler Monitor allows for profiling actions in well.
+    \item \textbf{Wide React and Redux toolset} - Both React and Redux come with a set of related tools that make a developer’s life easier. For instance, React Developer Tools extension for Chrome and a similar one for Firefox allow for examining component hierarchies in the virtual DOM and editing states and properties. Additionally, you can check React Sight that visualizes state and prop trees; Reselect DevTools that helps with debugging and visualizing Reselect, a selector library for Redux. Redux DevTools Profiler Monitor allows for profiling actions in well.
     \item \textbf{Faster Rendering} - Building a high-load application is essential to consider how the structure will impact the overall app performance. Even latest platforms and engines can't ensure the absence of annoying bottlenecks, because DOM (Document Object Model) is tree-structured and even small changes at the upper layer can cause awful ripples to the interface. To solve the issue, Facebook development team has introduced Virtual DOM – currently, one of the benefits of using React for heavy loaded and dynamic software solutions. As the name suggests, it is a virtual representation of the document object model, so all the changes are applied to the virtual DOM first and then, using diff algorithm, the minimal scope of necessary DOM operations is calculated. Finally, the real DOM tree is updated accordingly, ensuring minimum time consumed. This method guarantees better user experience and higher app performance.
     \item \textbf{Guaranteed Stable Code} - To make sure that even small changes that take place in the child structures won't affect their parents, ReactJS uses only downward data flow. Changing an object, developers just modify its state, make changes, and, after that, only particular components will be updated. This structure of data binding ensures code stability and continuous app performance.
     \item \textbf{Strong Community} - Initially, React library was created for internal use and later shared with the entire world. Currently, it is supported by Facebook and Instagram engineering teams, plus external experts. For example, React GitHub repository numbers over 1100 contributors, while users can ask their questions on Stack Overflow, Discussion forum, Reactiflux Chart, Freenode IRC, social media platforms and many others.
@@ -56,6 +55,62 @@ There are a few disadvantages to using React:
     \item \textbf{JSX as a barrier} - ReactJS uses JSX. It’s a syntax extension, which allows mixing HTML with JavaScript. JSX has its own benefits (for instance, protecting code from injections), but some members of the development community consider JSX to be a serious disadvantage. Developers and designers complain about JSX’s complexity and consequent steep learning curve.
 \end{itemize}
 
+\newpage
+\subsubsection{Purpose in application}
+A vast majority of the application was written in React, namely the visualization aspect, user registration and login forms, upload of sorts, and viewing of sorts. Below discusses how each of the main parts of main page were developed:
+\par
+\bigskip
+\paragraph{Main Page}
+\begin{center}
+    \includegraphics[width=12cm,height=12cm,keepaspectratio]{images/mainpage1}
+\end{center}
+In the React sense, “state” is an object that represents the parts of the app that can change. Each component can maintain its own state, which lives in an object called this.state. If you’d like your app to do anything – if you want interactivity, adding and deleting things, logging in and out – that will involve state. In the context of this application, state contains information on the array of elements to be sorted, whether or not a certain element has been selected for sorting, if the application is still sorting the array, the current sort selected and the user's data set. The application will change and update these values as necessary.
+\newpage
+\begin{center}
+    \includegraphics[width=12cm,height=12cm,keepaspectratio]{images/mainpage2}
+\end{center}
+Here, the application simply sets the current name of the selected sort and displays it the user.
+
+\begin{center}
+    \includegraphics[width=15cm,height=8cm,keepaspectratio]{images/mainpage3}
+\end{center}
+Here the application handles the user's data set: handleDataset() will first save the user's data set to an array in state. handleSubmit() will submit the data set to be sorted i.e. the application will generate a visual representation of the user's data set. The user can then choose what sorting algorithm to apply and visualize.
+
+\begin{center}
+    \includegraphics[width=6cm,height=12cm,keepaspectratio]{images/userarray1}
+    \includegraphics[width=6cm,height=15cm,keepaspectratio]{images/userarray2}
+\end{center}
+To generate a visual representation of the array, I first needed to process the user's input correctly. The data set was iterated over and any unnecessary character was removed. The contents of the data set was then stored in array. Next, I needed to ensure the array was always shuffled when a visual representation of it was generated. To do this, I used the Fisher-Yates shuffle which is an algorithm for generating a random permutation of a finite sequence—in plain terms, the algorithm shuffles the sequence. The algorithm effectively puts all the elements into a hat - it continually determines the next element by randomly drawing an element from the hat until no elements remain.
+\par
+\bigskip
+\begin{center}
+    \includegraphics[width=10cm,height=10cm,keepaspectratio]{images/mainpage4}
+\end{center}
+To generate a random array, a sort size was first set. A random array of elements was then generated of that size.
+
+\newpage
+\begin{center}
+    \includegraphics[width=10cm,height=10cm,keepaspectratio]{images/mainpage5}
+\end{center}
+This piece of code will execute the correct sorting algorithm. The application will first get 'path', which is comprised of location.pathname. Then, based on this, will pass the array, sortHistory, and selectedHistory to the correct algorithm. Each of these algorithms are discussed in section 4.2.1 of the System Design chapter. The visualization of the array being sorted will then be shown.
+
+\begin{center}
+    \includegraphics[width=10cm,height=9cm,keepaspectratio]{images/mainpage6}
+\end{center}
+determineBarColor determines the color of bars that represent each element in the array. In this function, the application iterates over the array of selected elements, and if index i of that array is the index, the bar will be changed to the color in index i of highlightedColors.
+
+\begin{center}
+    \includegraphics[width=10cm,height=9cm,keepaspectratio]{images/mainpage7}
+\end{center}
+The render() function renders all the appropriate GUI, ranging from the toolbar for the various sorting algorithm, the bars themselves, and the various buttons for interacting with the application.
+
+\paragraph{MainToolbar}
+\begin{center}
+    \includegraphics[width=10cm,height=10cm,keepaspectratio]{images/toolbar}
+\end{center}
+When a component is rendered by React Router, that component is passed three different props: location, match, and history. This history prop comes from the History library and has properties on it related to routing. In this case, the one we’re interested in is history.push. What it does is it pushes a new entry into the history stack - redirecting the user to another route. When an algorithm is selected, the correct route to the algorithm is selected. This allows the algorithm to be correctly visualized.
+
+\newpage
 \subsection{Flask}
 \par
 \medskip
@@ -133,6 +188,67 @@ There are a few disadvantages to using Flask:
 \end{itemize}
 
 \newpage
+\subsubsection{Purpose in application}
+The backend aspect of the application was written in Python/Flask. The serve.py script handles requests made by the user, such as attempting to register for an account and attempting to login. Below discusses how this is achieved:
+
+\begin{center}
+    \includegraphics[width=13cm,height=13cm,keepaspectratio]{images/backend1}
+\end{center}
+
+\begin{center}
+    \includegraphics[width=13cm,height=13cm,keepaspectratio]{images/backend2}
+\end{center}
+
+\begin{center}
+    \includegraphics[width=13cm,height=13cm,keepaspectratio]{images/backend3}
+\end{center}
+
+\newpage
+\subsection{PythonAnywhere}
+\par
+\medskip
+\begin{center}
+    \includegraphics[width=8cm,height=3.3cm,keepaspectratio]{images/pythonanywhere}
+\end{center}
+PythonAnywhere is an online integrated development environment (IDE) and web
+hosting service (Platform as a service) based on the Python programming 
+language. it provides in-browser access to server-based Python and Bash 
+command-line interfaces, along with a code editor with syntax highlighting. 
+Program files can be transferred to and from the service using the user's 
+browser. Web applications hosted by the service can be written using any 
+WSGI-based application framework. For this project, the user authentication side
+of things was initially handled entirely by Firebase. However, as suggested by 
+my supervisor, I decided to implement registering a user, logging a user into 
+the application etc. myself. The functionality for this was written in Python 
+and could be accessed by the application by using a proxy to delegate any 
+requests made by the application to the Flask server. However, to enable the 
+functionality to be accessed from anywhere (and, in turn, remove the need to run
+the Flask server alongside the application everytime), I decided to use 
+PythonAnywhere. EXPLAIN
+
+\subsubsection{Advantages}
+There are a number of advantages to using PythonAnywhere:
+
+\begin{itemize}
+    \item \textbf{Always running} - Even on a free tier account, PythonAnywhere
+    never sleeps (compared to something like Heroku). This means real time 
+    services are viable with PythonAnywhere.
+    \item \textbf{Fully configured} - PythonAnywhere gives you a fully
+    configured Python environment...
+    \item \textbf{Free} - PythonAnywhere is free to use. On a free tier account,
+    web applications stay running 24/7 for 3 months. After 3 months, it will
+    shut down. However, one needs only to start it up again.
+\end{itemize}
+
+\subsubsection{Disadvantages}
+There are a few disadvantages to using PythonAnywhere:
+
+\begin{itemize}
+    \item \textbf{Python-only on the server side} - You are free to use
+    JavaScript in your web pages and so on, but you can't use Rails or Node on 
+    the server side of things.
+\end{itemize}
+
 \subsection{MongoDB}
 \par
 \medskip
@@ -192,47 +308,10 @@ There are a few disadvantages to using MongoDB:
 \par
 \medskip
 
-\subsection{PythonAnywhere}
+\subsection{Firebase}
 \par
 \medskip
 \begin{center}
-    \includegraphics[width=8cm,height=3.3cm,keepaspectratio]{images/pythonanywhere}
+    \includegraphics[width=8cm,height=3.3cm,keepaspectratio]{images/firebase}
 \end{center}
-PythonAnywhere is an online integrated development environment (IDE) and web
-hosting service (Platform as a service) based on the Python programming 
-language. it provides in-browser access to server-based Python and Bash 
-command-line interfaces, along with a code editor with syntax highlighting. 
-Program files can be transferred to and from the service using the user's 
-browser. Web applications hosted by the service can be written using any 
-WSGI-based application framework. For this project, the user authentication side
-of things was initially handled entirely by Firebase. However, as suggested by 
-my supervisor, I decided to implement registering a user, logging a user into 
-the application etc. myself. The functionality for this was written in Python 
-and could be accessed by the application by using a proxy to delegate any 
-requests made by the application to the Flask server. However, to enable the 
-functionality to be accessed from anywhere (and, in turn, remove the need to run
-the Flask server alongside the application everytime), I decided to use 
-PythonAnywhere. EXPLAIN
-
-\subsubsection{Advantages}
-There are a number of advantages to using PythonAnywhere:
-
-\begin{itemize}
-    \item \textbf{Always running} - Even on a free tier account, PythonAnywhere
-    never sleeps (compared to something like Heroku). This means real time 
-    services are viable with PythonAnywhere.
-    \item \textbf{Fully configured} - PythonAnywhere gives you a fully
-    configured Python environment...
-    \item \textbf{Free} - PythonAnywhere is free to use. On a free tier account,
-    web applications stay running 24/7 for 3 months. After 3 months, it will
-    shut down. However, one needs only to start it up again.
-\end{itemize}
-
-\subsubsection{Disadvantages}
-There are a few disadvantages to using PythonAnywhere:
-
-\begin{itemize}
-    \item \textbf{Python-only on the server side} - You are free to use
-    JavaScript in your web pages and so on, but you can't use Rails or Node on 
-    the server side of things.
-\end{itemize}
+Firebase is a mobile and web application development platform developed by Firebase, Inc. in 2011, then acquired by Google in 2014.

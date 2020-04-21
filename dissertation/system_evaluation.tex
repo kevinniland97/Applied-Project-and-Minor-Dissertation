@@ -37,27 +37,25 @@ application right from start to finish is behaving as expected. The purpose of
 performing end-to-end testing is to identify system dependencies and to ensure
 that the data integrity is maintained between various system components and 
 systems.
-
 \par
 \bigskip
-
 The entire application is tested for critical functionalities such as 
 communicating with the other systems, interfaces, database, network, and other 
-applications. 
+applications. This type of testing was carried out at the end, when all features were fully implemented. To perform 'test cases', the system was used in a way that a user would typically use the system. All features were tested to see if the appropriate behaviour happened, such as visualizing an algorithm, registering for an account, logging into an account, recording a sort, uploading a sort, and viewing past sorts.
 
 \section{Exploratory Testing}
 \begin{center}
     \includegraphics[width=12cm,height=10cm,keepaspectratio]{images/xenonstack-what-is-exploratory-testing}
 \end{center}
 Exploratory testing is a technique or a method whose aim is to discover the
-flaws during the process of software development. 
+flaws during the process of software development. Exploratory Testing is widely used in Agile models and is all about discovery, investigation, and learning. It emphasizes personal freedom and responsibility of the individual tester.
 
 \par
 \bigskip
 
 This technique of testing is concerned about the qualitative assurance of the 
 software. It is used to discover the anonymous issues during the process of 
-development of software. 
+development of software. Exploratory testing was carried out throughout development and helped prevent massive system flaws from remaining in the application and causing other bugs and/or having to fix these issues down the line, where it mightn't be possible to fix them or having to perform a complete overhaul of the system. One such flaw was in regards to an early design. Initially, there would be a 'master' navigation bar, with each of the application's pages appearing and being able to be navigated to from here. This caused the visualization aspect to not work properly, as the user would not be able to select an algorithm to visualize. This resulted in the system being redesigned to what it is now.
 
 \section{Functional Testing}
 \begin{center}
@@ -65,19 +63,15 @@ development of software.
 \end{center}
 Functional Testing is a type of software testing whereby the system is tested 
 against the functional requirements/specifications.
-
 \par
 \bigskip
-
 Functions (or features) are tested by feeding them input and examining the 
 output. Functional testing ensures that the requirements are properly satisfied 
 by the application. This type of testing is not concerned with how processing 
 occurs, but rather, with the results of processing. It simulates actual system 
 usage but does not make any system structure assumptions.
-
 \par
 \bigskip
-
 During functional testing, Black Box Testing technique is used in which the 
 internal logic of the system being tested is not known to the tester.
 
@@ -89,10 +83,13 @@ internal logic of the system being tested is not known to the tester.
     \includegraphics[width=12cm,height=10cm,keepaspectratio]{images/gui_testing}
 \end{center}
 Graphical User Interface (GUI) Testing is a software testing type that checks
-the Graphical User Interface of the Application Under Test. GUI Testing involves
+the Graphical User Interface of the application under test. GUI testing involves
 checking the screens with the controls like menus, buttons, icons, and all types
 of bars - toolbar, menu bar, dialog boxes, and windows, etc. The purpose of GUI 
-Testing is to ensure UI functionality works as per the specification.
+Testing is to ensure UI functionality works as per the specification. 
+\par
+\bigskip
+This type of testing, like exploratory testing, was carried out in conjunction with development and as such, aided in discovering bugs with the system. As discussed above, the system needed to be redesigned due a bug discovered, which GUI testing aided in as it was discovered in a previous design that the user was not able to visualize an algorithm due to an unresponsive GUI.
 
 \section{Integration Testing}
 \begin{center}
@@ -102,6 +99,9 @@ Integration testing (sometimes called integration and testing, abbreviated I&T)
 is the phase in software testing in which individual software modules are 
 combined and tested as a group. Integration testing is conducted to evaluate the
 compliance of a system or component with specified functional requirements.
+\par
+\bigskip
+Integration testing was carried out throughout development and was integral in ensuring components worked with already integrated components without breaking the system.
 
 \section{Unit Testing}
 \begin{center}
@@ -111,6 +111,9 @@ Unit Testing is a level of software testing where individual units/ components
 of a software are tested. The purpose is to validate that each unit of the
 software performs as designed. A unit is the smallest testable part of any 
 software. It usually has one or a few inputs and usually a single output.
+\par
+\bigskip
+Unit testing was carried out on individual components before they were integrated into the system.
 
 \section{System Testing}
 \begin{center}
