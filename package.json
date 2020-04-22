@@ -46,6 +46,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://kniland97.eu.pythonanywhere.com",
-  "Access-Control-Allow-Credentials": true
+  "proxy": "http://kniland97.eu.pythonanywhere.com"
 }

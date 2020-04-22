@@ -15,6 +15,7 @@ from pprint import pprint
 
 app = Flask(__name__)
 
+# The database name, it's URI, and the JWT secret key
 app.config['MONGO_DBNAME'] = 'algorithms_visualizer'
 app.config['MONGO_URI'] = 'mongodb://admin:admin123@ds217809.mlab.com:17809/algorithms_visualizer?retryWrites=false'
 app.config['JWT_SECRET_KEY'] = 'secret'
@@ -25,15 +26,18 @@ jwt = JWTManager(app)
 
 CORS(app)
 
+# Register method
 @app.route('/register', methods=['POST'])
 def register():
-    users = mongo.db.users
+    users = mongo.db.users # Database of users
+
     first_name = request.get_json()['first_name']
     last_name = request.get_json()['last_name']
     email = request.get_json()['email']
-    password = bcrypt.generate_password_hash(request.get_json()['password']).decode('utf-8')
+    password = bcrypt.generate_password_hash(request.get_json()['password']).decode('utf-8') # Hashes the password usig bcrypt
     created = datetime.utcnow()
 
+    # Creates a user with the following parameters
     user_id = users.insert({
         'first_name': first_name,
         'last_name': last_name,
@@ -52,17 +56,23 @@ def register():
         'result': result
     })
 
+# Login method
 @app.route('/login', methods=['POST'])
 def login():
-    users = mongo.db.users
+    users = mongo.db.users # Database of userws
+    
     email = request.get_json()['email']
     password = request.get_json()['password']
     result = ''
 
+    # Finds user by email
     response = users.find_one({ 'email': email })
+
     unique = users.find({'email': { "email": email}}).count()
     print(unique)
 
+    # If application can successfully find a user with the email specified and the passwords match,
+    # create an access token
     if response:
         if bcrypt.check_password_hash(response['password'], password):
             access_token = create_access_token(identity = {
@@ -71,22 +81,13 @@ def login():
                 'email': response['email']
             })
 
+            # Notify user that they have successfully logged in
             result = jsonify({ 'Successfully logged in. Token': access_token })
         else:
             result = jsonify({ 'ERROR: Invalid username or password' })
     else:
         result = jsonify({ 'result': 'No results found' })
     return result
-
-@app.route('/getAll', methods=['GET'])
-def getAll():
-    users = mongo.db.users
-    email = request.get_json()['email']
-
-    unique = users.find({'email': email}).count()
-    print(unique)
-
-    return jsonify(unique)
 
 @app.route('/', methods=['GET'])
 def server_info():

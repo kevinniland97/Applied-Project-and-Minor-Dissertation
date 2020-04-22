@@ -194,14 +194,34 @@ The backend aspect of the application was written in Python/Flask. The serve.py 
 \begin{center}
     \includegraphics[width=13cm,height=13cm,keepaspectratio]{images/backend1}
 \end{center}
+The user authentication aspect uses a lot of different libraries to achieve the end result. The most notable libraries used and how they fit into this script are as follows:
 
+\begin{itemize}
+    \item Flask-PyMongo - MongoDB was chosen as one of the databases used in this application. MongoDB is an open source database that stores flexible JSON-like “documents,” which can have any number, name, or hierarchy of fields within, instead of rows of data as in a relational database. MongoDB as a persistent, searchable repository of Python dictionaries - this is how PyMongo actually represents MongoDB documents.
+    \item Flask-Bcrypt - Flask-Bcrypt is a Flask extension that provides bcrypt hashing utilities.
+    \item Flask-CORS - A Flask extension for handling Cross Origin Resource Sharing (CORS).
+    \item Flask-JWT-Encoded - An open source Flask extension that provides JWT support. Adds support for using JSON Web Tokens (JWT) to Flask for protecting views. 
+\end{itemize}
+
+To connect to the Mongo database, the database name, it's URI, and the secret key are defined. PyMongo will then connect to the MongoDB database. The Flask app object is also passed to Bcrypt, and the Flask-JWT extension is setup.
+
+\newpage
 \begin{center}
     \includegraphics[width=13cm,height=13cm,keepaspectratio]{images/backend2}
 \end{center}
+The register method allows a user to create an account. Firstly, the script gets a handle on the database itself....Four values are passed to the database: the user's first name, the user's last name, the user's email, and the user's password. 
 
+% INSERT CODE
+
+In the case of the user's password, Bcrypt is used to generate a password hash of the user's password before being passed to the database. When inserting a user into the database, the time and date the user's account was created is also passed to the database.
+
+% MORE
+
+\newpage
 \begin{center}
     \includegraphics[width=13cm,height=13cm,keepaspectratio]{images/backend3}
 \end{center}
+The login method allows a user to a login into their account. To log in, the user needs to provide two details: their email and their password. The script will search the database by user's emails. If the script finds the provided email and the hash of the provided password is equal to that of the hashed password linked to the account the user is attempting to log into, the script will create an access token and the user will be logged into the application. 
 
 \newpage
 \subsection{PythonAnywhere}
@@ -224,8 +244,15 @@ and could be accessed by the application by using a proxy to delegate any
 requests made by the application to the Flask server. However, to enable the 
 functionality to be accessed from anywhere (and, in turn, remove the need to run
 the Flask server alongside the application everytime), I decided to use 
-PythonAnywhere. EXPLAIN
+PythonAnywhere. While the application itself, can be run locally or accessed from the hosting site, I decided to host the Flask server on PythonAnywhere. This removes the need to run the script as well when running/accessing the main application. To enable requests to be made and handled by the Flask server on PythonAnywhere, a proxy must be setup to handle specific requests. A proxy, in general, is a server or service which can introduce additional layers in communication to obfuscate or modify content. In package.json, the prxoy is defined as follows:
 
+\begin{center}
+    \includegraphics[width=13cm,height=5cm,keepaspectratio]{images/packagejson}
+\end{center}
+
+What this does is when a user makes a request to register for an account or log into their account, the application will send the request to the link shown above (which is essentially the Flask server as seen in the last section). The request will then be handled and processed, with the appropriate action being carried out.
+
+\newpage
 \subsubsection{Advantages}
 There are a number of advantages to using PythonAnywhere:
 
