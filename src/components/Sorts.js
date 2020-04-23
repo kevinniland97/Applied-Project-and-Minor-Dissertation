@@ -48,10 +48,21 @@ class Sorts extends Component {
         this.state = {
             progress: 0,
             sort: '',
-            files: null
+            files: null,
+            url: ''
         };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
         
+    handleChange(event) {
+        this.setState({url: event.target.value});
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+    }
 
     handleUploadStart = () => {
         this.setState ({
@@ -99,7 +110,7 @@ class Sorts extends Component {
                     new_html += '<li>';
                     new_html += '</td>';
                     new_html += '<td>';
-                    new_html += '<img src="' + url + '" width="100px" style="float:right">';
+                    new_html += url;
                     new_html += '</td>';
                     new_html += '</tr>';
     
@@ -123,13 +134,24 @@ class Sorts extends Component {
             <div className="player">
                 <ReactPlayer 
                 className='react-player'
-                url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
-                width='50%'
-                height='50%'/>
+                url={this.state.url}
+                volume='0'
+                controls='true'
+                light='true'
+                width='80%'
+                height='80%'/>
             </div>
 
             <div className="sort-list">
                 {ReactHtmlParser(html)}
+
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                        URL: <input type="text" value={this.state.url} onChange={this.handleChange} />
+                    </label>
+
+                    <input type="submit" value="Play" />
+                </form>
             </div>
 
             <div class="clearfix"></div>

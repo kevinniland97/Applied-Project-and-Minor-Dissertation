@@ -1,11 +1,13 @@
 .player {
     width: 55%;
+    height: 55%;
     margin-right: 2%;
     float: left;
 }
 
 .react-player {
     width: 100%;
+    height: 100%;
 }
 
 .sort-list {
@@ -13,6 +15,6 @@
     float: right;
 }
 
-.clearfix{
+.clearfix {
     clear: both
 }
