@@ -1,15 +1,18 @@
 .player {
-    position: absolute;
+    width: 55%;
+    margin-right: 2%;
+    float: left;
 }
 
 .react-player {
-    position: absolute;
-    top: 10;
-    right: 50%;
+    width: 100%;
 }
 
 .sort-list {
-    position: absolute;
-    bottom: 10;
-    right: 50%;
+    width: 43%;
+    float: right;
+}
+
+.clearfix{
+    clear: both
 }

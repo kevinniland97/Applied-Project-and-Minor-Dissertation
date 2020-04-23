@@ -82,7 +82,7 @@ class Sorts extends Component {
          * 
          * This is was the only way I found that could list all files from storage - seems very difficult to do in React itself
          */
-        const html = '<body><table id="List"><tbody></tbody></table></body>';
+        const html = '<style>body { background-color: rgb(45, 87, 69);}</style><body><table id="List"><tbody></tbody></table></body>';
 
         $('#List').find('tbody').html('');
 
@@ -109,10 +109,10 @@ class Sorts extends Component {
         });
 
         return (
-        <div className="App">
-            <div className="player">
-                <SortsToolbar history={this.props.history} />
-                <FileUploader 
+        <body className="App">
+            <SortsToolbar history={this.props.history} />
+            
+            <FileUploader 
                 accept="*"
                 name="video"
                 storageRef={firebase.storage().ref('sorts')} 
@@ -120,6 +120,7 @@ class Sorts extends Component {
                 onUploadSuccess={this.handleUploadSuccess} />
                 <br/>
 
+            <div className="player">
                 <ReactPlayer 
                 className='react-player'
                 url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
@@ -130,7 +131,9 @@ class Sorts extends Component {
             <div className="sort-list">
                 {ReactHtmlParser(html)}
             </div>
-        </div>
+
+            <div class="clearfix"></div>
+        </body>
         );
     }
 }

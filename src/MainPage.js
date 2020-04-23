@@ -338,7 +338,6 @@ class MainPage extends Component {
   render() {
     const { classes } = this.props;
     console.log(this.state);
-    this.handleLoggedIn()
 
     return (
       <div className="App">
