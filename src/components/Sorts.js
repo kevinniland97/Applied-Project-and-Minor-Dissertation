@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+// import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import ReactHtmlParser from 'react-html-parser';
 import { withStyles } from "@material-ui/styles";
-import { Button } from '@material-ui/core';
+// import { Button } from '@material-ui/core';
 import firebase from 'firebase';
 import ReactPlayer from 'react-player';
 import firebaseConfig from '../firebase/firebase-config';
@@ -84,9 +85,6 @@ class Sorts extends Component {
     }
 
     render() {
-        const { classes } = this.props;
-        console.log(this.state);
-
         /**
          * Using React HTML Parser, display the HTML required to list all files in storage. React HTML Parser is a 
          * utility for converting HTML strings into React components. Avoids the use of dangerouslySetInnerHTML and 

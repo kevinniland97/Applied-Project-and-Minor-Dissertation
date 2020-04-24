@@ -25,9 +25,7 @@ const styles = {
     }
   }
 
-
   const loggedIn = localStorage.getItem('loggedIn') === 'true'; // Gets loggedIn if true
-  // const loggedOut = localStorage.setItem('loggedIn', loginStatus.loggedIn) === 'false'; // Sets logged in status to true
   const loggedInUser = loggedIn ? localStorage.getItem('user') : ""; // Will display logged in user if loggedIn is true
   
   function logOut() {
@@ -35,7 +33,7 @@ const styles = {
   
     window.location.reload();
   }
-  
+
   /**
    * Toolbar for sorts page
    */

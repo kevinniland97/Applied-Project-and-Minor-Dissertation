@@ -6,17 +6,17 @@ import LoginRegisterToolbar from './LoginRegisterToolbar';
 import '../styling/LoginRegPage.css';
 
 // Styling
-const styles = {
-  button: {
-    display: 'inline-block',
-    backgroundColor: '#56935c',
-    color: 'white',
-    margin: 10,
-    '&:hover': {
-      backgroundColor: '#56935c',
-    }
-  }
-}
+// const styles = {
+//   button: {
+//     display: 'inline-block',
+//     backgroundColor: '#56935c',
+//     color: 'white',
+//     margin: 10,
+//     '&:hover': {
+//       backgroundColor: '#56935c',
+//     }
+//   }
+// }
 
 // Login page
 class Login extends Component {
@@ -58,20 +58,17 @@ class Login extends Component {
        * Set the user value in local storage to that of the user's email and set loggedIn to true
        */ 
       login(user).then(res => {
-        // if (!res.error) {
+        if (!res.error) {
             this.props.history.push('/bubble-sort')
 
             localStorage.setItem("user", user.email);
             localStorage.setItem("loggedIn", user.loggedIn)
-        // }
+        }
       })
   }
 
   // Uses a standard form to allow the user to login
   render () {
-    const { classes } = this.props;
-    console.log(this.state);
-
       return (
           <div className="App">
             <LoginRegisterToolbar />

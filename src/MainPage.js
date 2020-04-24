@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
 import './styling/MainPage.css';
 import { withStyles } from '@material-ui/styles';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import TextField from "@material-ui/core/TextField";
 import BubbleSort from './algorithms/BubbleSort.js';
 import InsertionSort from './algorithms/InsertionSort.js';
