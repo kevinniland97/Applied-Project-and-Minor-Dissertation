@@ -67,10 +67,10 @@ class MainPage extends Component {
     this.props.history.listen((location, action) => {
       this.generateRandomArray();
 
-      let path = location.pathname;
+      // let path = location.pathname;
 
       // Determines which sort name to display based on chosen sorting algorithm
-      switch (path) {
+      switch (location.pathname) {
         case '/bubble-sort':
           this.setState({sortName: 'Bubble Sort'});
           break;
@@ -132,8 +132,6 @@ class MainPage extends Component {
    * Handles dataset defined by user
    */
   handleDataset = ({ target }) => {
-    console.log(target.value);
-
     this.setState({ dataset: target.value });
   };
 
@@ -143,7 +141,6 @@ class MainPage extends Component {
   handleSubmit = () => {
     const { dataset } = this.state;
 
-    console.log(dataset);
     this.generateUserArray(dataset);
   };
 
@@ -174,9 +171,6 @@ class MainPage extends Component {
       dataset = dataset.split(/[ ,]+/).join(',');
       array = dataset.split(',');
     }
-
-    console.log(dataset);
-    console.log(array);
 
     /**
      * Shuffle the user array using the Fisher-Yates Shuffle
@@ -231,9 +225,9 @@ class MainPage extends Component {
    * @param {*} selectedHistory - Elements that have been selected for sorting
    */
   sortSelected(array, sortHistory, selectedHistory) {
-    let path = this.props.location.pathname;
+    // let path = this.props.location.pathname;
 
-    switch (path) {
+    switch (this.props.location.pathname) {
       case '/bubble-sort':
         BubbleSort.bubbleSort(array.slice(), sortHistory, selectedHistory);
         break;
@@ -340,7 +334,6 @@ class MainPage extends Component {
   // Renders the page
   render() {
     const { classes } = this.props;
-    console.log(this.state);
 
     return (
       <div className="App">
