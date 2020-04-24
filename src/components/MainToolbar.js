@@ -5,6 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
 import MediaQuery from 'react-responsive';
 import { Dropdown } from 'react-bootstrap';
+import '../styling/MainPage.css';
 
 /**
  * Styling for toolbar
@@ -22,20 +23,20 @@ const styles = {
     right: 15
   },
   title: {
+    textTransform: 'capitalize',
     marginLeft: 15
   }
 }
 
-/**
- * Determines login status
- */
-// const loginStatus = {
-//   loggedIn: true
-// }
-
 const loggedIn = localStorage.getItem('loggedIn') === 'true'; // Gets loggedIn if true
 // const loggedOut = localStorage.setItem('loggedIn', loginStatus.loggedIn) === 'false'; // Sets logged in status to true
 const loggedInUser = loggedIn ? localStorage.getItem('user') : ""; // Will display logged in user if loggedIn is true
+
+function logOut() {
+  localStorage.clear();
+
+  window.location.reload();
+}
 
 /**
  * Toolbar for main page. Allows user to choose a sorting algorithm to visualize
@@ -47,15 +48,16 @@ function MainToolbar(props) {
 
   return (
     <div>
-    <AppBar position="static">
-        <Toolbar>
+    <AppBar className="main-toolbar" position="static" >
+        <Toolbar className="main-toolbar">
           {/* Dropdown menu for links to other pages */}
           <Dropdown as={ButtonGroup}>
-            <Button variant="success h6" color="white" style={styles.title}>Sorting</Button>
-
+            {/* <Button color="#FFFFFF" style={styles.title}>Sorting</Button> */}
+            <Button color="#FFFFFF" style={styles.title}>Sorting</Button>
+            
             <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
 
-            <Dropdown.Menu>
+            <Dropdown.Menu className="dropdown-button">
               <Dropdown.Item href="/login">Login/Register</Dropdown.Item>
               <Dropdown.Item href="/sorts">Sorts</Dropdown.Item>
             </Dropdown.Menu>
@@ -64,8 +66,8 @@ function MainToolbar(props) {
           <div style={styles.line}></div>
 
           <MediaQuery minWidth={1000}>
-            <Typography style={{ flexGrow: 1 }} variant="h6">
-              <MainToolbarButtons history={ props.history } />
+            <Typography style={{ flexGrow: 1 }}>
+              <MainToolbarButtons className="menu" history={ props.history } />
             </Typography>
           </MediaQuery> 
 
@@ -81,11 +83,7 @@ function MainToolbar(props) {
           { loggedInUser }
 
           <Dropdown as={ButtonGroup}>
-            <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
-
-            <Dropdown.Menu>
-              <Dropdown.Item loggedOut >Log Out</Dropdown.Item>
-            </Dropdown.Menu>
+            <Button color="#FFFFFF" style={styles.title} onClick={logOut}>Log Out</Button>
           </Dropdown>
         </Toolbar>
     </AppBar>
@@ -94,7 +92,6 @@ function MainToolbar(props) {
 }
 
 /**
- * 
  * @param {*} props 
  */
 function MenuDropdown(props) {

@@ -25,11 +25,11 @@ const highlightColors = ['red', 'purple', 'blue', 'gray'];
 const styles = {
   button: {
     display: 'inline-block',
-    backgroundColor: '#3f51b5',
+    backgroundColor: '#56935c',
     color: 'white',
     margin: 10,
     '&:hover': {
-      backgroundColor: '#5f71d4',
+      backgroundColor: '#56935c',
     }
   }
 }
@@ -331,7 +331,7 @@ class MainPage extends Component {
     }
 
     // Determines the color of the bars when not being sorted
-    return 'aqua';
+    return '#48d0fa';
   }
 
   // Renders the page
@@ -362,19 +362,23 @@ class MainPage extends Component {
         <div className="buttons-wrapper">
           <Button className={classes.button} onClick={ () => this.generateRandomArray()}>Generate random array</Button>
           <Button className={classes.button} style={{backgroundColor: this.state.stillSorting ? 'red' : classes.button.backgroundColor}} onClick={ this.state.stillSorting ? this.stopSort.bind(this) : this.handleSort.bind(this)} > {this.state.stillSorting ? 'Stop Sorting' : 'Start Sorting'}</Button>
-          <div className="clearfix">
-            <div className="buttons-wrapper">
-              <Button className={classes.button} onClick={ this.handleSubmit }>Add to own dataset</Button>
-              <TextField
-              variant="outlined"
-              margin="normal"
-              id="dataset"
-              label="Dataset"
-              name="dataset"
-              color="white"
-              onChange={this.handleDataset} />
-            </div>
-          </div>
+           <div>
+           {this.state.show &&
+            <div className="clearfix">
+              <div className="buttons-wrapper">
+                <Button className={classes.button} onClick={ this.handleSubmit }>Add to own dataset</Button>
+                <TextField
+                className="dataset-box"
+                variant="outlined"
+                margin="normal"
+                id="dataset"
+                label="Dataset"
+                name="dataset"
+                color="white"
+                onChange={this.handleDataset} />
+              </div>
+            </div>}
+          </div> 
         </div>
       </div>
     );
@@ -402,6 +406,7 @@ function Bar(props) {
     },
     text: {
       display: 'inline-block',
+      color: 'black'
     }
   }
 

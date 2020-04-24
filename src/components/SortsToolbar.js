@@ -3,6 +3,7 @@ import { AppBar, Button, Toolbar, Typography, IconButton, ButtonGroup } from '@m
 import MenuIcon from '@material-ui/icons/Menu';
 import MediaQuery from 'react-responsive';
 import { Dropdown } from 'react-bootstrap';
+import '../styling/MainPage.css';
 
 const styles = {
     line: {
@@ -21,6 +22,11 @@ const styles = {
     }
   }
 
+
+  const loggedIn = localStorage.getItem('loggedIn') === 'true'; // Gets loggedIn if true
+  // const loggedOut = localStorage.setItem('loggedIn', loginStatus.loggedIn) === 'false'; // Sets logged in status to true
+  const loggedInUser = loggedIn ? localStorage.getItem('user') : ""; // Will display logged in user if loggedIn is true
+  
   /**
    * Toolbar for sorts page
    */
@@ -30,7 +36,7 @@ const styles = {
     return (
       <div>
       <AppBar position="static">
-          <Toolbar>
+          <Toolbar className="main-toolbar">
             {/* <Typography variant="h6" style={styles.title}>Sorting</Typography> */}
             <Dropdown as={ButtonGroup}>
               <Button variant="success, h6" color="white" style={styles.title}>Sorts</Button>
@@ -55,6 +61,17 @@ const styles = {
                 <MenuIcon />
               </IconButton>
             </MediaQuery>
+
+            {/* Display logged in user */}
+            { loggedInUser }
+
+            <Dropdown as={ButtonGroup}>
+              <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
+
+              <Dropdown.Menu>
+                <Dropdown.Item loggedOut>Log Out</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </Toolbar>
       </AppBar>
       </div>

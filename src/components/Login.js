@@ -3,35 +3,20 @@ import { Link } from "react-router-dom";
 // import { LoginUser } from './UserFunctions';
 import { login } from './UserFunctions';
 import LoginRegisterToolbar from './LoginRegisterToolbar';
-import '../styling/LoginPage.css';
+import '../styling/LoginRegPage.css';
 
-// const styles = () => ({
-//   "@global": {
-//     body: {
-//       backgroundColor: "#fff"
-//     }
-//   },
-//   paper: {
-//     marginTop: 100,
-//     display: "flex",
-//     padding: 20,
-//     flexDirection: "column",
-//     alignItems: "center"
-//   },
-//   avatar: {
-//     marginLeft: "auto",
-//     marginRight: "auto",
-//     backgroundColor: "#f50057"
-//   },
-//   form: {
-//     marginTop: 1
-//   },
-//   errorText: {
-//     color: "#f50057",
-//     marginBottom: 5,
-//     textAlign: "center"
-//   }
-// });
+// Styling
+const styles = {
+  button: {
+    display: 'inline-block',
+    backgroundColor: '#56935c',
+    color: 'white',
+    margin: 10,
+    '&:hover': {
+      backgroundColor: '#56935c',
+    }
+  }
+}
 
 // Login page
 class Login extends Component {
@@ -84,6 +69,9 @@ class Login extends Component {
 
   // Uses a standard form to allow the user to login
   render () {
+    const { classes } = this.props;
+    console.log(this.state);
+
       return (
           <div className="App">
             <LoginRegisterToolbar />
@@ -110,9 +98,9 @@ class Login extends Component {
                                   onChange={this.onChange} />
                           </div>
 
-                          <button type="submit" className="btn btn-lg btn-primary btn-block">
-                              Sign in
-                          </button>
+                        <button type="submit" className="btn btn-lg btn-primary btn-block">
+                            Sign in
+                        </button>
                       </form>
 
                       {/* Allow the user to redirect to the register page if user doesn't have an account */}

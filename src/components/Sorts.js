@@ -62,6 +62,7 @@ class Sorts extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        this.setState({url: event.target.value});
     }
 
     handleUploadStart = () => {
@@ -93,7 +94,7 @@ class Sorts extends Component {
          * 
          * This is was the only way I found that could list all files from storage - seems very difficult to do in React itself
          */
-        const html = '<style>body { background-color: rgb(45, 87, 69);}</style><body><table id="List"><tbody></tbody></table></body>';
+        const html = '<style>body { background-color: rgb(45, 87, 69);} </style><body><table id="List"><tbody></tbody></table></body>';
 
         $('#List').find('tbody').html('');
 
@@ -103,6 +104,7 @@ class Sorts extends Component {
         firebase.storage().ref().child('sorts/').listAll().then(function(res) {
             res.items.forEach(function(ref) {
                 ref.getDownloadURL().then(function(url) {
+                // ref.getMetadata().then(function(url) {
                     let new_html = '';
     
                     new_html += '<tr>';
@@ -124,6 +126,7 @@ class Sorts extends Component {
             <SortsToolbar history={this.props.history} />
             
             <FileUploader 
+                className="btn btn-primary"
                 accept="*"
                 name="video"
                 storageRef={firebase.storage().ref('sorts')} 
@@ -137,9 +140,19 @@ class Sorts extends Component {
                 url={this.state.url}
                 volume='0'
                 controls='true'
+                playing='true'
+                preload='true'
                 light='true'
                 width='80%'
-                height='80%'/>
+                height='80%'
+                config={{
+                    file: { 
+                    attributes: { 
+                        poster: 'react_blog_mobile.jpg' 
+                    } 
+                    } 
+                }}
+                />
             </div>
 
             <div className="sort-list">
@@ -150,7 +163,7 @@ class Sorts extends Component {
                         URL: <input type="text" value={this.state.url} onChange={this.handleChange} />
                     </label>
 
-                    <input type="submit" value="Play" />
+                    {/* <input type="submit" value="Play" /> */}
                 </form>
             </div>
 

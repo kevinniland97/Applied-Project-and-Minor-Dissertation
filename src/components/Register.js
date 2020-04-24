@@ -2,6 +2,20 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { register } from './UserFunctions';
 import LoginRegisterToolbar from './LoginRegisterToolbar';
+import '../styling/LoginRegPage.css';
+
+// Styling
+const styles = {
+    button: {
+      display: 'inline-block',
+      backgroundColor: '#56935c',
+      color: 'white',
+      margin: 10,
+      '&:hover': {
+        backgroundColor: '#56935c',
+      }
+    }
+  }
 
 // Register page
 class Register extends Component {
