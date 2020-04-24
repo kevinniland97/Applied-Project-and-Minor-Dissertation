@@ -34,8 +34,6 @@ const styles = {
   }
 }
 
-const loggedIn = localStorage.getItem('loggedIn') === 'true'; // Gets loggedIn if true
-
 /**
  * MainPage - Main page of the application. Allows users to choose a sorting algorithm to visualize
  */
@@ -150,12 +148,12 @@ class MainPage extends Component {
    * @param {*} dataset - Dataset defined by user
    */
   generateUserArray(dataset) {
-    if (this.interval) {
-      clearInterval(this.interval);
+    // if (this.interval) {
+    //   clearInterval(this.interval);
 
-      this.interval = null;
+    //   this.interval = null;
       this.setState({ stillSorting: false });
-    }
+    // }
 
     this.sortHistoryIndex = 0;
     this.sortHistory = [];
@@ -199,12 +197,12 @@ class MainPage extends Component {
    * Generates a random array of a fixed size
    */ 
   generateRandomArray() {
-    if (this.interval) {
-      clearInterval(this.interval);
-      this.interval = null;
+    // if (this.interval) {
+    //   clearInterval(this.interval);
+    //   this.interval = null;
 
       this.setState({stillSorting: false});
-    }
+    // }
 
     
     this.sortHistoryIndex = 0;
@@ -385,9 +383,9 @@ class MainPage extends Component {
   }
 }
 
-MainPage.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+// MainPage.propTypes = {
+//   classes: PropTypes.object.isRequired,
+// };
 
 /**
  * Renders a bar - these bars are for visualisation and will be sorted based on heigh/value
