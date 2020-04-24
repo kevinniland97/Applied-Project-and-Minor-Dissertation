@@ -18,7 +18,10 @@ const styles = {
       right: 15
     },
     title: {
-      marginLeft: 15
+      textTransform: 'capitalize',
+      marginLeft: 15,
+      fontWeight: 'bold',
+      color: 'white'
     }
   }
 
@@ -26,6 +29,12 @@ const styles = {
   const loggedIn = localStorage.getItem('loggedIn') === 'true'; // Gets loggedIn if true
   // const loggedOut = localStorage.setItem('loggedIn', loginStatus.loggedIn) === 'false'; // Sets logged in status to true
   const loggedInUser = loggedIn ? localStorage.getItem('user') : ""; // Will display logged in user if loggedIn is true
+  
+  function logOut() {
+    localStorage.clear();
+  
+    window.location.reload();
+  }
   
   /**
    * Toolbar for sorts page
@@ -62,15 +71,13 @@ const styles = {
               </IconButton>
             </MediaQuery>
 
+            <div style={styles.line}></div>
+            
             {/* Display logged in user */}
             { loggedInUser }
 
             <Dropdown as={ButtonGroup}>
-              <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
-
-              <Dropdown.Menu>
-                <Dropdown.Item loggedOut>Log Out</Dropdown.Item>
-              </Dropdown.Menu>
+              <Button color="#FFFFFF" style={styles.title} onClick={logOut}>Log Out</Button>
             </Dropdown>
           </Toolbar>
       </AppBar>

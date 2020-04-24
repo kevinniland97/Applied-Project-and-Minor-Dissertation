@@ -7,6 +7,11 @@
   background-color: #56935c;
 }
 
+.sort-bar {
+  position: relative;
+  left: 5%;
+}
+
 .menu {
   color: rgb(255, 255, 255);
 }

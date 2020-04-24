@@ -24,12 +24,13 @@ const styles = {
   },
   title: {
     textTransform: 'capitalize',
-    marginLeft: 15
+    marginLeft: 15,
+    fontWeight: 'bold',
+    color: 'white'
   }
 }
 
 const loggedIn = localStorage.getItem('loggedIn') === 'true'; // Gets loggedIn if true
-// const loggedOut = localStorage.setItem('loggedIn', loginStatus.loggedIn) === 'false'; // Sets logged in status to true
 const loggedInUser = loggedIn ? localStorage.getItem('user') : ""; // Will display logged in user if loggedIn is true
 
 function logOut() {
@@ -78,6 +79,8 @@ function MainToolbar(props) {
           </MediaQuery>
           
           <MenuDropdown onMenuClick={(e) => {menu = e;}} history={props.history} />
+
+          <div style={styles.line}></div>
 
           {/* Display logged in user */}
           { loggedInUser }
@@ -133,15 +136,15 @@ function MenuDropdown(props) {
  */
 function MainToolbarButtons(props) {
   return (
-      <div>
-        <Button color="inherit" onClick={() => props.history.push('bubble-sort')}>Bubble Sort</Button>
-        <Button color="inherit" onClick={() => props.history.push('heap-sort')}>Heap Sort (Almost)</Button>
-        <Button color="inherit" onClick={() => props.history.push('insertion-sort')}>Insertion Sort</Button>
-        <Button color="inherit" onClick={() => props.history.push('merge-sort')}>Merge Sort</Button>
-        <Button color="inherit" onClick={() => props.history.push('quick-sort')}>Quick Sort</Button>
-        <Button color="inherit" onClick={() => props.history.push('selection-sort')}>Selection Sort</Button>
-        <Button color="inherit" onClick={() => props.history.push('shell-sort')}>Shell Sort</Button>
-        <Button color="inherit" onClick={() => props.history.push('bogo-sort')}>Bogo Sort (Not working)</Button>
+      <div className="sort-bar">
+        <Button style={styles.title} color="inherit" onClick={() => props.history.push('bubble-sort')}>Bubble Sort</Button>
+        <Button style={styles.title} color="inherit" onClick={() => props.history.push('heap-sort')}>Heap Sort (Almost)</Button>
+        <Button style={styles.title} color="inherit" onClick={() => props.history.push('insertion-sort')}>Insertion Sort</Button>
+        <Button style={styles.title} color="inherit" onClick={() => props.history.push('merge-sort')}>Merge Sort</Button>
+        <Button style={styles.title} color="inherit" onClick={() => props.history.push('quick-sort')}>Quick Sort</Button>
+        <Button style={styles.title} color="inherit" onClick={() => props.history.push('selection-sort')}>Selection Sort</Button>
+        <Button style={styles.title} color="inherit" onClick={() => props.history.push('shell-sort')}>Shell Sort</Button>
+        <Button style={styles.title} color="inherit" onClick={() => props.history.push('bogo-sort')}>Bogo Sort (Not working)</Button>
       </div>
   );
 }

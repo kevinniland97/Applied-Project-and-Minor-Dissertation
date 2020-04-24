@@ -18,7 +18,10 @@ const styles = {
       right: 15
     },
     title: {
-      marginLeft: 15
+      textTransform: 'capitalize',
+      marginLeft: 15,
+      fontWeight: 'bold',
+      color: 'white'
     }
   }
 
@@ -66,6 +69,8 @@ const styles = {
                 <MenuIcon />
               </IconButton>
             </MediaQuery>
+
+            <div style={styles.line}></div>
 
             {/* Display logged in user */}
             { loggedInUser }

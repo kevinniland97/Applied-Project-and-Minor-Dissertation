@@ -31,6 +31,11 @@ const styles = {
     '&:hover': {
       backgroundColor: '#56935c',
     }
+  },
+  title: {
+    textTransform: 'capitalize',
+    marginLeft: 15,
+    fontWeight: 'bold '
   }
 }
 
@@ -348,7 +353,7 @@ class MainPage extends Component {
         {this.state.show &&
           <div className="record-wrapper">
             <a href="https://jmperezperez.com/screenflow/" target="_blank" rel="noopener noreferrer">
-              <Button className={classes.button}>Screen Record API</Button>
+              <Button className={classes.button} style={styles.title}>Screen Record API</Button>
             </a>
           </div>}
         </div>
@@ -358,13 +363,13 @@ class MainPage extends Component {
         </div>
 
         <div className="buttons-wrapper">
-          <Button className={classes.button} onClick={ () => this.generateRandomArray()}>Generate random array</Button>
-          <Button className={classes.button} style={{backgroundColor: this.state.stillSorting ? 'red' : classes.button.backgroundColor}} onClick={ this.state.stillSorting ? this.stopSort.bind(this) : this.handleSort.bind(this)} > {this.state.stillSorting ? 'Stop Sorting' : 'Start Sorting'}</Button>
+          <Button className={classes.button} style={styles.title} onClick={ () => this.generateRandomArray()}>Generate random array</Button>
+          <Button className={classes.button} style={{backgroundColor: this.state.stillSorting ? 'red' : classes.button.backgroundColor, textTransform: 'capitalize'}} onClick={ this.state.stillSorting ? this.stopSort.bind(this) : this.handleSort.bind(this)} > {this.state.stillSorting ? 'Stop Sorting' : 'Start Sorting'}</Button>
            <div>
            {this.state.show &&
             <div className="clearfix">
               <div className="buttons-wrapper">
-                <Button className={classes.button} onClick={ this.handleSubmit }>Add to own dataset</Button>
+                <Button className={classes.button} style={styles.title} onClick={ this.handleSubmit }>Add to own dataset</Button>
                 <TextField
                 className="dataset-box"
                 variant="outlined"
@@ -388,7 +393,7 @@ class MainPage extends Component {
 // };
 
 /**
- * Renders a bar - these bars are for visualisation and will be sorted based on heigh/value
+ * Renders a bar - these bars are for visualization and will be sorted based on height/value
  * 
  * @param {*} props 
  */
@@ -400,7 +405,9 @@ function Bar(props) {
       width: 20,
       margin: 3,
       height: props.size * 8, 
-      backgroundColor: props.color
+      backgroundColor: props.color,
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20
     },
     text: {
       display: 'inline-block',
