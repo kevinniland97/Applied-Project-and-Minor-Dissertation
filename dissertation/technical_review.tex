@@ -276,6 +276,7 @@ There are a few disadvantages to using PythonAnywhere:
     the server side of things.
 \end{itemize}
 
+\newpage
 \subsection{MongoDB}
 \par
 \medskip
@@ -302,6 +303,10 @@ application. Using a proxy, these requests are delegated to a flask application.
 The flask application then processes the request and will then access the 
 database to perform a certain action (such as writing user details to the 
 database, accessing user details, storing user sorts, etc). 
+
+\begin{center}
+    \includegraphics[width=13cm,height=7cm,keepaspectratio]{images/mlab}
+\end{center}
 
 \subsubsection{Advantages}
 There are a number of advantages to using MongoDB:
@@ -335,10 +340,20 @@ There are a few disadvantages to using MongoDB:
 \par
 \medskip
 
+\newpage
 \subsection{Firebase}
 \par
 \medskip
 \begin{center}
     \includegraphics[width=8cm,height=3.3cm,keepaspectratio]{images/firebase}
 \end{center}
-Firebase is a mobile and web application development platform developed by Firebase, Inc. in 2011, then acquired by Google in 2014.
+Firebase is a mobile and web application development platform developed by Firebase, Inc. in 2011, then acquired by Google in 2014. With this project, Firebase was used to store the saved sorts and to host the application.
+
+\subsubsection{Storing Sorts}
+To store and upload sorts to the database, ... was used. ....
+
+\begin{center}
+    \includegraphics[width=13cm,height=9cm,keepaspectratio]{images/storesorts}
+\end{center}
+
+To retrieve and list all files from Firebase Storage, there seems to be no clear cut way to do it purely with React. To achieve this, I had to use a mix of HTML and JavaScript. As can be seen above, Firebase itself has a lot of inbuilt functions to retrieve files from storage. First, all files stored in storage were retrieved. A download link for each file was then generated. To get around this, I had to use a library called React HTML Parser \cite{react_html_parser}. 

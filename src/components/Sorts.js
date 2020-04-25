@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-// import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import ReactHtmlParser from 'react-html-parser';
 import { withStyles } from "@material-ui/styles";
-// import { Button } from '@material-ui/core';
 import firebase from 'firebase';
 import ReactPlayer from 'react-player';
 import firebaseConfig from '../firebase/firebase-config';

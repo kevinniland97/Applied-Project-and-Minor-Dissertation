@@ -1,4 +1,3 @@
-// Imports
 import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
 import './styling/MainPage.css';
