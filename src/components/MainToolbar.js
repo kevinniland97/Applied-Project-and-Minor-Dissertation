@@ -73,7 +73,7 @@ function MainToolbar(props) {
           </MediaQuery> 
 
           <MediaQuery maxWidth={1000}>        
-            <IconButton onClick={(e) => menu(e)} edge="start" style={styles.menuButton} color="inherit" aria-label="menu">
+            <IconButton onClick={(e) => menu(e)} edge="start" style={styles.menuButton} aria-label="menu">
               <MenuIcon />
             </IconButton>
           </MediaQuery>
@@ -98,53 +98,47 @@ function MainToolbar(props) {
  * @param {*} props 
  */
 function MenuDropdown(props) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  // const [setEvent] = React.useState(null);
 
-  function handleClick(event) {
-      setAnchorEl(event.currentTarget);
-  }
+  // function handleClick(event) {
+  //     setEvent(event.currentTarget);
+  // }
 
-  function handleClose(event) {
-      setAnchorEl(null);
-  }
+  // props.onMenuClick(handleClick);
 
-  props.onMenuClick(handleClick);
+  // e
 
   return (
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <MenuItem onClick={(e) => {handleClose(e); props.history.push('bubble-sort')}}>Bubble Sort</MenuItem>
-        <MenuItem onClick={(e) => {handleClose(e); props.history.push('heap-sort')}}>Heap Sort (Almost)</MenuItem>
-        <MenuItem onClick={(e) => {handleClose(e); props.history.push('insertion-sort')}}>Insertion Sort</MenuItem>
-        <MenuItem onClick={(e) => {handleClose(e); props.history.push('merge-sort')}}>Merge Sort</MenuItem>
-        <MenuItem onClick={(e) => {handleClose(e); props.history.push('quick-sort')}}>Quick Sort</MenuItem>
-        <MenuItem onClick={(e) => {handleClose(e); props.history.push('selection-sort')}}>Selection Sort</MenuItem>
-        <MenuItem onClick={(e) => {handleClose(e); props.history.push('shell-sort')}}>Shell Sort</MenuItem>
-        <MenuItem onClick={(e) => {handleClose(e); props.history.push('bogo-sort')}}>Bogo Sort (Not working)</MenuItem>
+      <Menu id="simple-menu">
+        <MenuItem onClick={() => {props.history.push('bubble-sort')}}>Bubble Sort</MenuItem>
+        <MenuItem onClick={() => {props.history.push('heap-sort')}}>Heap Sort (Almost)</MenuItem>
+        <MenuItem onClick={() => {props.history.push('insertion-sort')}}>Insertion Sort</MenuItem>
+        <MenuItem onClick={() => {props.history.push('merge-sort')}}>Merge Sort</MenuItem>
+        <MenuItem onClick={() => {props.history.push('quick-sort')}}>Quick Sort</MenuItem>
+        <MenuItem onClick={() => {props.history.push('selection-sort')}}>Selection Sort</MenuItem>
+        <MenuItem onClick={() => {props.history.push('shell-sort')}}>Shell Sort</MenuItem>
+        <MenuItem onClick={() => {props.history.push('bogo-sort')}}>Bogo Sort (Not working)</MenuItem>
       </Menu>
   );
 }
 
 /**
+ * Buttons for the MainToolbar - Allows user to choose sorting algorithm to visualize
  * 
  * @param {*} props 
  */
 function MainToolbarButtons(props) {
+  //  color="inherit"
   return (
       <div className="sort-bar">
-        <Button style={styles.title} color="inherit" onClick={() => props.history.push('bubble-sort')}>Bubble Sort</Button>
-        <Button style={styles.title} color="inherit" onClick={() => props.history.push('heap-sort')}>Heap Sort (Almost)</Button>
-        <Button style={styles.title} color="inherit" onClick={() => props.history.push('insertion-sort')}>Insertion Sort</Button>
-        <Button style={styles.title} color="inherit" onClick={() => props.history.push('merge-sort')}>Merge Sort</Button>
-        <Button style={styles.title} color="inherit" onClick={() => props.history.push('quick-sort')}>Quick Sort</Button>
-        <Button style={styles.title} color="inherit" onClick={() => props.history.push('selection-sort')}>Selection Sort</Button>
-        <Button style={styles.title} color="inherit" onClick={() => props.history.push('shell-sort')}>Shell Sort</Button>
-        <Button style={styles.title} color="inherit" onClick={() => props.history.push('bogo-sort')}>Bogo Sort (Not working)</Button>
+        <Button style={styles.title} onClick={() => props.history.push('bubble-sort')}>Bubble Sort</Button>
+        <Button style={styles.title} onClick={() => props.history.push('heap-sort')}>Heap Sort (Almost)</Button>
+        <Button style={styles.title} onClick={() => props.history.push('insertion-sort')}>Insertion Sort</Button>
+        <Button style={styles.title} onClick={() => props.history.push('merge-sort')}>Merge Sort</Button>
+        <Button style={styles.title} onClick={() => props.history.push('quick-sort')}>Quick Sort</Button>
+        <Button style={styles.title} onClick={() => props.history.push('selection-sort')}>Selection Sort</Button>
+        <Button style={styles.title} onClick={() => props.history.push('shell-sort')}>Shell Sort</Button>
+        <Button style={styles.title} onClick={() => props.history.push('bogo-sort')}>Bogo Sort (Not working)</Button>
       </div>
   );
 }

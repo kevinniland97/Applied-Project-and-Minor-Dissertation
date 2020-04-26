@@ -161,6 +161,7 @@ class MainPage extends Component {
       clearInterval(this.isFinished);
       this.isFinished = null;
 
+      // Sets stillSorting to false
       this.setState({stillSorting: false});
     }
   }
@@ -330,12 +331,7 @@ class MainPage extends Component {
    * Stops sorting the array on button click
    */
   stopSort() {
-    if (this.isFinished) {
-      clearInterval(this.isFinished);
-      this.isFinished = null;
-
-      this.setState({stillSorting: false});
-    }
+   this.handleInterval();
   }
 
   /**
