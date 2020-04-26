@@ -9,7 +9,7 @@ This chapter discusses the system design, analysing the various aspects of the p
 This project utilises the multi-tier architecture (often referred to as n-tier architecture) platform. Multi-tier architecture or multilayered architecture is a client–server architecture in which presentation, application processing, and data management functions are physically separated. The most widespread use of multi-tier architecture is the three-tier architecture. This project consists of ... main components, all working together: The web application, which represents the presentation layer, allows users to visualise various sorting algorithms, register and login, upload and view past sorts from other users. The Flask server, which represents the logic tier, handles requests such as account registration and log in, and uploading and retrieving of sorts by users.
 
 \begin{center}
-    \includegraphics[width=15cm,height=12cm,keepaspectratio]{images/system_design}
+    \includegraphics[width=15cm,height=17cm,keepaspectratio]{images/AppDesign}
 \end{center}
 \newpage
 
@@ -25,7 +25,7 @@ The web application was designed and developed first as this is the main aspect 
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[scale=.4]{images/web_app_main}
+    \includegraphics[scale=.35]{images/web_app_main}
     \label{fig:main_page}
 \end{figure}
 
@@ -55,6 +55,9 @@ Bubble sort, sometimes referred to as sinking sort, is a simple sorting algorith
 \par
 \bigskip
 This simple algorithm performs poorly in real world use and is used primarily as an educational tool. More efficient algorithms such as Tim Sort, or Merge Sort are used by the sorting libraries built into popular programming languages such as Python and Java.
+
+\paragraph{How it works in the context of the application}
+
 
 \subsubsection{Heap Sort}
 

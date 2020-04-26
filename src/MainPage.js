@@ -14,7 +14,7 @@ import Shell from './algorithms/ShellSort.js';
 import MainToolbar from './components/MainToolbar';
 
 // Constants
-const defaultDatasetSize = 50;
+const defaultDatasetSize = 70;
 const defaultSortSpeed = 200;
 const maxSortSpeed = 200;
 const highlightColors = ['red', 'purple', 'blue', 'gray'];
@@ -47,7 +47,7 @@ function ArrayElement(props) {
     bar: {
       color: 'green',
       display: 'inline-block',
-      width: 20,
+      width: 17,
       margin: 3,
       height: props.size * 9, 
       backgroundColor: props.color,
