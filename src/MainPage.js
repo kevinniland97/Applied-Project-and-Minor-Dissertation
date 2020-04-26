@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
 import './styling/MainPage.css';
 import { withStyles } from '@material-ui/styles';
-// import PropTypes from 'prop-types';
 import TextField from "@material-ui/core/TextField";
 import BubbleSort from './algorithms/BubbleSort.js';
 import InsertionSort from './algorithms/InsertionSort.js';
@@ -39,6 +38,39 @@ const styles = {
 }
 
 /**
+ * Renders a bar - these bars are for visualization and will be sorted based on height/value
+ * 
+ * @param {*} props 
+ */
+function ArrayElement(props) {
+  const barStyling = {
+    bar: {
+      color: 'green',
+      display: 'inline-block',
+      width: 20,
+      margin: 3,
+      height: props.size * 9, 
+      backgroundColor: props.color,
+      borderBottomLeftRadius: 22,
+      borderBottomRightRadius: 22,
+      borderTopLeftRadius: 22,
+      borderTopRightRadius: 22
+    },
+    text: {
+      display: 'inline-block',
+      color: 'black'
+    }
+  }
+
+  // Renders a bar for element in the array
+  return (
+    <div className='array-element' style={barStyling.bar}>
+      <h7 style={barStyling.text}>{ barStyling.bar.height / 9}</h7>
+    </div>
+  );
+}
+
+/**
  * MainPage - Main page of the application. Allows users to choose a sorting algorithm to visualize
  */
 class MainPage extends Component {
@@ -49,35 +81,33 @@ class MainPage extends Component {
     this.state = {
       array: [], // Array of elements to sort
       isSelected: [], // Array of selected elements up for sorting
+      show: true, // Will enable access to various functionality if user is logged in
       stillSorting: false, // Determines whether the array of elements is still being sorted
       sortName: 'Bubble Sort', // Default sort name
-      dataset: '', // Contains the user dataset
-      show: true // Will enable access to various functionality if user is logged in
+      dataset: '' // Contains the user dataset
     }; 
 
-    // this.sortHistory = []; 
-    // this.selectedHistory = [];
     this.sortHistoryIndex = 0;
-    this.interval = null;
+    this.isFinished = null;
     this.sortSize = defaultDatasetSize;
     this.sortSpeed = defaultSortSpeed;
-
-    
-    this.props.history.listen((location, action) => {
+ 
+    this.props.history.listen((algorithm) => {
       this.generateRandomArray();
 
-      // let path = location.pathname;
-
       // Determines which sort name to display based on chosen sorting algorithm
-      switch (location.pathname) {
+      switch (algorithm.pathname) {
+        case '/bogo-sort':
+          this.setState({sortName: 'Bogo Sort'});
+          break;
         case '/bubble-sort':
           this.setState({sortName: 'Bubble Sort'});
           break;
+        case '/heap-sort':
+          this.setState({sortName: 'Heap Sort'});
+          break;
         case '/insertion-sort':
           this.setState({sortName: 'Insertion Sort'});
-          break;
-        case '/selection-sort':
-          this.setState({sortName: 'Selection Sort'});
           break;
         case '/merge-sort':
           this.setState({sortName: 'Merge Sort'});
@@ -85,11 +115,8 @@ class MainPage extends Component {
         case '/quick-sort':
           this.setState({sortName: 'Quick Sort'});
           break;
-        case '/bogo-sort':
-          this.setState({sortName: 'Bogo Sort'});
-          break;
-        case '/heap-sort':
-          this.setState({sortName: 'Heap Sort'});
+        case '/selection-sort':
+          this.setState({sortName: 'Selection Sort'});
           break;
         case '/shell-sort':
           this.setState({sortName: 'Shell Sort'});
@@ -108,6 +135,7 @@ class MainPage extends Component {
   componentDidMount() {
     this.generateRandomArray();
 
+    // Displays logged in user
     if (localStorage.getItem('loggedIn') === 'true') {
       console.log("Logged in");
 
@@ -127,11 +155,21 @@ class MainPage extends Component {
     }
   }
 
+  // Checks if array is still being sorted
+  handleInterval() {
+    if (this.isFinished) {
+      clearInterval(this.isFinished);
+      this.isFinished = null;
+
+      this.setState({stillSorting: false});
+    }
+  }
+
   /**
    * Handles dataset defined by user
    */
-  handleDataset = ({ target }) => {
-    this.setState({ dataset: target.value });
+  handleDataset = ({ arr }) => {
+    this.setState({ dataset: arr.value });
   };
 
   /**
@@ -149,13 +187,8 @@ class MainPage extends Component {
    * @param {*} dataset - Dataset defined by user
    */
   generateUserArray(dataset) {
-    // if (this.interval) {
-    //   clearInterval(this.interval);
-
-    //   this.interval = null;
-      this.setState({ stillSorting: false });
-    // }
-
+    this.handleInterval();
+    
     this.sortHistoryIndex = 0;
     this.sortHistory = [];
     this.highlightHistory = [];
@@ -195,13 +228,7 @@ class MainPage extends Component {
    * Generates a random array of a fixed size
    */ 
   generateRandomArray() {
-    // if (this.interval) {
-    //   clearInterval(this.interval);
-    //   this.interval = null;
-
-      this.setState({stillSorting: false});
-    // }
-
+    this.handleInterval();
     
     this.sortHistoryIndex = 0;
     this.sortHistory = [];
@@ -209,8 +236,8 @@ class MainPage extends Component {
 
     let array = [];
 
-    for (let i = 0; i < this.sortSize; i++) {
-      array.push(Math.floor( Math.random() * 50) + 1);
+    for (let i = 1; i < this.sortSize; i++) {
+      array.push(Math.floor(Math.random() * 50) + 1);
     }
 
     this.setState({array: array, isSelected: -1});
@@ -224,17 +251,18 @@ class MainPage extends Component {
    * @param {*} selectedHistory - Elements that have been selected for sorting
    */
   sortSelected(array, sortHistory, selectedHistory) {
-    // let path = this.props.location.pathname;
-
     switch (this.props.location.pathname) {
+      case '/bogo-sort':
+        BogoSort.bogoSort(array.slice(), sortHistory, selectedHistory);
+        break;
       case '/bubble-sort':
         BubbleSort.bubbleSort(array.slice(), sortHistory, selectedHistory);
         break;
+      case '/heap-sort':
+        HeapSort.heapSort(array.slice(), sortHistory, selectedHistory);
+        break;
       case '/insertion-sort':
         InsertionSort.insertionSort(array.slice(), sortHistory, selectedHistory);
-        break;
-      case '/selection-sort':
-        SelectionSort.selectionSort(array.slice(), sortHistory, selectedHistory);
         break;
       case '/merge-sort':
         MergeSort.mergeSort(array.slice(), sortHistory, selectedHistory);
@@ -242,11 +270,8 @@ class MainPage extends Component {
       case '/quick-sort':
         QuickSort.quickSort(array.slice(), sortHistory, selectedHistory);
         break;
-      case '/bogo-sort':
-        BogoSort.bogoSort(array.slice(), sortHistory, selectedHistory);
-        break;
-      case '/heap-sort':
-        HeapSort.heapSort(array.slice(), sortHistory, selectedHistory);
+      case '/selection-sort':
+        SelectionSort.selectionSort(array.slice(), sortHistory, selectedHistory);
         break;
       case '/shell-sort':
         Shell.shellSort(array.slice(), sortHistory, selectedHistory);
@@ -260,7 +285,7 @@ class MainPage extends Component {
    * Handles sorting
    */
   handleSort() {
-    if (this.interval) {
+    if (this.isFinished) {
       return;
     }
 
@@ -278,16 +303,16 @@ class MainPage extends Component {
       }
     }  
 
-    this.setState({stillSorting: true});
+    this.setState({ stillSorting: true });
 
-    if (this.interval) {
-      clearInterval(this.interval);
+    if (this.isFinished) {
+      clearInterval(this.isFinished);
     }
     
-    this.interval = setInterval( () => {
+    this.isFinished = setInterval( () => {
       if (this.sortHistoryIndex >= this.sortHistory.length - 1) {
-        clearInterval(this.interval);
-        this.interval = null;
+        clearInterval(this.isFinished);
+        this.isFinished = null;
 
         this.setState({stillSorting: false});
       }
@@ -305,9 +330,9 @@ class MainPage extends Component {
    * Stops sorting the array on button click
    */
   stopSort() {
-    if (this.interval) {
-      clearInterval(this.interval);
-      this.interval = null;
+    if (this.isFinished) {
+      clearInterval(this.isFinished);
+      this.isFinished = null;
 
       this.setState({stillSorting: false});
     }
@@ -338,9 +363,6 @@ class MainPage extends Component {
       <div className="App">
         <MainToolbar history={this.props.history} />
 
-        {/* Display the current sorting algorithm chosen */}
-        <span className="sort-name">{this.state.sortName}</span>
-
         <div>
         {this.state.show &&
           <div className="record-wrapper">
@@ -349,10 +371,24 @@ class MainPage extends Component {
             </a>
           </div>}
         </div>
+        
+        {/* Displays state of application */}
+        <div>
+        {this.state.stillSorting &&
+          <span className="sort-name">Sorting array...</span>}
+        </div>
+
+        <div>
+        {!this.state.stillSorting &&
+          <span className="sort-name">Waiting...</span>}
+        </div>
 
         <div className="bar-wrapper">
-          {this.state.array.map((item, index) => <Bar key={index} size={item} color={this.determineBarColor(this.state.isSelected, index)}/>)}
+          {this.state.array.map((item, index) => <ArrayElement key={index} size={item} color={this.determineBarColor(this.state.isSelected, index)}/>)}
         </div>
+          
+        {/* Display the current sorting algorithm chosen */}
+        <span className="sort-name">Current sorting algorithm: {this.state.sortName}</span>
 
         <div className="buttons-wrapper">
           <Button className={classes.button} style={styles.title} onClick={ () => this.generateRandomArray()}>Generate random array</Button>
@@ -378,41 +414,6 @@ class MainPage extends Component {
       </div>
     );
   }
-}
-
-// MainPage.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
-
-/**
- * Renders a bar - these bars are for visualization and will be sorted based on height/value
- * 
- * @param {*} props 
- */
-function Bar(props) {
-  const barStyling = {
-    bar: {
-      color: 'green',
-      display: 'inline-block',
-      width: 20,
-      margin: 3,
-      height: props.size * 8, 
-      backgroundColor: props.color,
-      borderTopLeftRadius: 20,
-      borderTopRightRadius: 20
-    },
-    text: {
-      display: 'inline-block',
-      color: 'black'
-    }
-  }
-
-  // Renders a bar for element in the array
-  return (
-    <div className='bar' style={barStyling.bar}>
-      <h7 style={barStyling.text}>{ barStyling.bar.height / 8}</h7>
-    </div>
-  );
 }
 
 export default withStyles(styles)(MainPage);

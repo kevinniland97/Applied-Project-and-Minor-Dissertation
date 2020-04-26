@@ -26,10 +26,12 @@
 
 html {
   height: 100%;
+  overflow: hidden;
 }
 
 body {
   height: 100%;
+  overflow: hidden;
 }
 
 .sort-name {
@@ -42,10 +44,9 @@ body {
   
 .bar-wrapper {
   color: black;
-  height: 550px;
+  height: 100%;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
 }
   
 .buttons-wrapper {
@@ -58,7 +59,7 @@ body {
   text-align: center;
 }
   
-.bar {
+.array-element {
   display: inline-block;
   color: 'white';
   width: 20px;
