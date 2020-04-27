@@ -90,7 +90,7 @@ class Sorts extends Component {
          * 
          * This is was the only way I found that could list all files from storage - seems very difficult to do in React itself
          */
-        const html = '<style>body { background-color: rgb(45, 87, 69);} </style><body><table id="List"><tbody></tbody></table></body>';
+        const html = '<style> table.List { table-layout: fixed; } #List { font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; border-collapse: collapse; width: 100%; } #List td, #customers th { border: 1px solid #56935c; padding: 8px; } #List tr:nth-child(even){background-color: #f2f2f2;} #List tr:hover {background-color: #ddd;} #List th { padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #56935c; color: white; }</style><body><table id="List"><tbody><tr><th>File Name</th><th>File Link</th></tr></tbody></table></body>';
 
         $('#List').find('tbody').html('');
 
@@ -99,20 +99,21 @@ class Sorts extends Component {
          */
         firebase.storage().ref().child('sorts/').listAll().then(function(res) {
             res.items.forEach(function(ref) {
-                ref.getDownloadURL().then(function(url) {
-                // ref.getMetadata().then(function(url) {
-                    let new_html = '';
+                ref.getMetadata().then(function(url) {
+                    ref.getDownloadURL().then(function(file) {
+                        let new_html = '';
     
-                    new_html += '<tr>';
-                    new_html += '<td>';
-                    new_html += '<li>';
-                    new_html += '</td>';
-                    new_html += '<td>';
-                    new_html += url;
-                    new_html += '</td>';
-                    new_html += '</tr>';
-    
-                    $('#List').find('tbody').append(new_html);
+                        new_html += '<tr>';
+                        new_html += '<td>';
+                        new_html += url.name;
+                        new_html += '</td>';
+                        new_html += '<td>';
+                        new_html += file;
+                        new_html += '</td>';
+                        new_html += '</tr>';
+        
+                        $('#List').find('tbody').append(new_html);
+                    });
                 });
             });
         });
@@ -121,14 +122,14 @@ class Sorts extends Component {
         <body className="App">
             <SortsToolbar history={this.props.history} />
             
-            <FileUploader 
-                className="btn btn-primary"
+            <div className="file-uploader">
+                <FileUploader 
                 accept="*"
                 name="video"
                 storageRef={firebase.storage().ref('sorts')} 
                 onUploadStart={this.handleUploadStart}
                 onUploadSuccess={this.handleUploadSuccess} />
-                <br/>
+            </div>
 
             <div className="player">
                 <ReactPlayer 

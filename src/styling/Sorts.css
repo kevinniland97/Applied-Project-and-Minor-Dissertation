@@ -1,19 +1,25 @@
 .player {
-    width: 55%;
+    width: 43%;
     height: 55%;
-    margin-right: 2%;
-    float: left;
+    margin-left: 10%;
+    float: right;
 }
 
 .react-player {
-    width: 100%;
+    width: 70%;
     height: 100%;
-    background-color: rgb(61, 161, 255);
 }
 
 .sort-list {
     width: 43%;
-    float: right;
+    float: left;
+    margin-left: 2%;
+}
+
+.file-uploader {
+    margin-left: 2%;
+    background-color: #56935c;
+    margin-right: 86%;
 }
 
 .clearfix {

@@ -11,6 +11,8 @@ export const register = newUser => {
         })
         .then(response => {
             console.log("User successfully registered")
+
+            return response
         })
 }
 
@@ -22,6 +24,7 @@ export const login = user => {
         })
         .then(response => {
             localStorage.setItem('User successfully logged in. Token', response.data.token)
+
             return response.data.token
         })
         .catch(err => {

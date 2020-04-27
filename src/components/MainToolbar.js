@@ -38,6 +38,26 @@ function logOut() {
 }
 
 /**
+ * Buttons for the MainToolbar - Allows user to choose sorting algorithm to visualize
+ * 
+ * @param {*} props 
+ */
+function MainToolbarButtons(props) {
+  return (
+      <div className="sort-bar">
+        <Button style={styles.title} onClick={() => props.history.push('bubble-sort')}>Bubble Sort</Button>
+        <Button style={styles.title} onClick={() => props.history.push('heap-sort')}>Heap Sort (Almost)</Button>
+        <Button style={styles.title} onClick={() => props.history.push('insertion-sort')}>Insertion Sort</Button>
+        <Button style={styles.title} onClick={() => props.history.push('merge-sort')}>Merge Sort</Button>
+        <Button style={styles.title} onClick={() => props.history.push('quick-sort')}>Quick Sort</Button>
+        <Button style={styles.title} onClick={() => props.history.push('selection-sort')}>Selection Sort</Button>
+        <Button style={styles.title} onClick={() => props.history.push('shell-sort')}>Shell Sort</Button>
+        <Button style={styles.title} onClick={() => props.history.push('bogo-sort')}>Bogo Sort (Not working)</Button>
+      </div>
+  );
+}
+
+/**
  * Toolbar for main page. Allows user to choose a sorting algorithm to visualize
  * 
  * @param {*} props 
@@ -65,7 +85,7 @@ function MainToolbar(props) {
           <div style={styles.line}></div>
 
           <MediaQuery minWidth={1000}>
-            <Typography style={{ flexGrow: 1 }}>
+            <Typography style={{ flexGrow: 3 }}>
               <MainToolbarButtons className="menu" history={ props.history } />
             </Typography>
           </MediaQuery> 
@@ -87,26 +107,6 @@ function MainToolbar(props) {
         </Toolbar>
     </AppBar>
     </div>
-  );
-}
-
-/**
- * Buttons for the MainToolbar - Allows user to choose sorting algorithm to visualize
- * 
- * @param {*} props 
- */
-function MainToolbarButtons(props) {
-  return (
-      <div className="sort-bar">
-        <Button style={styles.title} onClick={() => props.history.push('bubble-sort')}>Bubble Sort</Button>
-        <Button style={styles.title} onClick={() => props.history.push('heap-sort')}>Heap Sort (Almost)</Button>
-        <Button style={styles.title} onClick={() => props.history.push('insertion-sort')}>Insertion Sort</Button>
-        <Button style={styles.title} onClick={() => props.history.push('merge-sort')}>Merge Sort</Button>
-        <Button style={styles.title} onClick={() => props.history.push('quick-sort')}>Quick Sort</Button>
-        <Button style={styles.title} onClick={() => props.history.push('selection-sort')}>Selection Sort</Button>
-        <Button style={styles.title} onClick={() => props.history.push('shell-sort')}>Shell Sort</Button>
-        <Button style={styles.title} onClick={() => props.history.push('bogo-sort')}>Bogo Sort (Not working)</Button>
-      </div>
   );
 }
 

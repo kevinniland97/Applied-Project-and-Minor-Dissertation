@@ -286,14 +286,6 @@ class MainPage extends Component {
    * Handles sorting
    */
   handleSort() {
-    if (this.isFinished) {
-      return;
-    }
-
-    if (this.sortHistory.length !== 0 && this.sortHistoryIndex === this.sortHistory.length) {
-      return;
-    }
-
     if (this.sortHistoryIndex === 0) {
       this.sortSelected(this.state.array.slice(), this.sortHistory, this.selectedHistory);
 
@@ -305,10 +297,6 @@ class MainPage extends Component {
     }  
 
     this.setState({ stillSorting: true });
-
-    if (this.isFinished) {
-      clearInterval(this.isFinished);
-    }
     
     this.isFinished = setInterval( () => {
       if (this.sortHistoryIndex >= this.sortHistory.length - 1) {
