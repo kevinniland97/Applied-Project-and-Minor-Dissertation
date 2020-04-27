@@ -1,7 +1,5 @@
 import React from 'react';
 import { AppBar, Button, Toolbar, Typography, IconButton, ButtonGroup } from '@material-ui/core';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
 import MediaQuery from 'react-responsive';
 import { Dropdown } from 'react-bootstrap';
@@ -18,7 +16,7 @@ const styles = {
     borderRightStyle: 'solid',
     borderWidth: 1
   },
-  menuButton: {
+  button: {
     position: 'absolute',
     right: 15
   },
@@ -73,12 +71,10 @@ function MainToolbar(props) {
           </MediaQuery> 
 
           <MediaQuery maxWidth={1000}>        
-            <IconButton onClick={(e) => menu(e)} edge="start" style={styles.menuButton} aria-label="menu">
+            <IconButton onClick={(e) => menu(e)} edge="start" style={styles.button} aria-label="menu">
               <MenuIcon />
             </IconButton>
           </MediaQuery>
-          
-          <MenuDropdown onMenuClick={(e) => {menu = e;}} history={props.history} />
 
           <div style={styles.line}></div>
 
@@ -95,40 +91,11 @@ function MainToolbar(props) {
 }
 
 /**
- * @param {*} props 
- */
-function MenuDropdown(props) {
-  // const [setEvent] = React.useState(null);
-
-  // function handleClick(event) {
-  //     setEvent(event.currentTarget);
-  // }
-
-  // props.onMenuClick(handleClick);
-
-  // e
-
-  return (
-      <Menu id="simple-menu">
-        <MenuItem onClick={() => {props.history.push('bubble-sort')}}>Bubble Sort</MenuItem>
-        <MenuItem onClick={() => {props.history.push('heap-sort')}}>Heap Sort (Almost)</MenuItem>
-        <MenuItem onClick={() => {props.history.push('insertion-sort')}}>Insertion Sort</MenuItem>
-        <MenuItem onClick={() => {props.history.push('merge-sort')}}>Merge Sort</MenuItem>
-        <MenuItem onClick={() => {props.history.push('quick-sort')}}>Quick Sort</MenuItem>
-        <MenuItem onClick={() => {props.history.push('selection-sort')}}>Selection Sort</MenuItem>
-        <MenuItem onClick={() => {props.history.push('shell-sort')}}>Shell Sort</MenuItem>
-        <MenuItem onClick={() => {props.history.push('bogo-sort')}}>Bogo Sort (Not working)</MenuItem>
-      </Menu>
-  );
-}
-
-/**
  * Buttons for the MainToolbar - Allows user to choose sorting algorithm to visualize
  * 
  * @param {*} props 
  */
 function MainToolbarButtons(props) {
-  //  color="inherit"
   return (
       <div className="sort-bar">
         <Button style={styles.title} onClick={() => props.history.push('bubble-sort')}>Bubble Sort</Button>
