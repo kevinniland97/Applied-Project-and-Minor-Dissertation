@@ -182,6 +182,39 @@ class MainPage extends Component {
     this.generateUserArray(dataset);
   };
 
+   /**
+   * Handles sorting
+   */
+  handleSort() {
+    if (this.sortHistoryIndex === 0) {
+      this.sortSelected(this.state.array.slice(), this.sortHistory, this.selectedHistory);
+
+      this.sortHistoryIndex = 0;
+
+      if (this.sortHistory.length === 1) {
+        return;
+      }
+    }  
+
+    this.setState({ stillSorting: true });
+    
+    this.isFinished = setInterval( () => {
+      if (this.sortHistoryIndex >= this.sortHistory.length - 1) {
+        clearInterval(this.isFinished);
+        this.isFinished = null;
+
+        this.setState({stillSorting: false});
+      }
+
+      this.setState({
+        array: this.sortHistory[this.sortHistoryIndex], 
+        isSelected: this.selectedHistory[this.sortHistoryIndex]
+      });
+
+      this.sortHistoryIndex++;
+    }, maxSortSpeed - this.sortSpeed);
+  }
+
   /**
    * Generates an array to be sorted based on user input
    * 
@@ -280,39 +313,6 @@ class MainPage extends Component {
       default:
         BubbleSort.bubbleSort(array.slice(), sortHistory, selectedHistory);
     }
-  }
-
-  /**
-   * Handles sorting
-   */
-  handleSort() {
-    if (this.sortHistoryIndex === 0) {
-      this.sortSelected(this.state.array.slice(), this.sortHistory, this.selectedHistory);
-
-      this.sortHistoryIndex = 0;
-
-      if (this.sortHistory.length === 1) {
-        return;
-      }
-    }  
-
-    this.setState({ stillSorting: true });
-    
-    this.isFinished = setInterval( () => {
-      if (this.sortHistoryIndex >= this.sortHistory.length - 1) {
-        clearInterval(this.isFinished);
-        this.isFinished = null;
-
-        this.setState({stillSorting: false});
-      }
-
-      this.setState({
-        array: this.sortHistory[this.sortHistoryIndex], 
-        isSelected: this.selectedHistory[this.sortHistoryIndex]
-      });
-
-      this.sortHistoryIndex++;
-    }, maxSortSpeed - this.sortSpeed);
   }
 
   /**

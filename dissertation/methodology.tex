@@ -113,6 +113,11 @@ Node.js applications for the desktop running on the Blink layout engine. Visual
 Studio Code is a source code editor that can be used with a variety of 
 programming languages, including Java, JavaScript, Go, Node.js and C++.
 
+Visual Studio Code was used throughout the development of the project as an obvious choice. Visual Studio Code provides support for many different types of files, which aids in development. It also has an in-built terminal which provides a detailed output and updates on project changes and output and feedback when the project is run. It also supports the installation of various different libraries and extensions through the command line or the built-in Marketplace. 
+
+While certain IDEs are more suitable to certain languages (such as Eclipse being used to develop Java projects), Visual Studio Code is very suitable to developing web applications due to it's design. 
+
+
 \section{Source Control}
 \begin{center}
     \includegraphics[width=8cm,height=3.3cm,keepaspectratio]{images/github}
@@ -132,20 +137,14 @@ There are a number of advantages to using Git:
     local repository, complete with a full history of commits. Having a full 
     local history makes Git fast, since it means you don’t need a network 
     connection to create commits, inspect previous versions of a file, or 
-    perform diffs between commits.
+    perform diffs between commits. 
     \item \textbf{Faster Release Cycle} - As a result of feature branches,
     distributed development, pull requests, etc. is a faster release cycle. This
     facilitates an agile workflow, encouraging developers to share smaller 
     changes more frequently. This results in changes get pushed down the 
     development pipeline faster
-    \item \textbf{Testing} - The main type of software testing development 
-    process used throughout the project was Test-driven development (TDD). 
-    Several different types of testing was used throughout in conjunction, such 
-    as Integration Testing, Unit Testing, System Testing, Performance Testing, 
-    etc. Several tools were used to aid in this, which included Postman, ... TDD
-    allows for continuous testing to happen alongside the development of the 
-    project.
 \end{itemize}
+
 \newpage
 \subsubsection{Disadvantages}
 Git is a very well-designed tool and, as such, has very few disadvantages:
@@ -163,15 +162,3 @@ Git is a very well-designed tool and, as such, has very few disadvantages:
     targeted constantly. In addition, some clients/employers will only allow 
     code on their own secure internal Git as a matter of policy.
 \end{itemize}
-
-The above mentioned testing processes suited this type of project as there were
-many different iterations of the project. Using testing processes such as 
-Integration Testing, Unit Testing, System Testing, etc. ensured new and old code
-worked with each and every iteration of the project.
-\par
-\medskip
-\par
-\medskip
-\begin{center}
-    \includegraphics[width=8cm,height=3.3cm,keepaspectratio]{images/tdd}
-\end{center}

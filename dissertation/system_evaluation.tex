@@ -101,19 +101,40 @@ combined and tested as a group. Integration testing is conducted to evaluate the
 compliance of a system or component with specified functional requirements.
 \par
 \bigskip
-Integration testing was carried out throughout development and was integral in ensuring components worked with already integrated components without breaking the system.
+Integration testing was carried out throughout development and was integral in ensuring components worked with already integrated components without breaking the system. When a new component was added to the application, the entire application was tested in full before committing the changes to GitHub to make sure the new component didn't negatively affect or break the application. 
 
 \section{Unit Testing}
 \begin{center}
-    \includegraphics[width=12cm,height=10cm,keepaspectratio]{images/unit}
+    \includegraphics[width=12cm,height=8cm,keepaspectratio]{images/unit}
 \end{center}
-Unit Testing is a level of software testing where individual units/ components
+Unit Testing is a level of software testing where individual units/components
 of a software are tested. The purpose is to validate that each unit of the
 software performs as designed. A unit is the smallest testable part of any 
 software. It usually has one or a few inputs and usually a single output.
 \par
 \bigskip
-Unit testing was carried out on individual components before they were integrated into the system.
+Unit testing was carried out on individual components before they were integrated into the system. Several different pieces of software were used to help test the application.
+
+\subsection{Postman}
+\begin{center}
+    \includegraphics[width=12cm,height=4cm,keepaspectratio]{images/postman}
+\end{center}
+To test the user authentication aspect of the application, Postman was used to test requests made to the database to see if a user could successfully register for an account and log into an account. Requests could be made to the database via the Flask Server (hosted on PythonAnywhere), which would then return a response.
+
+\subsubsection{Register}
+\begin{center}
+    \includegraphics[width=12cm,height=4cm,keepaspectratio]{images/postman_register}
+\end{center}
+Using the POST method, a request is made to see if a user with the above details is able to successfully register an account with the application.
+
+\subsubsection{Login}
+\begin{center}
+    \includegraphics[width=12cm,height=4cm,keepaspectratio]{images/postman_login}
+\end{center}
+Using the POST method, a request is made to see if a user with the above details is able to successfully login to the application.
+
+\subsection{Sorting Algorithms}
+Before each sorting algorithm was implemented and added into the application, they were first written and tested on sample inputs and arrays.
 
 \section{System Testing}
 \begin{center}

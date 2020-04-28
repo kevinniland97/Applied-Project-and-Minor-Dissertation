@@ -16,6 +16,16 @@
 \usepackage{graphicx}
 \usepackage[super]{nth}
 
+\usepackage{xcolor}
+
+\usepackage{xparse}
+
+\NewDocumentCommand{\codeword}{v}{%
+\texttt{\textcolor{grey}{#1}}%
+}
+
+\lstset{language=Python,keywordstyle={\bfseries \color{grey}}}
+
 \addbibresource{references.bib}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
@@ -110,4 +120,5 @@
 \cite{screenflow}
 \cite{user_auth}
 \cite{react_bar}
+\cite{file_uploader}
 \end{document}

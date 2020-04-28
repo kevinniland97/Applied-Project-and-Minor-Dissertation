@@ -10,6 +10,13 @@
     height: 100%;
 }
 
+.rectangle {
+    margin-left: 10%;
+    margin-right: 20%;
+    float: right;
+    background: black;
+}
+
 .sort-list {
     width: 43%;
     float: left;

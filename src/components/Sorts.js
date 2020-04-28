@@ -35,6 +35,10 @@ const styles = () => ({
         color: "#f50057",
         marginBottom: 5,
         textAlign: "center"
+    },
+    rectangle: {
+        width: '50px',
+        height: '50px',
     }
 });
 
@@ -65,6 +69,7 @@ class Sorts extends Component {
     }
 
     handleUploadStart = () => {
+        // On upload start, progress of upload is set to 0
         this.setState ({
           progress: 0
         })
@@ -75,11 +80,15 @@ class Sorts extends Component {
           sort: filename, 
           progress: 100
         })
-    
+        
+        // File will be uploaded to the sorts folder and download URL will be saved to state
         firebase.storage().ref('sorts').child(filename).getDownloadURL()
         .then(url => this.setState ({
           videoURL: url
         }))
+
+        // Reload the page once the file has been uploaded to update the list of files
+        window.location.reload();
     }
 
     render() {
@@ -90,8 +99,9 @@ class Sorts extends Component {
          * 
          * This is was the only way I found that could list all files from storage - seems very difficult to do in React itself
          */
-        const html = '<style> table.List { table-layout: fixed; } #List { font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; border-collapse: collapse; width: 100%; } #List td, #customers th { border: 1px solid #56935c; padding: 8px; } #List tr:nth-child(even){background-color: #f2f2f2;} #List tr:hover {background-color: #ddd;} #List th { padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #56935c; color: white; }</style><body><table id="List"><tbody><tr><th>File Name</th><th>File Link</th></tr></tbody></table></body>';
-
+        const html = '<style>table.List { table-layout: fixed; } #List { font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; border-collapse: collapse; width: 100%; } #List td, #customers th { border: 1px solid #56935c; padding: 8px; } #List tr:nth-child(even){background-color: #f2f2f2;} #List tr:hover {background-color: #ddd;} #List th { padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #56935c; color: white; }</style><body><table id="List"><tbody><tr><th>File Name</th><th>File Link</th></tr></tbody></table></body>';
+        // const rectangle = '<style>.square { height: 300px; width: 300px; background-color: #555; } </style><body><div class="square"></div> </body>';
+        
         $('#List').find('tbody').html('');
 
         /**
@@ -150,6 +160,10 @@ class Sorts extends Component {
                     } 
                 }}
                 />
+            </div>
+
+            <div className="rectangle">
+                
             </div>
 
             <div className="sort-list">

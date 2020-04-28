@@ -5,7 +5,7 @@ and why certain technologies were used over others.
 
 \section{Overview}
 This project is comprised of React as the frontend, Flask as the server which is
-hosted on PythonAnywhere, MongoDB as the database for user authentication, Firebase as the database to store sorts, and Docker to deploy/host the application. Throughout the project, the following technologies were also used 
+hosted on PythonAnywhere, MongoDB as the database for user authentication, Firebase as the database to store sorts, and Docker and Firebase to deploy/host the application. Throughout the project, the following technologies were also used 
 and tested before the above was ultimately chosen:
 \begin{itemize}
     \item Angular/Ionic
@@ -42,9 +42,8 @@ React has many advantages, several of which apply to this project:
 
 \begin{itemize}
     \item \textbf{Wide React and Redux toolset} - Both React and Redux come with a set of related tools that make a developer’s life easier. For instance, React Developer Tools extension for Chrome and a similar one for Firefox allow for examining component hierarchies in the virtual DOM and editing states and properties. Additionally, you can check React Sight that visualizes state and prop trees; Reselect DevTools that helps with debugging and visualizing Reselect, a selector library for Redux. Redux DevTools Profiler Monitor allows for profiling actions in well.
-    \item \textbf{Faster Rendering} - Building a high-load application is essential to consider how the structure will impact the overall app performance. Even latest platforms and engines can't ensure the absence of annoying bottlenecks, because DOM (Document Object Model) is tree-structured and even small changes at the upper layer can cause awful ripples to the interface. To solve the issue, Facebook development team has introduced Virtual DOM – currently, one of the benefits of using React for heavy loaded and dynamic software solutions. As the name suggests, it is a virtual representation of the document object model, so all the changes are applied to the virtual DOM first and then, using diff algorithm, the minimal scope of necessary DOM operations is calculated. Finally, the real DOM tree is updated accordingly, ensuring minimum time consumed. This method guarantees better user experience and higher app performance.
+    \item \textbf{Faster Rendering} - Building a high-load application is essential to consider how the structure will impact the overall app performance. Even latest platforms and engines can't ensure the absence of bottlenecks, because DOM (Document Object Model) is tree-structured and even small changes at the upper layer can cause awful ripples to the interface. To solve the issue, Facebook development team has introduced Virtual DOM – currently, one of the benefits of using React for heavy loaded and dynamic software solutions. As the name suggests, it is a virtual representation of the document object model, so all the changes are applied to the virtual DOM first and then, using diff algorithm, the minimal scope of necessary DOM operations is calculated. Finally, the real DOM tree is updated accordingly, ensuring minimum time consumed. This method guarantees better user experience and higher app performance.
     \item \textbf{Guaranteed Stable Code} - To make sure that even small changes that take place in the child structures won't affect their parents, ReactJS uses only downward data flow. Changing an object, developers just modify its state, make changes, and, after that, only particular components will be updated. This structure of data binding ensures code stability and continuous app performance.
-    \item \textbf{Strong Community} - Initially, React library was created for internal use and later shared with the entire world. Currently, it is supported by Facebook and Instagram engineering teams, plus external experts. For example, React GitHub repository numbers over 1100 contributors, while users can ask their questions on Stack Overflow, Discussion forum, Reactiflux Chart, Freenode IRC, social media platforms and many others.
 \end{itemize}
 
 \subsubsection{Disadvantages}
@@ -53,6 +52,7 @@ There are a few disadvantages to using React:
 \begin{itemize}
     \item \textbf{Poor Documentation} - The problem with documentation traces back to constant releases of new tools. Different and new libraries like Redux and Reflux are promising to accelerate the work of a library or improve the entire React ecosystem. At the end, developers struggle with integrating these tools with ReactJS. Some members of the community think that React technologies are updating and accelerating so fast that there is no time to write proper instruction. To solve this, developers write their own documentation for specific tools used by them in current projects.
     \item \textbf{JSX as a barrier} - ReactJS uses JSX. It’s a syntax extension, which allows mixing HTML with JavaScript. JSX has its own benefits (for instance, protecting code from injections), but some members of the development community consider JSX to be a serious disadvantage. Developers and designers complain about JSX’s complexity and consequent steep learning curve.
+    \item \textbf{Limitations in certain aspects} - As discovered with this project, certain tasks that can be done easily in other languages can't be done as easily in React. For example, if you wish to list all files in Firebase Storage using HTML, this can be done easily using a standard table to list the files. However, in React, this does not seem to be possible at the moment as it only seems to be possible to list one file at a time. Fortunately, the React community has developed libraries to get around these problems.
 \end{itemize}
 
 \newpage
@@ -72,43 +72,69 @@ In the React sense, “state” is an object that represents the parts of the ap
 Here, the application simply sets the current name of the selected sort and displays it the user.
 
 \begin{center}
-    \includegraphics[width=15cm,height=8cm,keepaspectratio]{images/mainpage3}
+    \includegraphics[width=15cm,height=6cm,keepaspectratio]{images/mainpage3}
 \end{center}
 Here the application handles the user's data set: handleDataset() will first save the user's data set to an array in state. handleSubmit() will submit the data set to be sorted i.e. the application will generate a visual representation of the user's data set. The user can then choose what sorting algorithm to apply and visualize.
 
 \begin{center}
-    \includegraphics[width=6cm,height=12cm,keepaspectratio]{images/userarray1}
-    \includegraphics[width=6cm,height=15cm,keepaspectratio]{images/userarray2}
+    \includegraphics[width=10cm,height=10cm,keepaspectratio]{images/mainpage4}
 \end{center}
 To generate a visual representation of the array, I first needed to process the user's input correctly. The data set was iterated over and any unnecessary character was removed. The contents of the data set was then stored in array. Next, I needed to ensure the array was always shuffled when a visual representation of it was generated. To do this, I used the Fisher-Yates shuffle which is an algorithm for generating a random permutation of a finite sequence—in plain terms, the algorithm shuffles the sequence. The algorithm effectively puts all the elements into a hat - it continually determines the next element by randomly drawing an element from the hat until no elements remain.
 \par
 \bigskip
 \begin{center}
-    \includegraphics[width=10cm,height=10cm,keepaspectratio]{images/mainpage4}
+    \includegraphics[width=10cm,height=10cm,keepaspectratio]{images/mainpage5}
 \end{center}
 To generate a random array, a sort size was first set. A random array of elements was then generated of that size.
 
+\begin{center}
+    \includegraphics[width=10cm,height=9cm,keepaspectratio]{images/mainpage7}
+\end{center}
+determineBarColor determines the color of bars that represent each element in the array. In this function, the application iterates over the array of selected elements, and if index i of that array is the index, the bar will be changed to the color in index i of highlightedColors.
+
 \newpage
 \begin{center}
-    \includegraphics[width=10cm,height=10cm,keepaspectratio]{images/mainpage5}
+    \includegraphics[width=10cm,height=9cm,keepaspectratio]{images/mainpage6}
 \end{center}
 This piece of code will execute the correct sorting algorithm. The application will first get 'path', which is comprised of location.pathname. Then, based on this, will pass the array, sortHistory, and selectedHistory to the correct algorithm. Each of these algorithms are discussed in section 4.2.1 of the System Design chapter. The visualization of the array being sorted will then be shown.
 
 \begin{center}
-    \includegraphics[width=10cm,height=9cm,keepaspectratio]{images/mainpage6}
-\end{center}
-determineBarColor determines the color of bars that represent each element in the array. In this function, the application iterates over the array of selected elements, and if index i of that array is the index, the bar will be changed to the color in index i of highlightedColors.
-
-\begin{center}
-    \includegraphics[width=10cm,height=9cm,keepaspectratio]{images/mainpage7}
+    \includegraphics[width=10cm,height=9cm,keepaspectratio]{images/mainpage8}
 \end{center}
 The render() function renders all the appropriate GUI, ranging from the toolbar for the various sorting algorithm, the bars themselves, and the various buttons for interacting with the application.
 
 \paragraph{MainToolbar}
 \begin{center}
-    \includegraphics[width=10cm,height=10cm,keepaspectratio]{images/toolbar}
+    \includegraphics[width=10cm,height=10cm,keepaspectratio]{images/toolbar1}
 \end{center}
 When a component is rendered by React Router, that component is passed three different props: location, match, and history. This history prop comes from the History library and has properties on it related to routing. In this case, the one we’re interested in is history.push. What it does is it pushes a new entry into the history stack - redirecting the user to another route. When an algorithm is selected, the correct route to the algorithm is selected. This allows the algorithm to be correctly visualized.
+
+\begin{center}
+    \includegraphics[width=10cm,height=10cm,keepaspectratio]{images/toolbar2}
+\end{center}
+The above code simply renders the toolbar. The toolbar is 'exported' as a component, which can then be used in other React pages.
+
+\newpage
+\paragraph{User Functions}
+\begin{center}
+    \includegraphics[width=8cm,height=10cm,keepaspectratio]{images/userfuncs}
+\end{center}
+The user functions file handles the register and login requests. These requests are delegated to the Flask server, where the appropriate action is taken. A response will then be returned based on the initial request.
+
+\bigskip
+\paragraph{Login Page}
+\begin{center}
+    \includegraphics[width=6cm,height=10cm,keepaspectratio]{images/login2}
+    \includegraphics[width=6cm,height=10cm,keepaspectratio]{images/login1}
+\end{center}
+The Login page uses the login function defined in the user functions file to handle a login request. If the user has successfully logged in, the local storage will be appropriately updated and the application will redirect to the sorting page. The login form is a simple HTML inspired form.
+
+\newpage
+\paragraph{Register Page}
+\begin{center}
+    \includegraphics[width=8cm,height=10cm,keepaspectratio]{images/register1}
+\end{center}
+The Register page, like the Login page, uses the register function defined in the user functions file to handle a register request. If the user has successfully registered an account, the application will redirect to the login page where the user can then log in to their newly created account. The register form is a simple HTML inspired form.
 
 \newpage
 \subsection{Flask}
@@ -209,19 +235,39 @@ To connect to the Mongo database, the database name, it's URI, and the secret ke
 \begin{center}
     \includegraphics[width=13cm,height=13cm,keepaspectratio]{images/backend2}
 \end{center}
-The register method allows a user to create an account. Firstly, the script gets a handle on the database itself....Four values are passed to the database: the user's first name, the user's last name, the user's email, and the user's password. 
+The register method allows a user to create an account. Firstly, the script gets a handle on the database itself using \lstinline{users = mongo.db.users}. Four values are passed to the database: the user's first name, the user's last name, the user's email, and the user's password. 
 
-% INSERT CODE
+\medskip
+\lstinline{first_name = request.get_json()['first_name']}
+\newline
+\lstinline{last_name = request.get_json()['last_name']}
+\newline
+\lstinline{email = request.get_json()['email']}
+\newline
+\lstinline{password = bcrypt.generate_password_hash(request.get_json()['password']).decode('utf-8')}
 
+\bigskip
 In the case of the user's password, Bcrypt is used to generate a password hash of the user's password before being passed to the database. When inserting a user into the database, the time and date the user's account was created is also passed to the database.
 
-% MORE
+\bigskip
+\lstinline{user_id = users.insert(...} will then create a new document (user) in the MongoDB database with these details. 
 
 \newpage
 \begin{center}
     \includegraphics[width=13cm,height=13cm,keepaspectratio]{images/backend3}
 \end{center}
 The login method allows a user to a login into their account. To log in, the user needs to provide two details: their email and their password. The script will search the database by user's emails. If the script finds the provided email and the hash of the provided password is equal to that of the hashed password linked to the account the user is attempting to log into, the script will create an access token and the user will be logged into the application. 
+
+\bigskip
+Again, the script gets a handle on the database itself using \lstinline{users = mongo.db.users}. Using \lstinline{response = users.find_one({ 'email': email })}, the script will try and find a matching email with the one provided. 
+
+\bigskip
+\lstinline{if response:}
+\newline
+\quad\lstinline{if bcrypt.check_password_hash(response['password'], password):}
+
+\bigskip
+This will check if \lstinline{response} returns true and if the hash of the password associated with the account found is correct. If so, the access token will created and the user will be logged in.
 
 \newpage
 \subsection{PythonAnywhere}
@@ -259,9 +305,8 @@ There are a number of advantages to using PythonAnywhere:
 \begin{itemize}
     \item \textbf{Always running} - Even on a free tier account, PythonAnywhere
     never sleeps (compared to something like Heroku). This means real time 
-    services are viable with PythonAnywhere.
-    \item \textbf{Fully configured} - PythonAnywhere gives you a fully
-    configured Python environment...
+    services are viable with PythonAnywhere. This proved to be very beneficial for this application since the Flask server (which is needed to allow users to register and login to an account) can always be available and requests can be made to it any time.
+    \item \textbf{Easy Setup} - It does not take long to have Python-backed website up and running. In the case of the Flask server for this application, the file simply needed to be uploaded, the appropriate libraries downloaded, and the flask file itself imported into the WSGI file (which would then 'deploy' it and allow requests to be made to it).
     \item \textbf{Free} - PythonAnywhere is free to use. On a free tier account,
     web applications stay running 24/7 for 3 months. After 3 months, it will
     shut down. However, one needs only to start it up again.
@@ -274,6 +319,7 @@ There are a few disadvantages to using PythonAnywhere:
     \item \textbf{Python-only on the server side} - You are free to use
     JavaScript in your web pages and so on, but you can't use Rails or Node on 
     the server side of things.
+    \item \textbf{No WebSocket Support} - A WebSocket is a computer communications protocol, providing full-duplex communication channels over a single TCP connection. PythonAnywhere currently doesn't support WebSockets.
 \end{itemize}
 
 \newpage
@@ -350,10 +396,22 @@ There are a few disadvantages to using MongoDB:
 Firebase is a mobile and web application development platform developed by Firebase, Inc. in 2011, then acquired by Google in 2014. With this project, Firebase was used to store the saved sorts and to host the application.
 
 \subsubsection{Storing Sorts}
-To store and upload sorts to the database, ... was used. ....
+To store and upload sorts to the database, a library called React Firebase File Uploader \cite{file_uploader} was used. This allows one to upload images, videos, and other files to Firebase Storage. 
 
+\begin{center}
+    \includegraphics[width=13cm,height=9cm,keepaspectratio]{images/uploadsort}
+\end{center}
+As soon as the user selects a file to upload, these functions will be called and will execute accordingly. Once the file has finished uploading, it will be stored in the \lstinline{sorts} directory in Firebase Storage, from which it will then be retrieved and listed.
+
+\newpage
 \begin{center}
     \includegraphics[width=13cm,height=9cm,keepaspectratio]{images/storesorts}
 \end{center}
 
 To retrieve and list all files from Firebase Storage, there seems to be no clear cut way to do it purely with React. To achieve this, I had to use a mix of HTML and JavaScript. As can be seen above, Firebase itself has a lot of inbuilt functions to retrieve files from storage. First, all files stored in storage were retrieved. A download link for each file was then generated. To get around this, I had to use a library called React HTML Parser \cite{react_html_parser}. 
+
+\begin{center}
+    \includegraphics[width=13cm,height=9cm,keepaspectratio]{images/htmlparser}
+\end{center}
+
+This allows you define HTML code which can then be rendered using \lstinline{{ReactHtmlParser(html)}} in the \lstinline{render()} method. To style the HTML, I simply added style tags in the constant \lstinline{html}.

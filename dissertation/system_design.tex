@@ -6,7 +6,7 @@ This chapter discusses the system design, analysing the various aspects of the p
     \includegraphics[width=8cm,height=3.3cm,keepaspectratio]{images/3tier}
 \end{center}
 
-This project utilises the multi-tier architecture (often referred to as n-tier architecture) platform. Multi-tier architecture or multilayered architecture is a client–server architecture in which presentation, application processing, and data management functions are physically separated. The most widespread use of multi-tier architecture is the three-tier architecture. This project consists of ... main components, all working together: The web application, which represents the presentation layer, allows users to visualise various sorting algorithms, register and login, upload and view past sorts from other users. The Flask server, which represents the logic tier, handles requests such as account registration and log in, and uploading and retrieving of sorts by users.
+This project utilises the multi-tier architecture (often referred to as n-tier architecture) platform. Multi-tier architecture or multilayered architecture is a client–server architecture in which presentation, application processing, and data management functions are physically separated. The most widespread use of multi-tier architecture is the three-tier architecture. This project consists of three main components, all working together: The web application, which represents the presentation layer, allows users to visualise various sorting algorithms, register and login, upload and view past sorts from other users. The Flask server, which represents the logic tier, handles requests such as account registration and log in, and uploading and retrieving of sorts by users. The databases: the MongoDB database which stores user details and the Firebase database which stores all previous sorts.
 
 \begin{center}
     \includegraphics[width=15cm,height=17cm,keepaspectratio]{images/AppDesign}
@@ -14,7 +14,7 @@ This project utilises the multi-tier architecture (often referred to as n-tier a
 \newpage
 
 \section{Web Application}
-The web application was designed and developed first as this is the main aspect of the project itself. The main objective of the web application was to allow a user to choose a sorting algorithm and be able to visualise it. Secondary objectives, which were developed at a later point, was to allow users to register and log in to an account, and have the ability to upload and view previous sorts. This was greatly aided by the decision to use ReactJS .... The web application consists of four main pages: 
+The web application was designed and developed first as this is the main aspect of the project itself. The main objective of the web application was to allow a user to choose a sorting algorithm and be able to visualise it. Secondary objectives, which were developed at a later point, was to allow users to register and log in to an account, and have the ability to upload and view previous sorts. This was greatly aided by the decision to use ReactJS as discussed in Chapter 3 The web application consists of four main pages: 
 
 \begin{itemize}
     \item \textbf{Sorting Page} - The sorting page, as shown in Figure \ref{fig:main_page}, is the main page of the application. Allows a user to choose one of several sorting algorithms to visualise, generate a random array of elements to sort, and specify their own dataset to sort.
@@ -123,5 +123,5 @@ The Flask server, which is hosted on PythonAnywhere, is the middle-man of the en
     \includegraphics[width=15cm,height=10cm,keepaspectratio]{images/pa_kn}
 \end{center}
 
-\section{Database}
-Fill out....
+\section{Databases}
+This application utilizes two databases: a MongoDB database, which is used to store user details and a Firebase database, which stores all previous sorts. 
