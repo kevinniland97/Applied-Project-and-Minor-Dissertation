@@ -11,13 +11,13 @@ export default class SelectionSort {
      * are of Ο(n2), where n is the number of items.
      * 
      * @param {*} array - Array to be sorted
-     * @param {*} sortHistory - Elements that have been sorted
-     * @param {*} selectedHistory - Elements that have been previously selected for sorting
+     * @param {*} sortedElements - Elements that have been sorted
+     * @param {*} selectedElements - Elements that have been previously selected for sorting
      */
-    static selectionSort(array, sortHistory, selectedHistory) {
-        // Clear sortHistory and selectedHistory
-        this.clearArray(sortHistory);
-        this.clearArray(selectedHistory);
+    static selectionSort(array, sortedElements, selectedElements) {
+        // Clear sortedElements and selectedElements
+        this.clearArray(sortedElements);
+        this.clearArray(selectedElements);
 
         let leftCol = -1;
     
@@ -40,12 +40,12 @@ export default class SelectionSort {
                  * The slice() method returns a shallow copy of a portion of an array into a 
                  * new array object selected from begin to end (end not included) where begin and 
                  * end represent the index of items in that array. The original array will not be 
-                 * modified. Push this portion into sortHistory
+                 * modified. Push this portion into sortedElements
                  * 
                  * Push j, leftCol, and min into selecedHistory
                  */
-                sortHistory.push(array.slice());
-                selectedHistory.push([j, leftCol, min]);
+                sortedElements.push(array.slice());
+                selectedElements.push([j, leftCol, min]);
             }
 
             // If i doesn't equal the minimum, swap i and min
@@ -54,8 +54,8 @@ export default class SelectionSort {
             }
         }
 
-        sortHistory.push(array.slice());
-        selectedHistory.push([-1, array.length - 1]);
+        sortedElements.push(array.slice());
+        selectedElements.push([-1, array.length - 1]);
     }
 
     /**

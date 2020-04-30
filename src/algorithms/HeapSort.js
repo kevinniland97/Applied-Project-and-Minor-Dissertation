@@ -10,32 +10,32 @@ export default class HeapSort {
      * case complexities are of Ο(n log n), where n is the number of items.
      * 
      * @param {*} array - Array to be sorted
-     * @param {*} sortHistory - Elements that have been sorted
-     * @param {*} selectedHistory - Elements that have been previously selected for sorting
+     * @param {*} sortedElements - Elements that have been sorted
+     * @param {*} selectedElements - Elements that have been previously selected for sorting
      */
-    static heapSort(array, sortHistory, selectedHistory) {
-        // Clear sortHistory and selectedHistory
-        this.clearArray(sortHistory);
-        this.clearArray(selectedHistory);
+    static heapSort(array, sortedElements, selectedElements) {
+        // Clear sortedElements and selectedElements
+        this.clearArray(sortedElements);
+        this.clearArray(selectedElements);
     
         for (let i = Math.floor(array.length / 2); i >= 0; i -= 1) {
             /**
              * The slice() method returns a shallow copy of a portion of an array into a 
              * new array object selected from begin to end (end not included) where begin and 
              * end represent the index of items in that array. The original array will not be 
-             * modified. Push this portion into sortHistory
+             * modified. Push this portion into sortedElements
              * 
-             * Push index i on to selectedHistory
+             * Push index i on to selectedElements
              */
-            sortHistory.push(array.slice());
-            selectedHistory.push([i]);
+            sortedElements.push(array.slice());
+            selectedElements.push([i]);
 
             this.heapRoot(array, i);
           }
     
         for (let i = array.length - 1; i > 0; i--) {
-            sortHistory.push(array.slice());
-            selectedHistory.push([i]);
+            sortedElements.push(array.slice());
+            selectedElements.push([i]);
 
             this.swap(array, 0, i);
             // array.length--;
@@ -58,7 +58,7 @@ export default class HeapSort {
             index = left;
         }
     
-        if (right < array.length && array[right] > array[index])     {
+        if (right < array.length && array[right] > array[index]) {
             index = right;
         }
     
@@ -69,17 +69,17 @@ export default class HeapSort {
     }
     
     /**
-     * Swaps items in the array
+     * Swaps items in the array depending on their size
      * 
-     * @param {*} array - Array of items
-     * @param {*} indexA - Index A
-     * @param {*} indexB - Index B
+     * @param {*} array - The array of items to be sorted
+     * @param {*} i - Index
+     * @param {*} j - Index
      */
-    static swap(array, indexA, indexB) {
-        var temp = array[indexA];
-    
-        array[indexA] = array[indexB];
-        array[indexB] = temp;
+    static swap(array, i, j) {
+        let temp = array[i];
+
+        array[i] = array[j];
+        array[j] = temp;
     }
 
     /**

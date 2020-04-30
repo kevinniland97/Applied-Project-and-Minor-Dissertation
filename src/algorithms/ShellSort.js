@@ -9,13 +9,13 @@ export default class ShellSort {
      * are of Ο(n2), where n is the number of items.
      * 
      * @param {*} array - Array to be sorted
-     * @param {*} sortHistory - Elements that have been sorted
-     * @param {*} selectedHistory - Elements that have been previously selected for sorting
+     * @param {*} sortedElements - Elements that have been sorted
+     * @param {*} selectedElements - Elements that have been previously selected for sorting
      */
-    static shellSort(array, sortHistory, selectedHistory) {
-        // Clear sortHistory and selectedHistory
-        this.clearArray(sortHistory);
-        this.clearArray(selectedHistory);
+    static shellSort(array, sortedElements, selectedElements) {
+        // Clear sortedElements and selectedElements
+        this.clearArray(sortedElements);
+        this.clearArray(selectedElements);
 
         for (let h = array.length; h > 0; h = parseInt(h / 2, 10)) {
             for (let i = h; i < array.length; i++) {
@@ -23,10 +23,10 @@ export default class ShellSort {
                  * The slice() method returns a shallow copy of a portion of an array into a 
                  * new array object selected from begin to end (end not included) where begin and 
                  * end represent the index of items in that array. The original array will not be 
-                 * modified. Push this portion into sortHistory
+                 * modified. Push this portion into sortedElements
                  */
-                sortHistory.push(array.slice());
-                selectedHistory.push([i + 1, i]);
+                sortedElements.push(array.slice());
+                selectedElements.push([i + 1, i]);
 
                 let k = array[i];
 

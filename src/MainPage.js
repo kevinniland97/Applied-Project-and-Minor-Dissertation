@@ -3,6 +3,7 @@ import { Button } from '@material-ui/core';
 import './styling/MainPage.css';
 import { withStyles } from '@material-ui/styles';
 import TextField from "@material-ui/core/TextField";
+// import HelperFunctions from './components/HelperFunctions';
 import BubbleSort from './algorithms/BubbleSort.js';
 import InsertionSort from './algorithms/InsertionSort.js';
 import SelectionSort from './algorithms/SelectionSort.js';
@@ -55,12 +56,6 @@ class MainPage extends Component {
       dataset: '' // Contains the user dataset
     };
 
-    this.sortHistory = [];
-    this.highlightHistory = [];
-    this.counter = 0;
-    this.interval = null;
-    this.sortSpeed = SPEED;
-
     this.props.history.listen((algorithm) => {
       this.randomArray();
       
@@ -94,6 +89,12 @@ class MainPage extends Component {
           this.setState({ sortName: 'Bubble Sort' });
       }
     });
+
+    this.sortedElements = [];
+    this.selectedElements = [];
+    this.counter = 0;
+    this.isFinished = null;
+    this.sortSpeed = SPEED;
   }
 
   /**
@@ -151,35 +152,36 @@ class MainPage extends Component {
    * Handles sorting
    */
   handleSort() {
-    if (this.isFinished) {
-      return;
-    }
+    // if (this.isFinished) {
+    //   return;
+    // }
 
-    if (this.sortHistory.length !== 0 && this.counter === this.sortHistory.length) {
-      return;
-    }
+    // if (this.sortedElements.length !== 0 && this.counter === this.sortedElements.length) {
+    //   return;
+    // }
 
     if (this.counter === 0) {
-      this.sortArray(this.state.array.slice(), this.sortHistory, this.highlightHistory);
+      this.sortArray(this.state.array.slice(), this.sortedElements, this.selectedElements);
       this.counter = 0;
 
-      if (this.sortHistory.length === 1) {
+      if (this.sortedElements.length === 1) {
         return;
       }
     }  
 
     this.setState({sortOnGoing: true});
     
-    if (this.isFinished) {
-      clearInterval(this.isFinished);
-    }
+    // if (this.isFinished) {
+    //   clearInterval(this.isFinished);
+    // }
 
     this.isFinished = setInterval( () => {
-      if (this.counter >= this.sortHistory.length - 1) {
+      if (this.counter >= this.sortedElements.length - 1) {
         this.handleIsFinished();
+        // HelperFunctions.handleIsFinished();
       }
 
-      this.setState({array: this.sortHistory[this.counter], isSelected: this.highlightHistory[this.counter]});
+      this.setState({array: this.sortedElements[this.counter], isSelected: this.selectedElements[this.counter]});
       this.counter++;
     }, MAX - this.sortSpeed);
   }
@@ -194,8 +196,8 @@ class MainPage extends Component {
 
     let array = [];
     this.counter = 0;
-    this.sortHistory = [];
-    this.highlightHistory = [];
+    this.sortedElements = [];
+    this.selectedElements = [];
 
     /**
      * Process the dataset, enabling a visual representation to be generated from it
@@ -233,8 +235,8 @@ class MainPage extends Component {
     this.handleIsFinished();
 
     this.counter = 0;
-    this.sortHistory = [];
-    this.highlightHistory = [];
+    this.sortedElements = [];
+    this.selectedElements = [];
 
     let array = [];
 
