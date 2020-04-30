@@ -135,7 +135,6 @@ class MainPage extends Component {
    * Handles dataset defined by user
    */
   handleDataset = ({ target }) => {
-    console.log(target.value);
     this.setState({ dataset: target.value });
   };
 
@@ -177,10 +176,7 @@ class MainPage extends Component {
 
     this.isFinished = setInterval( () => {
       if (this.counter >= this.sortHistory.length - 1) {
-        clearInterval(this.isFinished);
-
-        this.isFinished = null;
-        this.setState({sortOnGoing: false});
+        this.handleIsFinished();
       }
 
       this.setState({array: this.sortHistory[this.counter], isSelected: this.highlightHistory[this.counter]});
@@ -234,11 +230,6 @@ class MainPage extends Component {
    * Generates a random array of a fixed size
    */ 
   randomArray() {
-    // if (this.isFinished) {
-    //   clearInterval(this.isFinished);
-    //   this.isFinished = null;
-    //   this.setState({sortOnGoing: false});
-    // }
     this.handleIsFinished();
 
     this.counter = 0;
@@ -296,12 +287,6 @@ class MainPage extends Component {
    * Pauses sorting the array on button click
    */
   pauseSort() {
-    // if (this.isFinished) {
-    //   clearInterval(this.isFinished);
-    //   this.isFinished = null;
-    //   this.setState({sortOnGoing: false});
-    // }
-
     this.handleIsFinished();
   }
 
@@ -359,7 +344,7 @@ class MainPage extends Component {
 
         <div className="buttons-wrapper">
           <Button className={classes.button} style={styles.title} onClick={ () => this.randomArray()}>Generate random array</Button>
-          <Button className={classes.button} style={{backgroundColor: this.state.stillSorting ? 'red' : classes.button.backgroundColor, textTransform: 'capitalize'}} onClick={ this.state.stillSorting ? this.pauseSort.bind(this) : this.handleSort.bind(this)} > {this.state.stillSorting ? 'Stop Sorting' : 'Start Sorting'}</Button>
+          <Button className={classes.button} style={{backgroundColor: this.state.stillSorting ? 'red' : classes.button.backgroundColor, textTransform: 'capitalize'}} onClick={ this.state.stillSorting ? this.pauseSort.bind(this) : this.handleSort.bind(this)}>Start Sorting</Button>
 
            <div>
            {this.state.show &&
