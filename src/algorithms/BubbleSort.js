@@ -12,7 +12,6 @@ export default class BubbleSort {
      * @param {*} selectedHistory - Previous items that have been selected to be sorted
      */
     static bubbleSort(array, sortHistory, selectedHistory) {
-    // static bubbleSort(array, selectedHistory) {
         // Clear sortHistory and selectedHistory
         this.clearArray(sortHistory);
         this.clearArray(selectedHistory);
