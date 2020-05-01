@@ -28,8 +28,9 @@ ultimately weren't incorporated.
     \includegraphics[width=8cm,height=3.3cm,keepaspectratio]{images/react}
 \end{center}
 React (also known as React.js or ReactJS) is a JavaScript library for building 
-user interfaces. It is maintained by Facebook and a community of individual 
-developers and companies.
+user interfaces \cite{react_wiki}. It is maintained by Facebook and a community of individual 
+developers and companies \cite{react_docs}.
+\par
 \bigskip
 React can be used as a base in the development of single-page or mobile 
 applications. However React is only concerned with rendering data to the DOM and
@@ -57,7 +58,7 @@ There are a few disadvantages to using React:
 
 \newpage
 \subsubsection{Purpose in application}
-A vast majority of the application was written in React, namely the visualization aspect, user registration and login forms, upload of sorts, and viewing of sorts. Below discusses how each of the main parts of main page were developed:
+A vast majority of the application was written in React, namely the visualization aspect \cite{sorting_howto}, user registration and login forms, recording of sorts \cite{screenflow}, upload of sorts, and viewing of sorts. Below discusses how each of the main parts of main page were developed:
 \par
 \bigskip
 \paragraph{Main Page}
@@ -90,7 +91,7 @@ To generate a random array, a sort size was first set. A random array of element
 \begin{center}
     \includegraphics[width=10cm,height=9cm,keepaspectratio]{images/mainpage7}
 \end{center}
-determineBarColor determines the color of bars that represent each element in the array. In this function, the application iterates over the array of selected elements, and if index i of that array is the index, the bar will be changed to the color in index i of highlightedColors.
+setColor() determines the color of bars that represent each element in the array. In this function, the application iterates over the array of selected elements, and if index i of that array is the index, the bar will be changed to the color in index i of highlightedColors.
 
 \newpage
 \begin{center}
@@ -119,7 +120,7 @@ The above code simply renders the toolbar. The toolbar is 'exported' as a compon
 \begin{center}
     \includegraphics[width=8cm,height=10cm,keepaspectratio]{images/userfuncs}
 \end{center}
-The user functions file handles the register and login requests. These requests are delegated to the Flask server, where the appropriate action is taken. A response will then be returned based on the initial request.
+The user functions file handles the register and login requests \cite{frm_logreg}. These requests are delegated to the Flask server, where the appropriate action is taken. A response will then be returned based on the initial request.
 
 \bigskip
 \paragraph{Login Page}
@@ -143,7 +144,7 @@ The Register page, like the Login page, uses the register function defined in th
 \begin{center}
     \includegraphics[width=8cm,height=3.3cm,keepaspectratio]{images/flask}
 \end{center}
-Flask is a micro web framework written in Python. It is classified as a 
+Flask is a micro web framework written in Python \cite{flask_docs}, \cite{python_docs}. It is classified as a 
 micro-framework because it does not require particular tools or libraries. It 
 has no database abstraction layer, form validation, or any other components 
 where pre-existing third-party libraries provide common functions. However, 
@@ -215,7 +216,7 @@ There are a few disadvantages to using Flask:
 
 \newpage
 \subsubsection{Purpose in application}
-The backend aspect of the application was written in Python/Flask. The serve.py script handles requests made by the user, such as attempting to register for an account and attempting to login. Below discusses how this is achieved:
+The backend aspect of the application was written in Python/Flask \cite{frm_logreg}. The serve.py script handles requests made by the user, such as attempting to register for an account and attempting to login. Below discusses how this is achieved:
 
 \begin{center}
     \includegraphics[width=13cm,height=13cm,keepaspectratio]{images/backend1}
@@ -229,9 +230,9 @@ The user authentication aspect uses a lot of different libraries to achieve the 
     \item Flask-JWT-Encoded - An open source Flask extension that provides JWT support. Adds support for using JSON Web Tokens (JWT) to Flask for protecting views. 
 \end{itemize}
 
-To connect to the Mongo database, the database name, it's URI, and the secret key are defined. PyMongo will then connect to the MongoDB database. The Flask app object is also passed to Bcrypt, and the Flask-JWT extension is setup.
-
 \newpage
+To connect to the Mongo database, the database name, it's URI, and the secret key are defined. PyMongo will then connect to the MongoDB database. The Flask app object is also passed to Bcrypt, and the Flask-JWT extension is setup \cite{mlab_docs}.
+
 \begin{center}
     \includegraphics[width=13cm,height=13cm,keepaspectratio]{images/backend2}
 \end{center}
@@ -276,7 +277,7 @@ This will check if \lstinline{response} returns true and if the hash of the pass
 \begin{center}
     \includegraphics[width=8cm,height=3.3cm,keepaspectratio]{images/pythonanywhere}
 \end{center}
-PythonAnywhere is an online integrated development environment (IDE) and web
+PythonAnywhere is an online integrated development environment and web
 hosting service (Platform as a service) based on the Python programming 
 language. it provides in-browser access to server-based Python and Bash 
 command-line interfaces, along with a code editor with syntax highlighting. 
@@ -290,7 +291,7 @@ and could be accessed by the application by using a proxy to delegate any
 requests made by the application to the Flask server. However, to enable the 
 functionality to be accessed from anywhere (and, in turn, remove the need to run
 the Flask server alongside the application everytime), I decided to use 
-PythonAnywhere. While the application itself, can be run locally or accessed from the hosting site, I decided to host the Flask server on PythonAnywhere. This removes the need to run the script as well when running/accessing the main application. To enable requests to be made and handled by the Flask server on PythonAnywhere, a proxy must be setup to handle specific requests. A proxy, in general, is a server or service which can introduce additional layers in communication to obfuscate or modify content. In package.json, the prxoy is defined as follows:
+PythonAnywhere \cite{flask_pa}. While the application itself, can be run locally or accessed from the hosting site, I decided to host the Flask server on PythonAnywhere. This removes the need to run the script as well when running/accessing the main application. To enable requests to be made and handled by the Flask server on PythonAnywhere, a proxy must be setup to handle specific requests. A proxy, in general, is a server or service which can introduce additional layers in communication to obfuscate or modify content. In package.json, the prxoy is defined as follows:
 
 \begin{center}
     \includegraphics[width=13cm,height=5cm,keepaspectratio]{images/packagejson}
@@ -329,7 +330,7 @@ There are a few disadvantages to using PythonAnywhere:
 \begin{center}
     \includegraphics[width=8cm,height=3.3cm,keepaspectratio]{images/mongodb}
 \end{center}
-MongoDB is a cross-platform document-oriented database program. Classified as a
+MongoDB is a cross-platform document-oriented database program \cite{mongo_docs}. Classified as a
 NoSQL database program, MongoDB uses JSON-like documents with schema. Some of 
 the main features of MongoDB are:
 
@@ -393,7 +394,7 @@ There are a few disadvantages to using MongoDB:
 \begin{center}
     \includegraphics[width=8cm,height=3.3cm,keepaspectratio]{images/firebase}
 \end{center}
-Firebase is a mobile and web application development platform developed by Firebase, Inc. in 2011, then acquired by Google in 2014. With this project, Firebase was used to store the saved sorts and to host the application.
+Firebase is a mobile and web application development platform developed by Firebase, Inc \cite{firebase_docs}. With this project, Firebase was used to store the saved sorts and to host the application.
 
 \subsubsection{Storing Sorts}
 To store and upload sorts to the database, a library called React Firebase File Uploader \cite{file_uploader} was used. This allows one to upload images, videos, and other files to Firebase Storage. 
@@ -408,7 +409,7 @@ As soon as the user selects a file to upload, these functions will be called and
     \includegraphics[width=13cm,height=9cm,keepaspectratio]{images/storesorts}
 \end{center}
 
-To retrieve and list all files from Firebase Storage, there seems to be no clear cut way to do it purely with React. To achieve this, I had to use a mix of HTML and JavaScript. As can be seen above, Firebase itself has a lot of inbuilt functions to retrieve files from storage. First, all files stored in storage were retrieved. A download link for each file was then generated. To get around this, I had to use a library called React HTML Parser \cite{react_html_parser}. 
+To retrieve and list all files from Firebase Storage, there seems to be no clear cut way to do it purely with React. To achieve this, I had to use a mix of HTML and JavaScript \cite{firebase_listing}. As can be seen above, Firebase itself has a lot of inbuilt functions to retrieve files from storage. First, all files stored in storage were retrieved. A download link for each file was then generated. To get around this, I had to use a library called React HTML Parser \cite{react_html_parser}. 
 
 \begin{center}
     \includegraphics[width=13cm,height=9cm,keepaspectratio]{images/htmlparser}
