@@ -286,13 +286,6 @@ class MainPage extends Component {
     }
 
   /**
-   * Pauses sorting the array on button click
-   */
-  pauseSort() {
-    this.handleIsFinished();
-  }
-
-  /**
    * Determines the color of each bar during the sorting process
    * 
    * @param {*} isSelected - Selected index in array
@@ -346,7 +339,7 @@ class MainPage extends Component {
 
         <div className="buttons-wrapper">
           <Button className={classes.button} style={styles.title} onClick={ () => this.randomArray()}>Generate random array</Button>
-          <Button className={classes.button} style={{backgroundColor: this.state.stillSorting ? 'red' : classes.button.backgroundColor, textTransform: 'capitalize'}} onClick={ this.state.stillSorting ? this.pauseSort.bind(this) : this.handleSort.bind(this)}>Start Sorting</Button>
+          <Button className={classes.button} style={{backgroundColor: this.state.stillSorting ? 'red' : classes.button.backgroundColor, textTransform: 'capitalize'}} onClick={ this.state.stillSorting ? console.log("Waiting...") : this.handleSort.bind(this)}>Start Sorting</Button>
 
            <div>
            {this.state.show &&
