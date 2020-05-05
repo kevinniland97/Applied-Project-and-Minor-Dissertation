@@ -1,6 +1,7 @@
 # Algorithms Visualizer in ReactJS
 
 __Student:__ Kevin Niland
+<br>
 __Supervisor:__ Dr. Martin Kenirons
 
 ---
