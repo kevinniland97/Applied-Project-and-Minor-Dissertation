@@ -33,10 +33,6 @@ const styles = {
   }
 }
 
-const SIZE = 70;
-const SPEED = 200;
-const MAX = 200;
-const BARCOLORS = ['red', 'purple', 'blue', 'gray'];
 var i;
 
 /**
@@ -90,11 +86,15 @@ class MainPage extends Component {
       }
     });
 
+    this.SIZE = 70;
+    this.SPEED = 200;
+    this.MAX = 200;
+    this.BARCOLORS = ['red', 'purple', 'blue', 'gray'];
     this.sortedElements = [];
     this.selectedElements = [];
     this.counter = 0;
     this.isFinished = null;
-    this.sortSpeed = SPEED;
+    this.sortSpeed = this.SPEED;
   }
 
   /**
@@ -152,14 +152,6 @@ class MainPage extends Component {
    * Handles sorting
    */
   handleSort() {
-    // if (this.isFinished) {
-    //   return;
-    // }
-
-    // if (this.sortedElements.length !== 0 && this.counter === this.sortedElements.length) {
-    //   return;
-    // }
-
     if (this.counter === 0) {
       this.sortArray(this.state.array.slice(), this.sortedElements, this.selectedElements);
       this.counter = 0;
@@ -170,20 +162,15 @@ class MainPage extends Component {
     }  
 
     this.setState({sortOnGoing: true});
-    
-    // if (this.isFinished) {
-    //   clearInterval(this.isFinished);
-    // }
 
     this.isFinished = setInterval( () => {
       if (this.counter >= this.sortedElements.length - 1) {
         this.handleIsFinished();
-        // HelperFunctions.handleIsFinished();
       }
 
       this.setState({array: this.sortedElements[this.counter], isSelected: this.selectedElements[this.counter]});
       this.counter++;
-    }, MAX - this.sortSpeed);
+    }, this.MAX - this.sortSpeed);
   }
 
   /**
@@ -240,7 +227,7 @@ class MainPage extends Component {
 
     let array = [];
 
-    for (i = 0; i < SIZE; i++) {
+    for (i = 0; i < this.SIZE; i++) {
       array.push(Math.floor(Math.random() * 50) + 1);
     }
 
@@ -294,7 +281,7 @@ class MainPage extends Component {
   setColor(isSelected, index) {
     for (i = 0; i < isSelected.length; i++)  {
       if (isSelected[i] === index) {
-        return BARCOLORS[i];
+        return this.BARCOLORS[i];
       }
     }
 
