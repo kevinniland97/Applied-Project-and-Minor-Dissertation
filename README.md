@@ -9,6 +9,9 @@ __Supervisor:__ Dr. Martin Kenirons
 ## Introduction
 This repository contains all the source code and files for the Algorithms Visualizer in ReactJS and the accompanying dissertation. The repository also contains a link to a video which gives an overview of the repository and a demo of the application itself.
 
+### Overview
+The project is an algorithms visualizer developed in ReactJS. The application is intended to be used in an educational context. The project came about as a result from reflecting on the Data Structures and Algorithms module in 2nd year. During this module, we were shown mainly videos that demonstarted various sorting algorithms. I decided to develop an application that could possibly be used in this module whereby students could actively engage with the application to see how each sorting algorithm works. The application allows users to register and login to an account whereby additional functionality will then become available, such as generating a unique dateset of any size. User authentication was done using a mix of Python, Flask, and MongoDB. The user can also upload past sorts whereby other users can then view these sorts. Firebase was used as the database to store these past sorts. The application itself is also hosted on Firebase, using Firebase Hosting.
+
 ## Requirements
 * npm 5.2+ - To create the application, `npx` is used which comes with npm 5.2+
 * Python 2.7+ - The various libraries used are supported from Python 2.7+
@@ -17,12 +20,18 @@ This repository contains all the source code and files for the Algorithms Visual
 
 ## Technologies
 The following technologies were used to develop the application:
-* ReactJS
-* Flask/Python
-* PythonAnywhere
-* MongoDB
-* Firebase
-* Docker
+* ReactJS - Main technology of the project. Used to develop majority of features.
+* Flask/Python - Used to implement user authenication.
+* PythonAnywhere - Used to host Flask Server.
+* MongoDB - Stores user details.
+* Firebase - Stores past sorts. Also used to host application.
+* Docker - Another technology that can be used to run the application.
+
+## Repository Overview
+* __backend__ - Directory containing the code for the Flask Server.
+* __dissertation__ - Contains files for the dissertation.
+* __public__ - The public folder contains the HTML file for tweaking minor aspects of the application, such as the title.
+* __src__ - Contains all code used to develop the application.
 
 ## How to run
 1. Download or clone the repository using `git clone https://github.com/kevinniland97/Applied-Project-and-Minor-Dissertation`.
