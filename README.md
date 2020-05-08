@@ -10,6 +10,8 @@ __Supervisor:__ Dr. Martin Kenirons
 This repository contains all the source code and files for the Algorithms Visualizer in ReactJS and the accompanying dissertation. The repository also contains a link to a video which gives an overview of the repository and a demo of the application itself.
 
 ### Overview
+
+![main](https://github.com/kevinniland97/Applied-Project-and-Minor-Dissertation/blob/master/dissertation/images/web_app_main.PNG)
 The project is an algorithms visualizer developed in ReactJS. The application is intended to be used in an educational context. The project came about as a result from reflecting on the Data Structures and Algorithms module in 2nd year. During this module, we were shown mainly videos that demonstarted various sorting algorithms. I decided to develop an application that could possibly be used in this module whereby students could actively engage with the application to see how each sorting algorithm works. The application allows users to register and login to an account whereby additional functionality will then become available, such as generating a unique dateset of any size. User authentication was done using a mix of Python, Flask, and MongoDB. The user can also upload past sorts whereby other users can then view these sorts. Firebase was used as the database to store these past sorts. The application itself is also hosted on Firebase, using Firebase Hosting.
 
 ## Requirements
