@@ -1,6 +1,7 @@
 # Algorithms Visualizer in ReactJS
 
 __Student:__ Kevin Niland
+<br>
 __Supervisor:__ Dr. Martin Kenirons
 
 ---
@@ -35,4 +36,7 @@ The following technologies were used to develop the application:
 ## Hosting
 The application can be found at https://algorithms-visualiser-react.firebaseapp.com/.
 
-The application can also be deployed using Docker. To build it using Docker, run the command ` docker build . -t imagename` in the root of the project directory.. Then run the command ``.
+The application can also be deployed using Docker. To build it using Docker, run the command `docker build . -t image-name` in the root of the project directory (on Windows, I first had to 'startup' Docker). Then run `docker ps` to get the container ID of the newly created Docker image. With the container ID, run `docker exec -it container-id sh`. This will open a command line specific to this container ID. Running `npm start` will then run the application.
+
+## Demo
+The demo of the project and an overview of the project repo and code is available here: 
