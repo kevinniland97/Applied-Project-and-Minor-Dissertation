@@ -87,6 +87,7 @@ def login():
             result = jsonify({ 'ERROR: Invalid username or password' })
     else:
         result = jsonify({ 'result': 'No results found' })
+        
     return result
 
 @app.route('/', methods=['GET'])

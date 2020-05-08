@@ -47,10 +47,29 @@ class MainPage extends Component {
       array: [], // Array of elements to sort
       isSelected: [], // Array of selected elements up for sorting
       show: true, // Will enable access to various functionality if user is logged in
-      sortOnGoing: false, // Determines whether the array of elements is still being sorted
+      stillSorting: false, // Determines whether the array of elements is still being sorted
       sortName: 'Bubble Sort', // Default sort name
       dataset: '' // Contains the user dataset
     };
+
+    this.SIZE = 65;
+    this.SPEED = 200;
+    this.MAX = 200;
+    this.BARCOLORS = ['red', 'purple', 'blue', 'gray'];
+    this.sortedElements = [];
+    this.selectedElements = [];
+    this.counter = 0;
+    this.isFinished = null;
+    this.sortSpeed = this.SPEED;
+  }
+
+  /**
+   * componentDidMount() is invoked immediately after a component is mounted (inserted into the tree). 
+   * Initialization that requires DOM nodes go here. As such, a random array is automatically generated
+   * and whether or not the user is logged in is also checked
+   */
+  componentDidMount() {
+    this.randomArray();
 
     this.props.history.listen((algorithm) => {
       this.randomArray();
@@ -85,25 +104,6 @@ class MainPage extends Component {
           this.setState({ sortName: 'Bubble Sort' });
       }
     });
-
-    this.SIZE = 70;
-    this.SPEED = 200;
-    this.MAX = 200;
-    this.BARCOLORS = ['red', 'purple', 'blue', 'gray'];
-    this.sortedElements = [];
-    this.selectedElements = [];
-    this.counter = 0;
-    this.isFinished = null;
-    this.sortSpeed = this.SPEED;
-  }
-
-  /**
-   * componentDidMount() is invoked immediately after a component is mounted (inserted into the tree). 
-   * Initialization that requires DOM nodes go here. As such, a random array is automatically generated
-   * and whether or not the user is logged in is also checked
-   */
-  componentDidMount() {
-    this.randomArray();
 
     // Displays logged in user
     if (localStorage.getItem('loggedIn') === 'true') {
@@ -155,10 +155,6 @@ class MainPage extends Component {
     if (this.counter === 0) {
       this.sortArray(this.state.array.slice(), this.sortedElements, this.selectedElements);
       this.counter = 0;
-
-      if (this.sortedElements.length === 1) {
-        return;
-      }
     }  
 
     this.setState({sortOnGoing: true});

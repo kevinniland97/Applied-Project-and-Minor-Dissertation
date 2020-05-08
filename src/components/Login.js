@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-// import { LoginUser } from './UserFunctions';
 import { login } from './UserFunctions';
 import LoginRegisterToolbar from './LoginRegisterToolbar';
 import '../styling/LoginRegPage.css';
@@ -45,12 +44,12 @@ class Login extends Component {
        * Set the user value in local storage to that of the user's email and set loggedIn to true
        */ 
       login(user).then(res => {
-        if (!res.error) {
+        // if (!res.error) {
             this.props.history.push('/bubble-sort')
 
             localStorage.setItem("user", user.email);
             localStorage.setItem("loggedIn", user.loggedIn)
-        }
+        // }
       })
   }
 

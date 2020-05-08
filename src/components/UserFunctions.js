@@ -11,8 +11,6 @@ export const register = newUser => {
         })
         .then(response => {
             console.log("User successfully registered")
-
-            return response
         })
 }
 

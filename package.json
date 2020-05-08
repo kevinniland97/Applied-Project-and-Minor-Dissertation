@@ -45,7 +45,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://kniland97.eu.pythonanywhere.com",
+  "proxy": "http://kniland97.eu.pythonanywhere.com/",
   "devDependencies": {
     "@testing-library/react": "^9.5.0"
   }
