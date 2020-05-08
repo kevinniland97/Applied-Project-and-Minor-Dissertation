@@ -8,13 +8,13 @@ export default class InsertionSort {
      * number of items.
      * 
      * @param {*} array - Array of items to be sorted
-     * @param {*} sortHistory - Elements that have been sorted
-     * @param {*} selectedHistory - Elements that have been previously selected for sorting 
+     * @param {*} sortedElements - Elements that have been sorted
+     * @param {*} selectedElements - Elements that have been previously selected for sorting 
      */
-    static insertionSort(array, sortHistory, selectedHistory) {
-        // Clear sortHistory and selectedHistory
-        this.clearArray(sortHistory);
-        this.clearArray(selectedHistory);
+    static insertionSort(array, sortedElements, selectedElements) {
+        // Clear sortedElements and selectedElements
+        this.clearArray(sortedElements);
+        this.clearArray(selectedElements);
 
         let leftCol = -1;
 
@@ -31,17 +31,17 @@ export default class InsertionSort {
                  * The slice() method returns a shallow copy of a portion of an array into a 
                  * new array object selected from begin to end (end not included) where begin and 
                  * end represent the index of items in that array. The original array will not be 
-                 * modified. Push this portion into sortHistory
+                 * modified. Push this portion into sortedElements
                  */
-                sortHistory.push(array.slice());
-                selectedHistory.push([j, leftCol]);
+                sortedElements.push(array.slice());
+                selectedElements.push([j, leftCol]);
             }
 
             array[j + 1] = temp;
         }
 
-        sortHistory.push(array.slice());
-        selectedHistory.push([0, array.length - 1]);
+        sortedElements.push(array.slice());
+        selectedElements.push([0, array.length - 1]);
     }
 
     /**

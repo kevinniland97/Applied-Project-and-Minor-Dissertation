@@ -8,19 +8,19 @@ export default class QuickSort {
      * worst case complexities are of Ο(n2), where n is the number of items.
      * 
      * @param {*} array - Array to be sorted
-     * @param {*} sortHistory - Elements that have been sorted
-     * @param {*} selectedHistory - Elements that have been previously selected for sorting 
+     * @param {*} sortedElements - Elements that have been sorted
+     * @param {*} selectedElements - Elements that have been previously selected for sorting 
      */
-    static quickSort(array, sortHistory, selectedHistory) {
-        // Clear sortHistory and selectedHistory
-        this.clearArray(sortHistory);
-        this.clearArray(selectedHistory);
+    static quickSort(array, sortedElements, selectedElements) {
+        // Clear sortedElements and selectedElements
+        this.clearArray(sortedElements);
+        this.clearArray(selectedElements);
 
         /**
-         * Pass in the array, set index i as 0, set index j as the length of the array, sortHistory 
-         * and selectedHistory
+         * Pass in the array, set index i as 0, set index j as the length of the array, sortedElements 
+         * and selectedElements
          */ 
-        this.quickSortIterative(array, 0, array.length - 1, sortHistory, selectedHistory);
+        this.quickSortIterative(array, 0, array.length - 1, sortedElements, selectedElements);
     }
 
     /**
@@ -29,10 +29,10 @@ export default class QuickSort {
      * @param {*} array - Array to be sorted
      * @param {*} i - Element i
      * @param {*} j - Element j
-     * @param {*} sortHistory - Elements that have been sorted 
-     * @param {*} selectedHistory - Elements that have been previously selected for sorting  
+     * @param {*} sortedElements - Elements that have been sorted 
+     * @param {*} selectedElements - Elements that have been previously selected for sorting  
      */
-    static quickSortIterative(array, i, j, sortHistory, selectedHistory) {
+    static quickSortIterative(array, i, j, sortedElements, selectedElements) {
         // Stack of elements
         let stack = [];
 
@@ -48,7 +48,7 @@ export default class QuickSort {
             i = stack[top--]; // Take item of stack and store in i
 
             // Partition array
-            let partition = this.partition(array, i, j, sortHistory, selectedHistory);
+            let partition = this.partition(array, i, j, sortedElements, selectedElements);
 
             /**
              * If partition minus 1 is less than i, stack[++top] is equal to i then partition - 1
@@ -74,10 +74,10 @@ export default class QuickSort {
      * @param {*} array - Array to be sorted
      * @param {*} i - Element i
      * @param {*} j - Element j
-     * @param {*} sortHistory - Elements that have been sorted 
-     * @param {*} selectedHistory - Elements that have been previously selected for sorting  
+     * @param {*} sortedElements - Elements that have been sorted 
+     * @param {*} selectedElements - Elements that have been previously selected for sorting  
      */
-    static partition(array, i, j, sortHistory, selectedHistory) {
+    static partition(array, i, j, sortedElements, selectedElements) {
         let x = array[j];
         let y = (i - 1);
 
@@ -86,12 +86,12 @@ export default class QuickSort {
              * The slice() method returns a shallow copy of a portion of an array into a 
              * new array object selected from begin to end (end not included) where begin and 
              * end represent the index of items in that array. The original array will not be 
-             * modified. Push this portion into sortHistory
+             * modified. Push this portion into sortedElements
              * 
-             * Push k, i, and j into selectedHistory
+             * Push k, i, and j into selectedElements
              */
-            sortHistory.push(array.slice());
-            selectedHistory.push([k, i, j]);
+            sortedElements.push(array.slice());
+            selectedElements.push([k, i, j]);
 
             // If array index k is less than or equal to x, increment y, and call the swap function
             if (array[k] <= x) {
