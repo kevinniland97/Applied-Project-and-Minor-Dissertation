@@ -8,7 +8,7 @@ This project is comprised of React as the frontend, Flask as the server which is
 hosted on PythonAnywhere, MongoDB as the database for user authentication, Firebase as the database to store sorts, and Docker and Firebase to deploy/host the application. Throughout the project, the following technologies were also used 
 and tested before the above was ultimately chosen:
 \begin{itemize}
-    \item Angular/Ionic
+    \item Angular/Ionic \cite{comparison}
     \item Django
     \item MySQL
     \item Amazon Web Services
@@ -33,7 +33,7 @@ developers and companies \cite{react_docs}.
 \par
 \bigskip
 React can be used as a base in the development of single-page or mobile 
-applications. However React is only concerned with rendering data to the DOM and
+applications \cite{mod_dev}. However React is only concerned with rendering data to the DOM and
 so creating React applications usually requires the use of additional libraries 
 for state management and routing. Redux and React Router are respective examples
 of such libraries. 
@@ -78,24 +78,24 @@ Here, the application simply sets the current name of the selected sort and disp
 Here the application handles the user's data set: handleDataset() will first save the user's data set to an array in state. handleSubmit() will submit the data set to be sorted i.e. the application will generate a visual representation of the user's data set. The user can then choose what sorting algorithm to apply and visualize.
 
 \begin{center}
-    \includegraphics[width=10cm,height=10cm,keepaspectratio]{images/mainpage4}
+    \includegraphics[width=10cm,height=10cm,keepaspectratio]{images/userarray}
 \end{center}
 To generate a visual representation of the array, I first needed to process the user's input correctly. The data set was iterated over and any unnecessary character was removed. The contents of the data set was then stored in array. Next, I needed to ensure the array was always shuffled when a visual representation of it was generated. To do this, I used the Fisher-Yates shuffle which is an algorithm for generating a random permutation of a finite sequence—in plain terms, the algorithm shuffles the sequence. The algorithm effectively puts all the elements into a hat - it continually determines the next element by randomly drawing an element from the hat until no elements remain.
 \par
 \bigskip
 \begin{center}
-    \includegraphics[width=10cm,height=10cm,keepaspectratio]{images/mainpage5}
+    \includegraphics[width=10cm,height=10cm,keepaspectratio]{images/randomArray}
 \end{center}
 To generate a random array, a sort size was first set. A random array of elements was then generated of that size.
 
 \begin{center}
-    \includegraphics[width=10cm,height=9cm,keepaspectratio]{images/mainpage7}
+    \includegraphics[width=10cm,height=9cm,keepaspectratio]{images/setcolor}
 \end{center}
 setColor() determines the color of bars that represent each element in the array. In this function, the application iterates over the array of selected elements, and if index i of that array is the index, the bar will be changed to the color in index i of highlightedColors.
 
 \newpage
 \begin{center}
-    \includegraphics[width=10cm,height=9cm,keepaspectratio]{images/mainpage6}
+    \includegraphics[width=10cm,height=9cm,keepaspectratio]{images/sortArray}
 \end{center}
 This piece of code will execute the correct sorting algorithm. The application will first get 'path', which is comprised of location.pathname. Then, based on this, will pass the array, sortHistory, and selectedHistory to the correct algorithm. Each of these algorithms are discussed in section 4.2.1 of the System Design chapter. The visualization of the array being sorted will then be shown.
 
