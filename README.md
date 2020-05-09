@@ -63,4 +63,4 @@ The application can also be deployed using Docker. To build it using Docker, run
 ## Demo
 The demo of the project and an overview of the project repo and code is available here: https://youtu.be/2GvhoUd2-po
 
-[<img src="https://www.youtube.com/watch?v=2GvhoUd2-po" width="50%">](https://www.youtube.com/watch?v=2GvhoUd2-po)
+[![Watch the video](https://github.com/kevinniland97/Applied-Project-and-Minor-Dissertation/blob/master/dissertation/images/video.PNG)](https://youtu.be/2GvhoUd2-po)
