@@ -63,4 +63,4 @@ The application can also be deployed using Docker. To build it using Docker, run
 ## Demo
 The demo of the project and an overview of the project repo and code is available here: https://youtu.be/2GvhoUd2-po
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/2GvhoUd2-po" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[<img src="https://www.youtube.com/watch?v=2GvhoUd2-po" width="50%">](https://www.youtube.com/watch?v=2GvhoUd2-po)
