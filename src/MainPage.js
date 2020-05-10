@@ -15,6 +15,9 @@ import ShellSort from './algorithms/ShellSort.js';
 import MainToolbar from './components/MainToolbar';
 import ArrayElement from './components/ArrayElement';
 
+/**
+ * Asset stripped from: https://tinyurl.com/y9w2cna8
+ */
 // Styling
 const styles = {
   button: {
